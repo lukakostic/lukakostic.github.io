@@ -81,14 +81,18 @@
 						//object.position.y = 0,//Math.random()*120,
 						//object.position.z = 0;
 						
-						camera.lookAt( object.position);
-				object.material = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
+				object.material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
 				
 						scene.add( object );
 
 					
 					});
 
+					        var ambientLight = new THREE.DirectionalLight();
+							ambientLight.position.y = 100;
+							ambientLight.position.x = 100;
+							ambientLight.position.z = 100;
+        scene.add( ambientLight );
 
 				renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     renderer.setClearColor( 0x000000, 0 );
