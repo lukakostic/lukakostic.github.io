@@ -80,7 +80,8 @@
 						//object.position.x = 0,//Math.random()*120,
 						//object.position.y = 0,//Math.random()*120,
 						//object.position.z = 0;
-						console.log(object);
+						
+						camera.lookAt( object.position);
 				object.material = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
 				
 						scene.add( object );
