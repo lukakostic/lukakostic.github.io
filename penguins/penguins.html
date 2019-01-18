@@ -32,7 +32,7 @@
 		<script src="threejs/build/three.js"></script>
 		<script src="threejs/examples/js/renderers/CSS3DRenderer.js"></script>
 		<script src="threejs/examples/js/libs/inflate.min.js"></script>
-		<script src="threejs/examples/js/loaders/FBXLoader.js"></script>
+		<script src="threejs/examples/js/loaders/FBXLoaderDev.js"></script>
 		<script src="threejs/examples/js/libs/dat.gui.min.js"></script>
 		<script src="threejs/examples/js/WebGL.js"></script>
 		<script src="threejs/examples/js/libs/stats.min.js"></script>
@@ -80,6 +80,9 @@
 						//object.position.x = 0,//Math.random()*120,
 						//object.position.y = 0,//Math.random()*120,
 						//object.position.z = 0;
+						console.log(object);
+				object.material = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
+				
 						scene.add( object );
 
 					
