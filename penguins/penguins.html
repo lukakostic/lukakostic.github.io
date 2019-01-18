@@ -61,15 +61,14 @@
 				
     scene = new THREE.Scene();
 				
+				/*
 				var image = document.createElement( 'img' );
 				image.addEventListener( 'load', function () {
-
-					for ( var i = 0; i < particlesTotal; i ++ ) {
-
-						//var object = new THREE.CSS3DSprite( image.cloneNode() );
-						
-						var loader = new THREE.FBXLoader();
-				var object = loader.load( 'models/Penguin.fbx');/*, function ( object ) {
+				}, false );
+				image.src = 'threejs/examples/textures/sprite.png';
+*/
+				var loader = new THREE.FBXLoader();
+				var object = loader.load( 'models/Penguin.fbx', function ( object ) {
 					
 					object.traverse( function ( child ) {
 						if ( child.isMesh ) {
@@ -77,22 +76,15 @@
 							child.receiveShadow = true;
 						}
 					} );
-					*/
-					//scene.add( object );
 					
-						object.position.x = 0,//Math.random()*120,
+											object.position.x = 0,//Math.random()*120,
 						object.position.y = 0,//Math.random()*120,
 						object.position.z = 0;
 						scene.add( object );
 
 						objects.push( object );
-//});
-					}
-
-
-				}, false );
-				image.src = 'threejs/examples/textures/sprite.png';
-
+					
+					});
 
 
 				renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
