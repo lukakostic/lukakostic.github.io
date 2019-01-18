@@ -40,8 +40,6 @@
 <div id="webgl"></div>
 
 		<script>
-if ( WEBGL.isWebGLAvailable() === false )
-				document.body.appendChild( WEBGL.getWebGLErrorMessage() );
 			
 			var camera, scene, renderer;
 			var controls;
@@ -54,7 +52,8 @@ if ( WEBGL.isWebGLAvailable() === false )
 
 			function init() {
 
-				camera = new THREE.OrthographicCamera(-200,200,200,-200,1,5000);
+				//camera = new THREE.OrthographicCamera(-200,200,200,-200,1,5000);
+				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 2000 );
 				
 				camera.position.set( 0, 0, -1500 );
 				//camera.lookAt( 0, 0, 0 );
@@ -117,9 +116,9 @@ function onDocumentMouseMove( event ) {
 }
 
 function animate() {
-
-			renderer.render( scene, camera );
 			requestAnimationFrame( animate );
+			renderer.render( scene, camera );
+
 }
 			function onWindowResize() {
 
