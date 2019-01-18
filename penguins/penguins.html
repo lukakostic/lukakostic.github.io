@@ -69,14 +69,14 @@
 */
 				var loader = new THREE.FBXLoader();
 				var object = loader.load( 'models/Penguin.fbx', function ( object ) {
-					
+					/*
 					object.traverse( function ( child ) {
 						if ( child.isMesh ) {
 							child.castShadow = true;
 							child.receiveShadow = true;
 						}
 					} );
-					
+					*/
 											object.position.x = 0,//Math.random()*120,
 						object.position.y = 0,//Math.random()*120,
 						object.position.z = 0;
