@@ -44,9 +44,9 @@
 
 			var camera, scene, renderer;
 			var controls;
-
-			var particlesTotal = 10;
-			var objects = [];
+			
+			var mouseX = 0;
+			var mouseY = 0;
 
 			init();
 			animate(performance.now());
@@ -77,12 +77,11 @@
 						}
 					} );
 					*/
-											object.position.x = 0,//Math.random()*120,
+						object.position.x = 0,//Math.random()*120,
 						object.position.y = 0,//Math.random()*120,
 						object.position.z = 0;
 						scene.add( object );
 
-						objects.push( object );
 					
 					});
 
@@ -96,11 +95,19 @@
     document.querySelector('#webgl').appendChild( renderer.domElement );
 	
 				window.addEventListener( 'resize', onWindowResize, false );
+				window.addEventListener( 'mousemove', onDocumentMouseMove, false );
 
-			}
-function animate() {
-requestAnimationFrame( animate );
+}
+
+function onDocumentMouseMove( event ) {
+    mouseX = event.clientX - window.innerWidth/2;
+    mouseY = event.clientY - window.innerHeight/2;
+}
+
+function animate(time) {
+
 			renderer.render( scene, camera );
+			requestAnimationFrame( animate );
 }
 			function onWindowResize() {
 
