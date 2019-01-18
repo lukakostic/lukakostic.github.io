@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Penguins</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			html, body {
+				height: 100%;
+			}
+
+			body {
+				background-color: #ffffff;
+				margin: 0;
+				font-family: Arial;
+				overflow: hidden;
+			}
+
+
+		</style>
+	</head>
+	<body>
+		<script src="threejs/build/three.js"></script>
+		<script src="threejs/examples/js/renderers/CSS3DRenderer.js"></script>
+		<script src="threejs/examples/js/WebGL.js"></script>
+		<script src="threejs/examples/js/libs/stats.min.js"></script>
+		<script src="threejs/examples/js/loaders/FBXLoader.js"></script>
+		<script src="threejs/examples/js/libs/dat.gui.min.js"></script>
+<div id="container"></div>
+
+		<script>
+
+			var camera, scene, renderer;
+			var controls;
+
+			var particlesTotal = 10;
+			var objects = [];
+
+			init();
+			animate();
+
+			function init() {
+
+				camera = new THREE.OrthographicCamera(-200,200,200,-200,1,5000);
+				
+				camera.position.set( 0, 0, -1500 );
+				//camera.lookAt( 0, 0, 0 );
+
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xa0a0a0 );
+				
+				var image = document.createElement( 'img' );
+				image.addEventListener( 'load', function () {
+
+					for ( var i = 0; i < particlesTotal; i ++ ) {
+
+						//var object = new THREE.CSS3DSprite( image.cloneNode() );
+						
+						var loader = new THREE.FBXLoader();
+				var object = loader.load( 'models/Penguin.fbx', function ( object ) {
+					
+					object.traverse( function ( child ) {
+						if ( child.isMesh ) {
+							child.castShadow = true;
+							child.receiveShadow = true;
+						}
+					} );
+					//scene.add( object );
+					
+						object.position.x = Math.random()*120,
+						object.position.y = Math.random()*120,
+						object.position.z = 0;
+						scene.add( object );
+
+						objects.push( object );
+});
+					}
+
+
+				}, false );
+				image.src = 'threejs/examples/textures/sprite.png';
+
+
+
+				renderer = new THREE.CSS3DRenderer();
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				document.getElementById( 'container' ).appendChild( renderer.domElement );
+	
+				window.addEventListener( 'resize', onWindowResize, false );
+
+			}
+function animate() {
+requestAnimationFrame( animate );
+			renderer.render( scene, camera );
+}
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+
+
+		</script>
+	</body>
+</html>
