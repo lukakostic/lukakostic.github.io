@@ -35,13 +35,14 @@
 		<script src="threejs/examples/js/loaders/FBXLoader.js"></script>
 		<script src="threejs/examples/js/libs/dat.gui.min.js"></script>
 		<script src="threejs/examples/js/WebGL.js"></script>
-		<script src="threejs/examples/js/libs/stats.min.js"></script>
 		
 <!-- <div id="css"></div> -->
 <div id="webgl"></div>
 
 		<script>
-
+if ( WEBGL.isWebGLAvailable() === false )
+				document.body.appendChild( WEBGL.getWebGLErrorMessage() );
+			
 			var camera, scene, renderer;
 			var controls;
 			
@@ -49,7 +50,7 @@
 			var mouseY = 0;
 
 			init();
-			animate(performance.now());
+			animate();
 
 			function init() {
 
@@ -115,7 +116,7 @@ function onDocumentMouseMove( event ) {
     mouseY = event.clientY - window.innerHeight/2;
 }
 
-function animate(time) {
+function animate() {
 
 			renderer.render( scene, camera );
 			requestAnimationFrame( animate );
