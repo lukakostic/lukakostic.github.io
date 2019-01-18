@@ -58,7 +58,7 @@
 						//var object = new THREE.CSS3DSprite( image.cloneNode() );
 						
 						var loader = new THREE.FBXLoader();
-				var object = loader.load( 'models/Penguin.fbx', function ( object ) {
+				var object = loader.load( 'models/Penguin.fbx');/*, function ( object ) {
 					
 					object.traverse( function ( child ) {
 						if ( child.isMesh ) {
@@ -66,10 +66,11 @@
 							child.receiveShadow = true;
 						}
 					} );
+					*/
 					//scene.add( object );
 					
-						object.position.x = Math.random()*120,
-						object.position.y = Math.random()*120,
+						object.position.x = 0,//Math.random()*120,
+						object.position.y = 0,//Math.random()*120,
 						object.position.z = 0;
 						scene.add( object );
 
