@@ -219,7 +219,7 @@ var intersects = [];
 //plane.raycast(mouseRaycaster,intersects);
 
 var vector = new THREE.Vector3(mouse.x, mouse.y, 1);
-projector.unprojectVector(vector, camera);
+projector.unproject(vector, camera);
 mouseRaycaster.set(camera.position, vector.sub(camera.position).normalize()); //No point in creating a new one each time
 intersects = mouseRaycaster.intersectObject(plane);
 if(intersects.Length>0)pos = intersects[0].point;
