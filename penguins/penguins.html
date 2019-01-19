@@ -47,10 +47,18 @@
 			var mouseX = 0;
 			var mouseY = 0;
 
+			var clock = new THREE.Clock();
+			var delta;
+			
+			var player;
+			
+			var vec = new THREE.Vector3(); // create once and reuse
+			var pos = new THREE.Vector3(); // create once and reuse
+			
 			init();
-			animate();
+			
 
-			function init() {
+			async function init() {
 
 				//camera = new THREE.OrthographicCamera(-200,200,200,-200,1,5000);
 				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 2000 );
@@ -67,8 +75,10 @@
 				}, false );
 				image.src = 'threejs/examples/textures/sprite.png';
 */
-				var loader = new THREE.FBXLoader();
-				var object = loader.load( 'models/Penguin.fbx', function ( object ) {
+				var fbxloader = new THREE.FBXLoader();
+			   var object = await (new Promise(function(resolve, reject) {
+				 fbxloader.load( 'models/Penguin.fbx', function ( loaded) {
+				 resolve(loaded);
 					/*
 					object.traverse( function ( child ) {
 						if ( child.isMesh ) {
@@ -77,16 +87,13 @@
 						}
 					} );
 					*/
-						//object.position.x = 0,//Math.random()*120,
-						//object.position.y = 0,//Math.random()*120,
-						//object.position.z = 0;
-						
-				object.material = new THREE.MeshToonMaterial( { color: 0xffffff } );
-				
-						scene.add( object );
-
-					
 					});
+					}));
+					
+					
+						object.material = new THREE.MeshToonMaterial( { color: 0xffffff } );
+						player = object;
+						scene.add( object );
 
 					        var sun = new THREE.DirectionalLight();
 							sun.position.set(100,100,-100);
@@ -107,19 +114,56 @@
 	
 				window.addEventListener( 'resize', onWindowResize, false );
 				window.addEventListener( 'mousemove', onDocumentMouseMove, false );
+				window.addEventListener( 'mousedown', onDocumentMouseDown, false );
+
+				render();
+}
+
+function onDocumentMouseDown(event) 
+{
+    event.preventDefault();
+	
+switch ( event.button ) {
+    case 0: // left 
+        break;
+    case 1: // middle
+        break;
+    case 2: // right
+        break;
+}
 
 }
 
 function onDocumentMouseMove( event ) {
-    mouseX = event.clientX / window.innerWidth;
-    mouseY = event.clientY / window.innerHeight;
+vec.set(
+    ( event.clientX / window.innerWidth ) * 2 - 1,
+    - ( event.clientY / window.innerHeight ) * 2 + 1,
+    0.5 );
+
+vec.unproject( camera );
+
+vec.sub( camera.position ).normalize();
+
+var distance = - camera.position.z / vec.z;
+
+pos.copy( camera.position ).add( vec.multiplyScalar( distance ) );
+pos.z = 0;
 }
 
-function animate() {
+function render() {
 			requestAnimationFrame( animate );
+			delta = clock.getDelta();
+			
+			update();
+			
 			renderer.render( scene, camera );
 
 }
+
+function update(){
+
+}
+
 			function onWindowResize() {
 
 				camera.aspect = window.innerWidth / window.innerHeight;
