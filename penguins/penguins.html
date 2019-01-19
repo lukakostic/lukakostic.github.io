@@ -92,7 +92,7 @@
 					
 					
 						object.material = new THREE.MeshToonMaterial( {
-								color: 0xffffff},
+								color: 0xffffff,
 								specular: 0x000000,
 								reflectivity: 0,
 								shininess: 0,
@@ -101,6 +101,9 @@
 						player = object;
 						scene.add( object );
 
+						var gridHelper = new THREE.GridHelper( 400, 40, 0x0000ff, 0x808080 );
+				scene.add( gridHelper );
+						
 					        var sun = new THREE.DirectionalLight();
 							sun.position.set(100,100,-100);
 							scene.add( sun );
