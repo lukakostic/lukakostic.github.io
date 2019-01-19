@@ -53,6 +53,7 @@
 			var player;
 			
 			var mouse = new THREE.Vector2();
+			projector = new THREE.Projector();
 			var mouseRaycaster = new THREE.Raycaster();
 			var vec = new THREE.Vector3(); // create once and reuse
 			var pos = new THREE.Vector3(); // create once and reuse
@@ -214,8 +215,13 @@ function update(){
 	mouseRaycaster.setFromCamera( mouse, camera );
 
 var intersects = [];
-intersects = mouseRaycaster.intersectObject(plane);
+//
 //plane.raycast(mouseRaycaster,intersects);
+
+var vector = new THREE.Vector3(mouse.x, mouse.y, 1);
+projector.unprojectVector(vector, camera);
+mouseRaycaster.set(camera.position, vector.sub(camera.position).normalize()); //No point in creating a new one each time
+intersects = mouseRaycaster.intersectObject(plane);
 if(intersects.Length>0)pos = intersects[0].point;
 
 player.rotation.y = Math.atan2( ( pos.x - player.position.x ), ( pos.z - player.position.z ) )+Math.PI;
