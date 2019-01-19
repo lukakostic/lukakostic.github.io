@@ -211,21 +211,11 @@ function render() {
 }
 
 function update(){
-		// update the picking ray with the camera and mouse position
-	//mouseRaycaster.setFromCamera( mouse, camera );
 
-var intersects = [];
-//
-//plane.raycast(mouseRaycaster,intersects);
-
-var vector = new THREE.Vector3(mouse.x, mouse.y, 1);
-projector.unproject(vector, camera);
-mouseRaycaster.set(camera.position, vector.sub(camera.position).normalize()); //No point in creating a new one each time
-intersects = mouseRaycaster.intersectObject(plane);
-if(intersects.Length>0)pos = intersects[0].point;
 
 player.rotation.y = Math.atan2( ( pos.x - player.position.x ), ( pos.z - player.position.z ) )+Math.PI;
-player.position.add((player.position.clone().sub(pos)).normalize().multiplyScalar(delta*10));
+//player.position.add((player.position.clone().sub(pos)).normalize().multiplyScalar(delta*10));
+player.position.copy(pos);
 }
 
 			function onWindowResize() {
