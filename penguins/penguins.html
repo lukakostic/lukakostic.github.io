@@ -171,7 +171,7 @@ pos.copy( camera.position ).add( vec.multiplyScalar( distance ) );
 
     var ray = projector.pickingRay( vector.clone(), camera );
 
-    var intersects = ray.intersectObjects( objects );
+    var intersects = ray.intersectObjects( plane );
 
 	pos = intersects[0].point;
 }
