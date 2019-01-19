@@ -59,6 +59,7 @@
 			
 var plane = new THREE.Mesh( new THREE.PlaneGeometry( 30000, 300, 32 ), new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} ) );
 plane.rotation.x = Math.PI / 2;
+plane.visible = false;
 			
 			init();
 			
@@ -73,7 +74,7 @@ plane.rotation.x = Math.PI / 2;
 				camera.lookAt( 0, 0, 0 );
 
 				
-				//scene.add(plane);
+				scene.add(plane);
 				
 				/*
 				var image = document.createElement( 'img' );
@@ -108,7 +109,7 @@ plane.rotation.x = Math.PI / 2;
 						player = object;
 						scene.add( object );
 
-						var grid = new THREE.GridHelper( 400, 40, 0x0000ff, 0x808080 );
+						var grid = new THREE.GridHelper( 1, 40, 0x0000ff, 0x808080 );
 						grid.position.set(0,-1,0);
 						scene.add( grid );
 						
