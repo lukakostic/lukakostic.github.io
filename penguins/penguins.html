@@ -52,10 +52,12 @@
 			
 			var player;
 			
+			var mouse = new THREE.Vector2();
+			var mouseRaycaster = new THREE.Raycaster();
 			var vec = new THREE.Vector3(); // create once and reuse
 			var pos = new THREE.Vector3(); // create once and reuse
 			
-var plane = new THREE.Mesh( new THREE.PlaneGeometry( 300, 20, 32 ), new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} ) );
+var plane = new THREE.Mesh( new THREE.PlaneGeometry( 300, 300, 32 ), new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} ) );
 plane.rotation.x = Math.PI / 2;
 			
 			init();
@@ -150,6 +152,16 @@ switch ( event.button ) {
 }
 
 function onDocumentMouseMove( event ) {
+mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+	
+		// update the picking ray with the camera and mouse position
+	mouseRaycaster.setFromCamera( mouse, camera );
+
+	// calculate objects intersecting the picking ray
+	var intersects = raycaster.intersectObject( plane );
+
+/*
 var mouse3D = new THREE.Vector3( ( event.clientX / window.innerWidth ) * 2 - 1,   //x
                                         -( event.clientY / window.innerHeight ) * 2 + 1,  //y
                                         0.5 );                                            //z
@@ -173,8 +185,9 @@ pos.copy( camera.position ).add( vec.multiplyScalar( distance ) );
 
     var intersects = raycaster.intersectObject( plane );
 
-	pos = intersects[0].point;
-}
+*/	
+pos = intersects[0].point;
+	}
 
 function render() {
 			requestAnimationFrame( render );
