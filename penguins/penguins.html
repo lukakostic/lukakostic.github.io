@@ -61,7 +61,7 @@
 			async function init() {
 
 				//camera = new THREE.OrthographicCamera(-200,200,200,-200,1,5000);
-				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 2000 );
+				camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 1, 4000 );
 				
 				camera.position.set( 0, 1200, -1500 );
 				camera.lookAt( 0, 0, 0 );
@@ -78,6 +78,13 @@
 				var fbxloader = new THREE.FBXLoader();
 			   var object = await (new Promise(function(resolve, reject) {
 				 fbxloader.load( 'models/Penguin.fbx', function ( loaded) {
+				 loaded.material = new THREE.MeshToonMaterial( {
+								color: 0xffffff,
+								specular: 0x000000,
+								reflectivity: 0,
+								shininess: 0,
+							} );
+				loaded.scale.set(0.1,0.1,0.1);
 				 resolve(loaded);
 					/*
 					object.traverse( function ( child ) {
@@ -91,25 +98,20 @@
 					}));
 					
 					
-						object.material = new THREE.MeshToonMaterial( {
-								color: 0xffffff,
-								specular: 0x000000,
-								reflectivity: 0,
-								shininess: 0,
-							} );
 							
 						player = object;
 						scene.add( object );
 
-						var gridHelper = new THREE.GridHelper( 400, 40, 0x0000ff, 0x808080 );
-				scene.add( gridHelper );
+						var grid = new THREE.GridHelper( 400, 40, 0x0000ff, 0x808080 );
+						grid.position.set(0,-1,0);
+						scene.add( gridHelper );
 						
-					        var sun = new THREE.DirectionalLight();
-							sun.position.set(100,100,-100);
-							scene.add( sun );
+					    var sun = new THREE.DirectionalLight();
+						sun.position.set(100,100,-100);
+						scene.add( sun );
 							
-							var light = new THREE.AmbientLight( 0x404040 ); // soft white light
-							scene.add( light );
+						var light = new THREE.AmbientLight( 0x404040 ); // soft white light
+						scene.add( light );
 
         scene.add( new THREE.Mesh( new THREE.SphereGeometry( 70, 32, 32 ), new THREE.MeshBasicMaterial( {color: 0xffff00} ) ) );
 		
