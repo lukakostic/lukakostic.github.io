@@ -202,7 +202,7 @@ pos.copy( camera.position ).add( vec.multiplyScalar( distance ) );
 
 */	
 plane.raycast(mouseRaycaster,intersects);
-pos = intersects[0].point;
+if(intersects.Length>0)pos = intersects[0].point;
 	}
 
 function render() {
