@@ -41,7 +41,7 @@
 
 		<script>
 			
-			var camera, scene, renderer;
+			var camera, scene= new THREE.Scene(), renderer;
 			var controls;
 			
 			var mouseX = 0;
@@ -57,7 +57,7 @@
 			
 var plane = new THREE.Mesh( new THREE.PlaneGeometry( 5, 20, 32 ), new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} ) );
 plane.rotation.x = Math.PI / 2;
-			scene.add(plane);
+			
 			init();
 			
 			
@@ -65,13 +65,13 @@ plane.rotation.x = Math.PI / 2;
 			async function init() {
 
 				//camera = new THREE.OrthographicCamera(-200,200,200,-200,1,5000);
-				camera = new THREE.PerspectiveCamera( 15, window.innerWidth / window.innerHeight, 1, 4000 );
+				camera = new THREE.PerspectiveCamera( 15, 1, 1, 4000 );
 				
 				camera.position.set( 0, 1200, -1500 );
 				camera.lookAt( 0, 0, 0 );
 
 				
-    scene = new THREE.Scene();
+				scene.add(plane);
 				
 				/*
 				var image = document.createElement( 'img' );
