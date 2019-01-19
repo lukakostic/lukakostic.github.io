@@ -91,7 +91,13 @@
 					}));
 					
 					
-						object.material = new THREE.MeshToonMaterial( { color: 0xffffff } );
+						object.material = new THREE.MeshToonMaterial( {
+								color: 0xffffff},
+								specular: 0x000000,
+								reflectivity: 0,
+								shininess: 0,
+							} );
+							
 						player = object;
 						scene.add( object );
 
