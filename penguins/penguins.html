@@ -214,7 +214,8 @@ function update(){
 	mouseRaycaster.setFromCamera( mouse, camera );
 
 var intersects = [];
-plane.raycast(mouseRaycaster,intersects);
+intersects = raycaster.intersectObject(plane);
+//plane.raycast(mouseRaycaster,intersects);
 if(intersects.Length>0)pos = intersects[0].point;
 
 player.rotation.y = Math.atan2( ( pos.x - player.position.x ), ( pos.z - player.position.z ) )+Math.PI;
