@@ -183,11 +183,11 @@ function render() {
 function update(){
 raycaster.setFromCamera( mouse, camera );
 var intersects = raycaster.intersectObjects( scene.children );
-if(intersects.Length>0)pos = intersects[0].point;
+if(intersects.Length>0){console.log('pos');pos = intersects[0].point;}
 
 player.rotation.y = Math.atan2( ( pos.x - player.position.x ), ( pos.z - player.position.z ) )+Math.PI;
-//player.position.add((player.position.clone().sub(pos)).normalize().multiplyScalar(delta*10));
-player.position.copy(pos);
+player.position.add((player.position.clone().sub(pos)).normalize().multiplyScalar(delta*10));
+//player.position.copy(pos);
 }
 
 			function onWindowResize() {
