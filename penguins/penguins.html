@@ -55,7 +55,7 @@
 			var vec = new THREE.Vector3(); // create once and reuse
 			var pos = new THREE.Vector3(); // create once and reuse
 			
-var plane = new THREE.Mesh( new THREE.PlaneGeometry( 5, 20, 32 ), new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} ) );
+var plane = new THREE.Mesh( new THREE.PlaneGeometry( 300, 20, 32 ), new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} ) );
 plane.rotation.x = Math.PI / 2;
 			
 			init();
@@ -65,7 +65,7 @@ plane.rotation.x = Math.PI / 2;
 			async function init() {
 
 				//camera = new THREE.OrthographicCamera(-200,200,200,-200,1,5000);
-				camera = new THREE.PerspectiveCamera( 15, 1, 1, 4000 );
+				camera = new THREE.PerspectiveCamera( 15, window.innerWidth / window.innerHeight, 1, 4000 );
 				
 				camera.position.set( 0, 1200, -1500 );
 				camera.lookAt( 0, 0, 0 );
@@ -150,6 +150,14 @@ switch ( event.button ) {
 }
 
 function onDocumentMouseMove( event ) {
+var mouse3D = new THREE.Vector3( ( event.clientX / window.innerWidth ) * 2 - 1,   //x
+                                        -( event.clientY / window.innerHeight ) * 2 + 1,  //y
+                                        0.5 );                                            //z
+        projector.unprojectVector( mouse3D, camera );   
+        mouse3D.sub( camera.position );                
+        mouse3D.normalize();
+        var raycaster = new THREE.Raycaster( camera.position, mouse3D );
+		
 vec.set(
     ( event.clientX / window.innerWidth ) * 2 - 1,
     - ( event.clientY / window.innerHeight ) * 2 + 1,
@@ -163,15 +171,7 @@ var distance = - camera.position.z / vec.z;
 
 pos.copy( camera.position ).add( vec.multiplyScalar( distance ) );
 
-    var vector = new THREE.Vector3( ( 
-        event.clientX / window.innerWidth ) * 2 - 1, 
-        - ( event.clientY / window.innerHeight ) * 2 + 1, 
-        0.5 
-    );
-
-    var ray = projector.pickingRay( vector.clone(), camera );
-
-    var intersects = ray.intersectObjects( plane );
+    var intersects = raycaster.intersectObject( plane );
 
 	pos = intersects[0].point;
 }
