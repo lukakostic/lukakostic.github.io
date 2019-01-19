@@ -133,13 +133,13 @@ plane.visible = false;
 				window.addEventListener( 'resize', onWindowResize, false );
 				window.addEventListener( 'mousemove', onDocumentMouseMove, false );
 				window.addEventListener( 'mousedown', onDocumentMouseDown, false );
+				window.addEventListener( 'mouseup', onDocumentMouseUp, false );
 
 				render();
 }
 
 function onDocumentMouseDown(event) 
 {
-    event.preventDefault();
 	
 switch ( event.button ) {
     case 0: // left 
@@ -149,7 +149,21 @@ switch ( event.button ) {
     case 2: // right
         break;
 }
+    event.preventDefault();
+}
 
+function onDocumentMouseUp(event) 
+{
+	
+switch ( event.button ) {
+    case 0: // left 
+        break;
+    case 1: // middle
+        break;
+    case 2: // right
+        break;
+}
+    event.preventDefault();
 }
 
 function onDocumentMouseMove( event ) {
@@ -160,7 +174,7 @@ mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
 	mouseRaycaster.setFromCamera( mouse, camera );
 
 	// calculate objects intersecting the picking ray
-	var intersects = mouseRaycaster.intersectObject( plane );
+	var intersects = [];
 
 /*
 var mouse3D = new THREE.Vector3( ( event.clientX / window.innerWidth ) * 2 - 1,   //x
@@ -187,6 +201,7 @@ pos.copy( camera.position ).add( vec.multiplyScalar( distance ) );
     var intersects = raycaster.intersectObject( plane );
 
 */	
+plane.raycast(mouseRaycaster,intersects);
 pos = intersects[0].point;
 	}
 
