@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Penguins</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+    background-color: #ffffff;
+    margin: 0;
+    overflow: hidden;
+}
+
+#css, #webgl {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0; left: 0;
+}
+
+#css {
+  background: black;
+}
+
+#webgl {
+  pointer-events: none;
+}
+
+
+		</style>
+	</head>
+	<body>
+		<script src="threejs/build/three.js"></script>
+		<script src="threejs/examples/js/renderers/CSS3DRenderer.js"></script>
+		<script src="threejs/examples/js/libs/inflate.min.js"></script>
+		<script src="threejs/examples/js/loaders/FBXLoader.js"></script>
+		<script src="threejs/examples/js/libs/dat.gui.min.js"></script>
+		<script src="threejs/examples/js/WebGL.js"></script>
+		
+<!-- <div id="css"></div> -->
+<div id="webgl"></div>
+
+		<script>
+			
+			var camera, scene, renderer;
+			var controls;
+			
+			var mouseX = 0;
+			var mouseY = 0;
+
+			init();
+			animate();
+
+			function init() {
+
+				//camera = new THREE.OrthographicCamera(-200,200,200,-200,1,5000);
+				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 2000 );
+				
+				camera.position.set( 0, 0, -1500 );
+				camera.lookAt( 0, 0, 0 );
+
+				
+    scene = new THREE.Scene();
+				
+				/*
+				var image = document.createElement( 'img' );
+				image.addEventListener( 'load', function () {
+				}, false );
+				image.src = 'threejs/examples/textures/sprite.png';
+*/
+				var loader = new THREE.FBXLoader();
+				var object = loader.load( 'models/Penguin.fbx', function ( object ) {
+					/*
+					object.traverse( function ( child ) {
+						if ( child.isMesh ) {
+							child.castShadow = true;
+							child.receiveShadow = true;
+						}
+					} );
+					*/
+						//object.position.x = 0,//Math.random()*120,
+						//object.position.y = 0,//Math.random()*120,
+						//object.position.z = 0;
+						
+				object.material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
+				
+						scene.add( object );
+
+					
+					});
+
+					        var ambientLight = new THREE.DirectionalLight();
+							ambientLight.position.y = 100;
+							ambientLight.position.x = 100;
+							ambientLight.position.z = 100;
+        scene.add( ambientLight );
+
+
+        scene.add( new THREE.Mesh( new THREE.SphereGeometry( 70, 32, 32 ), new THREE.MeshBasicMaterial( {color: 0xffff00} ) ) );
+		
+				renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    //renderer.setClearColor( 0x000000, 0 );
+    renderer.setPixelRatio( window.devicePixelRatio );
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.shadowMap.enabled = true;
+    //renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
+    document.querySelector('#webgl').appendChild( renderer.domElement );
+	
+				window.addEventListener( 'resize', onWindowResize, false );
+				window.addEventListener( 'mousemove', onDocumentMouseMove, false );
+
+}
+
+function onDocumentMouseMove( event ) {
+    mouseX = event.clientX - window.innerWidth/2;
+    mouseY = event.clientY - window.innerHeight/2;
+}
+
+function animate() {
+			requestAnimationFrame( animate );
+			renderer.render( scene, camera );
+
+}
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+
+
+		</script>
+	</body>
+</html>
