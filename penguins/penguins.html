@@ -159,7 +159,7 @@ mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
 	mouseRaycaster.setFromCamera( mouse, camera );
 
 	// calculate objects intersecting the picking ray
-	var intersects = raycaster.intersectObject( plane );
+	var intersects = mouseRaycaster.intersectObject( plane );
 
 /*
 var mouse3D = new THREE.Vector3( ( event.clientX / window.innerWidth ) * 2 - 1,   //x
