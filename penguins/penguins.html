@@ -56,6 +56,7 @@
 				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 2000 );
 				
 				camera.position.set( 0, 0, -1500 );
+				camera.rotation.set(new THREE.Vector3( 0, 0, Math.PI ));
 				//camera.lookAt( 0, 0, 0 );
 
 				
@@ -91,7 +92,7 @@
 					        var ambientLight = new THREE.DirectionalLight();
 							ambientLight.position.y = 100;
 							ambientLight.position.x = 100;
-							ambientLight.position.z = 100;
+							ambientLight.position.z = -100;
         scene.add( ambientLight );
 
 
