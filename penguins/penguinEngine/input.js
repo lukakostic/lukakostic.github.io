@@ -16,24 +16,24 @@ function InputEngine(doc){
 	doc.addEventListener( 'mouseup', this.__mouseUp, false );
 	
 	
-	function IsKeyPressed(k){
+	this.IsKeyPressed = function (k){
 		return this.keys[__getKey(k)].pressed;
-	}
+	};
 	
-	function IsKeyUp(k){
+	this.IsKeyUp = function (k){
 		return this.keys[__getKey(k)].up;
-	}
+	};
 	
-    function IsKeyDown(k){
+    this.IsKeyDown = function (k){
 		return this.keys[__getKey(k)].down;
-	}
+	};
 	
-	function Update(deltaTime){
+	this.Update = function (deltaTime){
 		for(let i = 0; i < keys.Length; i++){
 			this.keys[i].down = false;
 			this.keys[i].up = false;
 		}
-	}
+	};
 	
 	function __getKey(c){
 		if((typeof c) == 'string') return c.charCodeAt(0);
