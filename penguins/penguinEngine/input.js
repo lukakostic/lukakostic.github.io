@@ -46,12 +46,13 @@ class InputEngine{
 	}
 	
     __mouseMove(event){
-		this.mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-		this.mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+		this.mouse.x = ( event.clientX / this.doc.innerWidth ) * 2 - 1;
+		this.mouse.y = - ( event.clientY / this.doc.innerHeight ) * 2 + 1;
 	}
 	
-	constructor(doc){
-
+	constructor(_doc){
+	
+	this.doc = _doc;
 	this.mouse = new THREE.Vector2(0,0);
 	this.keys = [];
 		
