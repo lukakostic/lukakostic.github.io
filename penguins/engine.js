@@ -82,8 +82,8 @@ class InputEngine {
 
 class RenderLoop{
 	__loop(){
-			requestAnimationFrame( this.render );
-			if(this.scene != null && this.camera != null) renderer.render( this.scene, this.camera );
+			requestAnimationFrame( this.renderer );
+			if(this.scene != null && this.camera != null) this.renderer.render( this.scene, this.camera );
 			this.callback(clock.getDelta());
 	}
 	constructor(_callback,_renderer,_scene = null,_camera = null){
