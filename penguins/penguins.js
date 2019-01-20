@@ -95,9 +95,10 @@ raycaster.setFromCamera( input.mouse, camera );
 let intersects = raycaster.intersectObjects( scene.children );
 if(intersects.Length>0){console.log('pos');pos = intersects[0].point;}
 
+if(pos.distanceTo(player.position)>0.01){
 player.rotation.y = Math.atan2( ( pos.x - player.position.x ), ( pos.z - player.position.z ) )+Math.PI;
 player.position.add((pos.clone().sub(player.position)).normalize().multiplyScalar(delta*10));
-//player.position.copy(pos);
+}
 
 if(input.IsKeyPressed('a'))player.position.set(3,0,0);
 
