@@ -4,8 +4,8 @@
 
 function InputEngine(doc){
 
-	this.mouse = new THREE.Vector2();
-	this.keys = [];
+	let mouse = new THREE.Vector2();
+	let keys = [];
 		
 	for(let i = 0; i < 223; i++){
 		this.keys.push(new __key(i));
@@ -16,20 +16,20 @@ function InputEngine(doc){
 	doc.addEventListener( 'mouseup', this.__mouseUp, false );
 	
 	
-	this.IsKeyPressed = function (k){
+	let IsKeyPressed = function (k){
 		return this.keys[__getKey(k)].pressed;
 	};
 	
-	this.IsKeyUp = function (k){
+	let IsKeyUp = function (k){
 		return this.keys[__getKey(k)].up;
 	};
 	
-    this.IsKeyDown = function (k){
+    let IsKeyDown = function (k){
 		return this.keys[__getKey(k)].down;
 	};
 	
-	this.Update = function (deltaTime){
-		for(let i = 0; i < keys.Length; i++){
+	let Update = function (deltaTime){
+		for(let i = 0; i < this.keys.Length; i++){
 			this.keys[i].down = false;
 			this.keys[i].up = false;
 		}
