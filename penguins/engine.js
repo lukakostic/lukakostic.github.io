@@ -28,7 +28,7 @@ class PenguinInputEngine {
 		return this.keys[this.__getKey(k)].down;
 	};
 	
-	Update (deltaTime){
+	Update (){
 		for(let i = 0; i < this.keys.Length; i++){
 			this.keys[i].down = false;
 			this.keys[i].up = false;
@@ -80,25 +80,17 @@ class PenguinInputEngine {
 }
 
 
-class PenguinWorld {
-	
-	constructor(_name,_renderer,_scene){
-		this.name = _name;
+class PenguinRenderLoop{
+	__loop(){
+			requestAnimationFrame( this.render );
+			if(this.scene != null && this.camera != null) renderer.render( this.scene, this.camera );
+			this.callback(clock.getDelta());
 	}
-	
-}
-
-
-class PenguinEngine {
-	
-	constructor(_window){
-		this.worlds = [];
-		this.deltaTime;
-		this.input = new PenguinInputEngine(_window);
+	constructor(_callback,_renderer,_scene = null,_camera = null){
+		this.callback = _callback;
+		this.renderer = _renderer;
+		this.scene = _scene;
+		this.camera = _camera;
+		this.clock = new THREE.Clock();
 	}
-	
-	MakeWorld(){
-		
-	}
-	
 }

@@ -1,7 +1,8 @@
 "use strict";
 
 			let camera, scene= new THREE.Scene(), renderer;
-				
+			
+let input = new PenguinInputEngine(window);			
 			
 			let player;
 			
@@ -84,19 +85,10 @@ plane.rotation.x = Math.PI / 2+Math.PI;
 	
 				window.addEventListener( 'resize', onWindowResize, false );
 
-				render();
+new PenguinRenderLoop(update,renderer,scene,camera);
 }
 
 
-function render() {
-			requestAnimationFrame( render );
-			delta = clock.getDelta();
-			
-			update();
-			
-			renderer.render( scene, camera );
-
-}
 
 function update(){
 raycaster.setFromCamera( input.mouse, camera );
@@ -109,7 +101,7 @@ player.position.add((player.position.clone().sub(pos)).normalize().multiplyScala
 
 if(input.IsKeyPressed('a'))player.position.set(3,0,0);
 
-input.Update(delta);
+input.Update();
 }
 
 			function onWindowResize() {
