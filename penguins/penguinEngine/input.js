@@ -4,16 +4,21 @@
 
 function InputEngine(doc){
 
+	
+	function __key(_name){
+		this.name = _name;
+		this.pressed = false;
+		this.down = false;
+		this.up = false;
+	}
+
 	let mouse = new THREE.Vector2();
 	let keys = [];
 		
 	for(let i = 0; i < 223; i++){
-		this.keys.push(new __key(i));
+		keys.push(new __key(i));
 	}
 		
-	doc.addEventListener( 'mousemove', this.__mouseMove, false );
-	doc.addEventListener( 'mousedown', this.__mouseDown, false );
-	doc.addEventListener( 'mouseup', this.__mouseUp, false );
 	
 	
 	let IsKeyPressed = function (k){
@@ -56,12 +61,10 @@ function InputEngine(doc){
 	}
 	
 
-	function __key(_name){
-		this.name = _name;
-		this.pressed = false;
-		this.down = false;
-		this.up = false;
-	}
+	doc.addEventListener( 'mousemove', __mouseMove, false );
+	doc.addEventListener( 'mousedown', __mouseDown, false );
+	doc.addEventListener( 'mouseup', __mouseUp, false );
+
 
 	
 }
