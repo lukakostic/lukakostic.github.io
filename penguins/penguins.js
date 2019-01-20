@@ -103,7 +103,7 @@ function render() {
 }
 
 function update(){
-raycaster.setFromCamera( mouse, camera );
+raycaster.setFromCamera( input.mouse, camera );
 let intersects = raycaster.intersectObjects( scene.children );
 if(intersects.Length>0){console.log('pos');pos = intersects[0].point;}
 
