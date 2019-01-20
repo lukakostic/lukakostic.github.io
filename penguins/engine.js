@@ -12,7 +12,7 @@ class __key{
 class InputEngine {
 	
 	__getKey (c){
-		if((typeof c) == 'string') return c.charCodeAt(0);
+		if((typeof c) == 'string') return c.toUpperCase().charCodeAt(0);
 		return c;
 	};
 	
