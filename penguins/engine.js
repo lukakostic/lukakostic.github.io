@@ -93,6 +93,6 @@ class RenderLoop{
 		this.scene = _scene;
 		this.camera = _camera;
 		this.clock = new THREE.Clock();
-		this.__loop.bind(this);
+		this.__loop.call(this);
 	}
 }
