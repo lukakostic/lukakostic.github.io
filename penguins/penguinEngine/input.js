@@ -7,7 +7,7 @@ class InputEngine{
 	
 	constructor(_doc){
 	this.mouse =3;
-	_doc.addEventListener( 'mousemove', this.__mouseMove, false );
+	_doc.addEventListener( 'mousemove', this.__mouseMove );
 	}
 }
 	
@@ -76,9 +76,9 @@ class InputEngine{
 		this.keys.push(new __key(i));
 	}
 		
-	this.doc.addEventListener( 'mousemove', this.__mouseMove, false );
-	this.doc.addEventListener( 'mousedown', this.__mouseDown, false );
-	this.doc.addEventListener( 'mouseup', this.__mouseUp, false );
+	this.doc.addEventListener( 'mousemove', this.__mouseMove );
+	this.doc.addEventListener( 'mousedown', this.__mouseDown );
+	this.doc.addEventListener( 'mouseup', this.__mouseUp );
 	}
 	
 
