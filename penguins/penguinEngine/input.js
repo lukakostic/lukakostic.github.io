@@ -16,13 +16,7 @@ function InputEngine(doc){
 		this.keys.push(new __key(i));
 	}
 	
-	doc.addEventListener( 'mousemove', this.__mouseMove, false );
-	doc.addEventListener( 'mousedown', this.__mouseDown, false );
-	doc.addEventListener( 'mouseup', this.__mouseUp, false );
-	
-}
-	
-	InputEngine.prototype.IsKeyPressed = function (k){
+		InputEngine.prototype.IsKeyPressed = function (k){
 		return this.keys[__getKey(k)].pressed;
 	};
 	
@@ -60,6 +54,14 @@ function InputEngine(doc){
 		this.mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
 		this.mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
 	}
+	
+	doc.addEventListener( 'mousemove', this.__mouseMove, false );
+	doc.addEventListener( 'mousedown', this.__mouseDown, false );
+	doc.addEventListener( 'mouseup', this.__mouseUp, false );
+	
+}
+	
+
 	
 
 
