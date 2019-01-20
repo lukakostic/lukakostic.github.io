@@ -84,7 +84,7 @@ class RenderLoop{
 	__loop(){
 			requestAnimationFrame( this.__loop );
 			if(this.scene != null && this.camera != null) this.renderer.render( this.scene, this.camera );
-			this.callback(clock.getDelta());
+			this.callback(this.clock.getDelta());
 	}
 	constructor(_callback,_renderer,_scene = null,_camera = null){
 		this.callback = _callback;
@@ -92,6 +92,6 @@ class RenderLoop{
 		this.scene = _scene;
 		this.camera = _camera;
 		this.clock = new THREE.Clock();
-		this.__loop();
+		this.__loop().bind(this);
 	}
 }
