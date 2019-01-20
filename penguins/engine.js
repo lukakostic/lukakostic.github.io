@@ -10,7 +10,7 @@ class __key{
 	}
 }
 
-class InputEngine{
+class PenguinInputEngine {
 	
 	__getKey (c){
 		if((typeof c) == 'string') return c.charCodeAt(0);
@@ -51,6 +51,16 @@ class InputEngine{
 		this.mouse.y = - ( event.clientY / this.doc.innerHeight ) * 2 + 1;
 	};
 	
+	__keyDown(event){
+		this.keys[event.which].pressed = true;
+		this.keys[event.which].down = true;
+	};
+	
+	__keyUp(event){
+		this.keys[event.which].pressed = false;
+		this.keys[event.which].up = true;
+	};
+	
 	constructor(_doc){
 	
 	this.doc = _doc;
@@ -63,15 +73,33 @@ class InputEngine{
 		
 	this.doc.addEventListener( 'mousemove', this.__mouseMove.bind(this) );
 	this.doc.addEventListener( 'mousedown', this.__mouseDown.bind(this) );
-	this.doc.addEventListener( 'mouseup', this.__mouseUp.bind(this) );
+	this.doc.addEventListener( 'mouseup', this.__mouseUp.bind(this) ); 
+	this.doc.addEventListener( 'keydown', this.__keyDown.bind(this) ); 
+	this.doc.addEventListener( 'keyup', this.__keyUp.bind(this) );
 	}
 	
+}
 
+
+class PenguinWorld {
+	
+	constructor(_name,_renderer,_scene){
+		this.name = _name;
+	}
 	
 }
+
+
+class PenguinEngine {
 	
-
+	constructor(_window){
+		this.worlds = [];
+		this.deltaTime;
+		this.input = new PenguinInputEngine(_window);
+	}
 	
-
-
-
+	MakeWorld(){
+		
+	}
+	
+}

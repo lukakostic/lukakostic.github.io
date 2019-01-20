@@ -1,11 +1,7 @@
 "use strict";
 
 			let camera, scene= new THREE.Scene(), renderer;
-			let input = new InputEngine(window);
-			
-
-			let clock = new THREE.Clock();
-			let delta;
+				
 			
 			let player;
 			
@@ -39,9 +35,9 @@ plane.rotation.x = Math.PI / 2+Math.PI;
 				image.src = 'threejs/examples/textures/sprite.png';
 */
 				let fbxloader = new THREE.FBXLoader();
-			   let object = await (new Promise(function(resolve, reject) {
-				 fbxloader.load( 'models/Penguin.fbx', function ( loaded) {
-				 loaded.material = new THREE.MeshToonMaterial( {
+			    let object = await (new Promise(function(resolve, reject) {
+				fbxloader.load( 'models/Penguin.fbx', function ( loaded) {
+				loaded.material = new THREE.MeshToonMaterial( {
 								color: 0xffffff,
 								specular: 0x000000,
 								reflectivity: 0,
