@@ -90,7 +90,7 @@ new RenderLoop(update,renderer,scene,camera);
 
 
 
-function update(){
+function update(delta){
 raycaster.setFromCamera( input.mouse, camera );
 let intersects = raycaster.intersectObjects( scene.children );
 if(intersects.Length>0){console.log('pos');pos = intersects[0].point;}
