@@ -1,7 +1,7 @@
 "use strict";
 
 			let camera, scene= new THREE.Scene(), renderer;
-			let controls;
+			let input = new InputEngine(window);
 			
 
 			let clock = new THREE.Clock();
@@ -87,45 +87,10 @@ plane.rotation.x = Math.PI / 2+Math.PI;
     document.querySelector('#webgl').appendChild( renderer.domElement );
 	
 				window.addEventListener( 'resize', onWindowResize, false );
-				window.addEventListener( 'mousemove', onDocumentMouseMove, false );
-				window.addEventListener( 'mousedown', onDocumentMouseDown, false );
-				window.addEventListener( 'mouseup', onDocumentMouseUp, false );
 
 				render();
 }
 
-function onDocumentMouseDown(event) 
-{
-	
-switch ( event.button ) {
-    case 0: // left 
-        break;
-    case 1: // middle
-        break;
-    case 2: // right
-        break;
-}
-    event.preventDefault();
-}
-
-function onDocumentMouseUp(event) 
-{
-	
-switch ( event.button ) {
-    case 0: // left 
-        break;
-    case 1: // middle
-        break;
-    case 2: // right
-        break;
-}
-    event.preventDefault();
-}
-
-function onDocumentMouseMove( event ) {
-mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-}
 
 function render() {
 			requestAnimationFrame( render );
@@ -145,6 +110,8 @@ if(intersects.Length>0){console.log('pos');pos = intersects[0].point;}
 player.rotation.y = Math.atan2( ( pos.x - player.position.x ), ( pos.z - player.position.z ) )+Math.PI;
 player.position.add((player.position.clone().sub(pos)).normalize().multiplyScalar(delta*10));
 //player.position.copy(pos);
+
+input.Update(delta);
 }
 
 			function onWindowResize() {
