@@ -1,19 +1,4 @@
-"use strict";
 
-class InputEngine{
-    __mouseMove(event){
-		alert(this.mouse);
-	};
-	
-	constructor(_doc){
-	this.mouse =3;
-	_doc.addEventListener( 'mousemove', this.__mouseMove );
-	}
-}
-	
-
-
-/*
 "use strict";
 
 class __key{
@@ -69,16 +54,16 @@ class InputEngine{
 	constructor(_doc){
 	
 	this.doc = _doc;
-	this.mouse = new THREE.Vector2(0,0);
+	this.mouse = new THREE.Vector2();
 	this.keys = [];
 		
 	for(let i = 0; i < 223; i++){
 		this.keys.push(new __key(i));
 	}
 		
-	this.doc.addEventListener( 'mousemove', this.__mouseMove );
-	this.doc.addEventListener( 'mousedown', this.__mouseDown );
-	this.doc.addEventListener( 'mouseup', this.__mouseUp );
+	this.doc.addEventListener( 'mousemove', this.__mouseMove.bind(this) );
+	this.doc.addEventListener( 'mousedown', this.__mouseDown.bind(this) );
+	this.doc.addEventListener( 'mouseup', this.__mouseUp.bind(this) );
 	}
 	
 
@@ -90,4 +75,3 @@ class InputEngine{
 
 
 
-*/
