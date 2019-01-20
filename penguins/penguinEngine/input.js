@@ -60,9 +60,9 @@ class InputEngine{
 		this.keys.push(new __key(i));
 	}
 		
-	doc.addEventListener( 'mousemove', this.__mouseMove, false );
-	doc.addEventListener( 'mousedown', this.__mouseDown, false );
-	doc.addEventListener( 'mouseup', this.__mouseUp, false );
+	this.doc.addEventListener( 'mousemove', this.__mouseMove, false );
+	this.doc.addEventListener( 'mousedown', this.__mouseDown, false );
+	this.doc.addEventListener( 'mouseup', this.__mouseUp, false );
 	}
 	
 
