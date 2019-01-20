@@ -2,7 +2,7 @@
 
 
 
-function InputEngine{
+function InputEngine(){
 
 	this.mouse = new THREE.Vector2();
 	this.keys = [];
