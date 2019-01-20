@@ -82,6 +82,7 @@ class InputEngine {
 
 class RenderLoop{
 	__loop(){
+		console.log(`__loop called, and 'this' = ${this}`); 
 			requestAnimationFrame( this.__loop.bind(this) );
 			if(this.scene != null && this.camera != null) this.renderer.render( this.scene, this.camera );
 			this.callback(this.clock.getDelta());
