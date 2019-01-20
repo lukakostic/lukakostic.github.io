@@ -12,6 +12,11 @@ class __key{
 
 class InputEngine{
 	
+	__getKey (c){
+		if((typeof c) == 'string') return c.charCodeAt(0);
+		return c;
+	};
+	
 	IsKeyPressed (k){
 		return this.keys[__getKey(k)].pressed;
 	};
@@ -29,11 +34,6 @@ class InputEngine{
 			this.keys[i].down = false;
 			this.keys[i].up = false;
 		}
-	};
-	
-	__getKey (c){
-		if((typeof c) == 'string') return c.charCodeAt(0);
-		else return c;
 	};
 	
 	__mouseDown(event){
