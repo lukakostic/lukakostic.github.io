@@ -41,22 +41,22 @@ function InputEngine(doc){
 		}
 	};
 	
-	InputEngine.prototype.__getKey(c){
+	InputEngine.prototype.__getKey = function (c){
 		if((typeof c) == 'string') return c.charCodeAt(0);
 		else return c;
 	}
 	
-	InputEngine.prototype.__mouseDown(event){
+	InputEngine.prototype.__mouseDown = function(event){
 		this.keys[event.button+1].pressed = true;
 		this.keys[event.button+1].down = true;
 	}
 	
-	InputEngine.prototype.__mouseUp(event){
+	InputEngine.prototype.__mouseUp = function(event){
 		this.keys[event.button+1].pressed = false;
 		this.keys[event.button+1].up = true;
 	}
 	
-    InputEngine.prototype.__mouseMove(event){
+    InputEngine.prototype.__mouseMove = function(event){
 		this.mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
 		this.mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
 	}
