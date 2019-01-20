@@ -9,7 +9,7 @@ class __key{
 	}
 }
 
-class PenguinInputEngine {
+class InputEngine {
 	
 	__getKey (c){
 		if((typeof c) == 'string') return c.charCodeAt(0);
@@ -80,7 +80,7 @@ class PenguinInputEngine {
 }
 
 
-class PenguinRenderLoop{
+class RenderLoop{
 	__loop(){
 			requestAnimationFrame( this.render );
 			if(this.scene != null && this.camera != null) renderer.render( this.scene, this.camera );

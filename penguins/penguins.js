@@ -2,7 +2,7 @@
 
 			let camera, scene= new THREE.Scene(), renderer;
 			
-let input = new PenguinInputEngine(window);			
+let input = new InputEngine(window);			
 			
 			let player;
 			
@@ -85,7 +85,7 @@ plane.rotation.x = Math.PI / 2+Math.PI;
 	
 				window.addEventListener( 'resize', onWindowResize, false );
 
-new PenguinRenderLoop(update,renderer,scene,camera);
+new RenderLoop(update,renderer,scene,camera);
 }
 
 
