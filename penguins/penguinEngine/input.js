@@ -18,15 +18,15 @@ class InputEngine{
 	};
 	
 	IsKeyPressed (k){
-		return this.keys[__getKey(k)].pressed;
+		return this.keys[this.__getKey(k)].pressed;
 	};
 	
 	IsKeyUp (k){
-		return this.keys[__getKey(k)].up;
+		return this.keys[this.__getKey(k)].up;
 	};
 	
     IsKeyDown (k){
-		return this.keys[__getKey(k)].down;
+		return this.keys[this.__getKey(k)].down;
 	};
 	
 	Update (deltaTime){
