@@ -111,7 +111,9 @@ player.rotation.y = Math.atan2( ( pos.x - player.position.x ), ( pos.z - player.
 player.position.add((player.position.clone().sub(pos)).normalize().multiplyScalar(delta*10));
 //player.position.copy(pos);
 
-//input.Update(delta);///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+if(input.IsKeyPressed('a'))player.position.set(3,0,0);
+
+input.Update(delta);
 }
 
 			function onWindowResize() {
