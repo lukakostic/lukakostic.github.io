@@ -2,7 +2,7 @@
 
 class InputEngine{
     __mouseMove(event){
-		this.mouse = 5;
+		alert(this.mouse);
 	};
 	
 	constructor(_doc){
