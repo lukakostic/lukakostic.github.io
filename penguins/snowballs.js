@@ -24,6 +24,6 @@ snowballs.push(new Snowball(start,end));
 
 function UpdateSnowballs(delta){
 for(let i = 0; i < snowballs.length; i++){
-snowballs[i].object.position.lerp(snowballs[i].end,delta);
+snowballs[i].object.position.lerp(snowballs[i].end,delta*13);
 }
 }
