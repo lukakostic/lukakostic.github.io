@@ -29,7 +29,7 @@ class InputEngine {
 	};
 	
 	Update (){
-		for(let i = 0; i < this.keys.Length; i++){
+		for(let i = 0; i < this.keys.length; i++){
 			this.keys[i].down = false;
 			this.keys[i].up = false;
 		}
