@@ -10,8 +10,8 @@ let input = new InputEngine(window);
 			let raycaster = new THREE.Raycaster();
 			let pos = new THREE.Vector3(); // create once and reuse
 			
-let plane = new THREE.Mesh( new THREE.PlaneGeometry( 10, 10 ), new THREE.MeshBasicMaterial( {color: 0xffff00} ) );
-plane.rotation.x = Math.PI / 2+Math.PI;
+let plane = new THREE.Mesh( new THREE.BoxGeometry( 10, 0.1, 10 ), new THREE.MeshBasicMaterial( {color: 0xffff00} ) );
+//plane.rotation.x = Math.PI / 2+Math.PI;
 //plane.visible = false;
 			
 			init();
@@ -21,7 +21,7 @@ plane.rotation.x = Math.PI / 2+Math.PI;
 			async function init() {
 
 				//camera = new THREE.OrthographicCamera(-200,200,200,-200,1,5000);
-				camera = new THREE.PerspectiveCamera( 8, window.innerWidth / window.innerHeight, 1, 1000 );
+				camera = new THREE.PerspectiveCamera( 38, window.innerWidth / window.innerHeight, 1, 1000 );
 				
 				camera.position.set( 0, 120, -150 );
 				camera.lookAt( 0, 0, 0 );
@@ -62,9 +62,6 @@ plane.rotation.x = Math.PI / 2+Math.PI;
 						player = object;
 						scene.add( object );
 
-						let grid = new THREE.GridHelper( 10, 1, 0x0000ff, 0x808080 );
-						grid.position.set(0,-1,0);
-						scene.add( grid );
 						
 					    let sun = new THREE.DirectionalLight();
 						sun.position.set(100,100,-100);
@@ -73,7 +70,7 @@ plane.rotation.x = Math.PI / 2+Math.PI;
 						let light = new THREE.AmbientLight( 0xffffff ); // soft white light
 						scene.add( light );
 
-        scene.add( new THREE.Mesh( new THREE.SphereGeometry( 1, 16, 16 ), new THREE.MeshBasicMaterial( {color: 0xf00f00} ) ) );
+        //scene.add( new THREE.Mesh( new THREE.SphereGeometry( 1, 16, 16 ), new THREE.MeshBasicMaterial( {color: 0xf00f00} ) ) );
 		
 				renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     //renderer.setClearColor( 0x000000, 0 );
@@ -97,7 +94,7 @@ function update(delta){
 	for ( var i = 0; i < intersects.length; i++ )
 		intersects[ i ].object.material.color.set( 0xe0ffff );
 
-if(pos.distanceTo(player.position)>0.01){
+if(pos.distanceTo(player.position)>0.1){
 player.rotation.y = Math.atan2( ( pos.x - player.position.x ), ( pos.z - player.position.z ) )+Math.PI;
 player.position.add((pos.clone().sub(player.position)).normalize().multiplyScalar(delta*10));
 }
