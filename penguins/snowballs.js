@@ -12,7 +12,7 @@ function findParabola(top,point){
 
 
 function parabolaY(x,a,h,k){
- return (a*(x-h)**2 + k);
+ return ((a*((x-h)**2)) + k);
 }
 
 class Snowball{
