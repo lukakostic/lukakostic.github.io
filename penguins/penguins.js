@@ -92,9 +92,11 @@ new RenderLoop(update,renderer,scene,camera);
 function update(delta){	
 	if(input.IsKeyPressed(1)){
 	raycaster.setFromCamera( input.mouse, camera );
-	pos = raycaster.intersectObject(plane).point;
+	let intersects = raycaster.intersectObjects([plane]);
+		if(intersects.length>0)
+		pos = intersects[0].point;
 		//intersects[i].object.material.color.set( 0xe0ffff );
-	console.log('clickd');
+	
 	}
 	
 if(pos.distanceTo(player.position)>0.1){
