@@ -25,7 +25,7 @@ plane.position.set(0,-1,0);
 				//camera = new THREE.PerspectiveCamera( 38, window.innerWidth / window.innerHeight, 1, 1000 );
 				
 				//camera.position.set( 0, 130, -150 );
-				camera.position.set( 0, 13, -15 );
+				camera.position.set( 0, 13, -10 );
 				camera.lookAt( 0, 0, 0 );
 
 				
