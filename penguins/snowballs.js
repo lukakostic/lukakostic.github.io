@@ -3,7 +3,7 @@
 let snowballs = [];
 
 function middle(a,b){
-return a.clone.sub(b).divideScalar(2).add(a);
+return a.clone().sub(b).divideScalar(2).add(a);
 //return ((a-b)/2+a);
 }
 
