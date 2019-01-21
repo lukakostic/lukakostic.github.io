@@ -3,7 +3,8 @@
 let snowballs = [];
 
 function middle(a,b){
-return ((a-b)/2+a);
+return a.clone.sub(b).divideScalar(2).add(a);
+//return ((a-b)/2+a);
 }
 
 function findParabola(top,point){
@@ -19,7 +20,8 @@ class Snowball{
  constructor(_start,_end){
  this.start = _start;
  this.end = _end;
- this.vertex = new THREE.Vector3(middle(_start.x,_end.x),middle(_start.y,_end.y)+(_start.distanceTo(_end)/5),middle(_start.z,_end.z));
+ this.vertex = middle(_start,_end);
+ this.vertex.setY(this.vertex.y+(_start.distanceTo(_end)/4));
  this.a = findParabola(this.vertex,this.start);
  this.object = new THREE.Mesh( new THREE.SphereGeometry( 0.3, 8, 8 ), new THREE.MeshBasicMaterial( {color: 0xffffff} ) );
  this.object.position.set(_start.x,_start.y,_start.z);
