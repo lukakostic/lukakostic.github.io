@@ -25,6 +25,7 @@ class Snowball{
  constructor(_start,_end){
  this.start = _start;
  this.end = _end;
+ this.emd.setY(-1.1);
  this.vertex = middle(_start,_end);
  this.vertex.setY(this.vertex.y+(_start.distanceTo(_end)/4));
  //this.a = findParabola(this.vertex,this.start);
@@ -45,7 +46,7 @@ for(let i = 0; i < snowballs.length; i++){
 snowballs[i].object.position.add((snowballs[i].end.clone().sub(snowballs[i].object.position)).normalize().multiplyScalar(delta*8));
 snowballs[i].object.position.setY(
  lerp(
-  snowballs[i].start.y,
+  snowballs[i].end.y,
   snowballs[i].vertex.y,
   ((0.5-Math.abs(0.5-(snowballs[i].object.position.distanceTo(snowballs[i].end)/snowballs[i].start.distanceTo(snowballs[i].end))))*2)
  )
