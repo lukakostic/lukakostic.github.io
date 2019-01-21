@@ -90,10 +90,12 @@ new RenderLoop(update,renderer,scene,camera);
 
 
 
-function update(delta){
-raycaster.setFromCamera( input.mouse, camera );
-let intersects = raycaster.intersectObjects( scene.children );
-if(intersects.Length>0){console.log('pos');pos = intersects[0].point;}
+function update(delta){	
+	
+	raycaster.setFromCamera( mouse, camera );
+	var intersects = raycaster.intersectObjects( scene.children );
+	for ( var i = 0; i < intersects.length; i++ )
+		intersects[ i ].object.material.color.set( 0xff0000 );
 
 if(pos.distanceTo(player.position)>0.01){
 player.rotation.y = Math.atan2( ( pos.x - player.position.x ), ( pos.z - player.position.z ) )+Math.PI;
