@@ -98,6 +98,16 @@ function update(delta){
 		//intersects[i].object.material.color.set( 0xe0ffff );
 	
 	}
+
+	if(input.IsKeyDown(2) || input.IsKeyDown('t')){
+	raycaster.setFromCamera( input.mouse, camera );
+	let intersects = raycaster.intersectObjects([plane]);
+		if(intersects.length>0)
+		ThrowSnowball(player.position,intersects[0].point);
+		//intersects[i].object.material.color.set( 0xe0ffff );
+	
+	}
+	
 	
 if(pos.distanceTo(player.position)>0.1){
 player.rotation.y = Math.atan2( ( pos.x - player.position.x ), ( pos.z - player.position.z ) )+Math.PI;
@@ -105,8 +115,8 @@ player.position.add((pos.clone().sub(player.position)).normalize().multiplyScala
 	player.position.setY(0);
 }
 
-if(input.IsKeyDown('a'))player.position.set(3,0,0);
-
+	UpdateSnowballs(delta);
+	
 input.Update();
 }
 
