@@ -23,7 +23,8 @@ let plane = new THREE.Mesh( new THREE.BoxGeometry( 10, 0.1, 10 ), new THREE.Mesh
 				//camera = new THREE.OrthographicCamera(-200,200,200,-200,1,5000);
 				camera = new THREE.PerspectiveCamera( 38, window.innerWidth / window.innerHeight, 1, 1000 );
 				
-				camera.position.set( 0, 120, -150 );
+				//camera.position.set( 0, 120, -150 );
+				camera.position.set( 0, 12, -15 );
 				camera.lookAt( 0, 0, 0 );
 
 				
