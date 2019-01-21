@@ -10,7 +10,7 @@ let input = new InputEngine(window);
 			let raycaster = new THREE.Raycaster();
 			let pos = new THREE.Vector3(); // create once and reuse
 			
-let plane = new THREE.Mesh( new THREE.PlaneGeometry( 300, 300 ), new THREE.MeshBasicMaterial( {color: 0xffff00} ) );
+let plane = new THREE.Mesh( new THREE.PlaneGeometry( 10, 10 ), new THREE.MeshBasicMaterial( {color: 0xffff00} ) );
 plane.rotation.x = Math.PI / 2+Math.PI;
 //plane.visible = false;
 			
@@ -95,7 +95,7 @@ function update(delta){
 	raycaster.setFromCamera( input.mouse, camera );
 	var intersects = raycaster.intersectObjects( scene.children );
 	for ( var i = 0; i < intersects.length; i++ )
-		intersects[ i ].object.material.color.set( 0xff0000 );
+		intersects[ i ].object.material.color.set( 0xe0ffff );
 
 if(pos.distanceTo(player.position)>0.01){
 player.rotation.y = Math.atan2( ( pos.x - player.position.x ), ( pos.z - player.position.z ) )+Math.PI;
