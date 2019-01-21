@@ -8,7 +8,7 @@ return a.clone().sub(b).divideScalar(2).add(a);
 }
 
 function findParabola(top,point){
- return ((point.y-top.y)/((point.x-top.x)**2));
+ return ((point.z-top.z)/((point.x-top.x)**2));
 }
 
 
@@ -38,7 +38,7 @@ for(let i = 0; i < snowballs.length; i++){
 //snowballs[i].object.position.lerp(snowballs[i].end,delta*13);
  if(snowballs[i].object.position.distanceTo(snowballs[i].end)>0.1){
 snowballs[i].object.position.add((snowballs[i].end.clone().sub(snowballs[i].object.position)).normalize().multiplyScalar(delta*8));
-  snowballs[i].object.position.setY(-parabolaY(snowballs[i].object.position.x,snowballs[i].a,snowballs[i].vertex.x,snowballs[i].vertex.y));
+  snowballs[i].object.position.setY(-parabolaY(snowballs[i].object.position.x,snowballs[i].a,snowballs[i].vertex.x,snowballs[i].vertex.z));
 }
 }
 }
