@@ -31,6 +31,7 @@ class Snowball{
  //this.a = findParabola(this.vertex,this.start);
  this.object = new THREE.Mesh( new THREE.SphereGeometry( 0.3, 8, 8 ), new THREE.MeshBasicMaterial( {color: 0xffffff} ) );
  this.object.position.set(_start.x,_start.y,_start.z);
+  this.alive = true;
  scene.add(this.object);
  }
 }
@@ -41,17 +42,24 @@ snowballs.push(new Snowball(start,end));
 
 function UpdateSnowballs(delta){
 for(let i = 0; i < snowballs.length; i++){
+ if(!snowballs[i].alive)continue;
 //snowballs[i].object.position.lerp(snowballs[i].end,delta*13);
  if(snowballs[i].object.position.distanceTo(snowballs[i].end)>0.1){
 snowballs[i].object.position.add((snowballs[i].end.clone().sub(snowballs[i].object.position)).normalize().multiplyScalar(delta*8));
-snowballs[i].object.position.setY(
+let d = snowballs[i].object.position.distanceTo(snowballs[i].end)/snowballs[i].start.distanceTo(snowballs[i].end);
+  snowballs[i].object.position.setY(
  lerp(
+  lerp(
+  snowballs[i].start.y,
   snowballs[i].end.y,
+  d
+ ),
   snowballs[i].vertex.y,
-  ((0.5-Math.abs(0.5-(snowballs[i].object.position.distanceTo(snowballs[i].end)/snowballs[i].start.distanceTo(snowballs[i].end))))*2)
+  ((0.5-Math.abs(0.5-(d)))*2)
  )
 );
+  
 // snowballs[i].object.position.setY(-parabolaY(snowballs[i].object.position.x,snowballs[i].a,snowballs[i].vertex.x,snowballs[i].vertex.z));
-}
+}else snowballs[i].alive = false;
 }
 }
