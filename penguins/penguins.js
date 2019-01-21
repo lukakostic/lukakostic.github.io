@@ -90,7 +90,7 @@ new RenderLoop(update,renderer,scene,camera);
 
 
 function update(delta){	
-	if(input.IsKeyPressed(1)){
+	if(input.IsKeyDown(1)){
 	raycaster.setFromCamera( input.mouse, camera );
 	let intersects = raycaster.intersectObjects([plane]);
 		if(intersects.length>0)
