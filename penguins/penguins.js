@@ -21,7 +21,7 @@ plane.position.set(0,-1,0);
 
 			async function init() {
 
-				camera = new THREE.OrthographicCamera(-50,50,50,-50,1,1000);
+				camera = new THREE.OrthographicCamera(-30,30,30,-30,1,1000);
 				//camera = new THREE.PerspectiveCamera( 38, window.innerWidth / window.innerHeight, 1, 1000 );
 				
 				//camera.position.set( 0, 130, -150 );
