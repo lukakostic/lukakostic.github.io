@@ -10,7 +10,8 @@ let input = new InputEngine(window);
 			let raycaster = new THREE.Raycaster();
 			let pos = new THREE.Vector3(); // create once and reuse
 			
-let plane = new THREE.Mesh( new THREE.BoxGeometry( 10, 0.1, 10 ), new THREE.MeshBasicMaterial( {color: 0xffff00} ) );
+let plane = new THREE.Mesh( new THREE.BoxGeometry( 100, 0.1, 100 ), new THREE.MeshBasicMaterial( {color: 0xffff00} ) );
+plane.position.set(0,-1,0);
 //plane.rotation.x = Math.PI / 2+Math.PI;
 //plane.visible = false;
 			
@@ -23,8 +24,8 @@ let plane = new THREE.Mesh( new THREE.BoxGeometry( 10, 0.1, 10 ), new THREE.Mesh
 				//camera = new THREE.OrthographicCamera(-200,200,200,-200,1,5000);
 				camera = new THREE.PerspectiveCamera( 38, window.innerWidth / window.innerHeight, 1, 1000 );
 				
-				//camera.position.set( 0, 120, -150 );
-				camera.position.set( 0, 12, -15 );
+				//camera.position.set( 0, 130, -150 );
+				camera.position.set( 0, 13, -15 );
 				camera.lookAt( 0, 0, 0 );
 
 				
@@ -89,18 +90,20 @@ new RenderLoop(update,renderer,scene,camera);
 
 
 function update(delta){	
-	
+	if(input.IsKeyPressed(1)){
 	raycaster.setFromCamera( input.mouse, camera );
-	var intersects = raycaster.intersectObjects( scene.children );
-	for ( var i = 0; i < intersects.length; i++ )
-		pos = intersects[i].point;//object.material.color.set( 0xe0ffff );
-
+	pos = raycaster.intersectObject(plane).point;
+		//intersects[i].object.material.color.set( 0xe0ffff );
+	console.log('clickd');
+	}
+	
 if(pos.distanceTo(player.position)>0.1){
 player.rotation.y = Math.atan2( ( pos.x - player.position.x ), ( pos.z - player.position.z ) )+Math.PI;
-player.position.add((pos.clone().sub(player.position)).normalize().multiplyScalar(delta*10));
+player.position.add((pos.clone().sub(player.position)).normalize().multiplyScalar(delta*5));
+	player.position.setY(0);
 }
 
-if(input.IsKeyPressed('a'))player.position.set(3,0,0);
+if(input.IsKeyDown('a'))player.position.set(3,0,0);
 
 input.Update();
 }
