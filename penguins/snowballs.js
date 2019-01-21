@@ -45,8 +45,8 @@ for(let i = 0; i < snowballs.length; i++){
 snowballs[i].object.position.add((snowballs[i].end.clone().sub(snowballs[i].object.position)).normalize().multiplyScalar(delta*8));
 snowballs[i].object.position.setY(
  lerp(
-  snowballs[i].object.position.y,
-  snowballs[i].vertex,
+  snowballs[i].start.y,
+  snowballs[i].vertex.y,
   ((0.5-Math.abs(0.5-(snowballs[i].object.position.distanceTo(snowballs[i].end)/snowballs[i].start.distanceTo(snowballs[i].end))))*2)
  )
 );
