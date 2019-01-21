@@ -25,7 +25,7 @@ class Snowball{
  constructor(_start,_end){
  this.start = _start;
  this.end = _end;
- this.emd.setY(-1.1);
+ this.end.setY(-1.1);
  this.vertex = middle(_start,_end);
  this.vertex.setY(this.vertex.y+(_start.distanceTo(_end)/4));
  //this.a = findParabola(this.vertex,this.start);
