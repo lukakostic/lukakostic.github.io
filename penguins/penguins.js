@@ -92,7 +92,7 @@ function update(delta){
 	raycaster.setFromCamera( input.mouse, camera );
 	var intersects = raycaster.intersectObjects( scene.children );
 	for ( var i = 0; i < intersects.length; i++ )
-		intersects[ i ].object.material.color.set( 0xe0ffff );
+		pos = intersects[i].point;//object.material.color.set( 0xe0ffff );
 
 if(pos.distanceTo(player.position)>0.1){
 player.rotation.y = Math.atan2( ( pos.x - player.position.x ), ( pos.z - player.position.z ) )+Math.PI;
