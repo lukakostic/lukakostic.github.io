@@ -92,7 +92,7 @@ new RenderLoop(update,renderer,scene,camera);
 
 function update(delta){	
 	
-	raycaster.setFromCamera( mouse, camera );
+	raycaster.setFromCamera( input.mouse, camera );
 	var intersects = raycaster.intersectObjects( scene.children );
 	for ( var i = 0; i < intersects.length; i++ )
 		intersects[ i ].object.material.color.set( 0xff0000 );
