@@ -36,7 +36,7 @@ for(let i = 0; i < snowballs.length; i++){
 //snowballs[i].object.position.lerp(snowballs[i].end,delta*13);
  if(snowballs[i].object.position.distanceTo(snowballs[i].end)>0.1){
 snowballs[i].object.position.add((snowballs[i].end.clone().sub(snowballs[i].object.position)).normalize().multiplyScalar(delta*8));
-  snowballs[i].object.position.setY(parabolaY(snowballs[i].object.position.x,snowballs[i].a,snowballs[i].vertex.x,snowballs[i].vertex.y));
+  snowballs[i].object.position.setY(-parabolaY(snowballs[i].object.position.x,snowballs[i].a,snowballs[i].vertex.x,snowballs[i].vertex.y));
 }
 }
 }
