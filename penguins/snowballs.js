@@ -47,6 +47,7 @@ for(let i = 0; i < snowballs.length; i++){
  if(snowballs[i].object.position.distanceTo(snowballs[i].end)>0.1){
 snowballs[i].object.position.add((snowballs[i].end.clone().sub(snowballs[i].object.position)).normalize().multiplyScalar(delta*40));
 let d = snowballs[i].object.position.clone().setY(0).distanceTo(snowballs[i].end.clone().setY(0))/snowballs[i].start.clone().setY(0).distanceTo(snowballs[i].end.clone().setY(0));
+console.log(d);
   snowballs[i].object.position.setY(
  lerp(
   lerp(
