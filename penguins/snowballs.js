@@ -64,7 +64,7 @@ let d = snowballs[i].object.position.clone().setY(0).distanceTo(snowballs[i].end
 }else{
 	snowballs[i].alive = false;
 snowballs[i].object.position.copy(snowballs[i].end);
-snowballs[i].object.material.color.setHex( 0x000fff );
+//snowballs[i].object.material.color.setHex( 0x000fff );
 	}
 }
 }
