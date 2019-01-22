@@ -23,14 +23,14 @@ function parabolaY(x,a,h,k){
 
 class Snowball{
  constructor(_start,_end){
- this.start = _start;
- this.end = _end;
+ this.start = _start.clone();
+ this.end = _end.clone();
  this.end.setY(-1.1);
- this.vertex = middle(_start,_end);
- this.vertex.setY(this.vertex.y+(_start.distanceTo(_end)/4));
+ this.vertex = middle(this.start,this.end);
+ this.vertex.setY(this.vertex.y+(this.start.distanceTo(this.end)/4));
  //this.a = findParabola(this.vertex,this.start);
  this.object = new THREE.Mesh( new THREE.SphereGeometry( 0.3, 8, 8 ), new THREE.MeshBasicMaterial( {color: 0xffffff} ) );
- this.object.position.set(_start.x,_start.y,_start.z);
+ this.object.position.set(this.start.x,this.start.y,this.start.z);
   this.alive = true;
  scene.add(this.object);
  }
