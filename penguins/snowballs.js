@@ -63,7 +63,7 @@ let d = snowballs[i].object.position.clone().setY(0).distanceTo(snowballs[i].end
 // snowballs[i].object.position.setY(-parabolaY(snowballs[i].object.position.x,snowballs[i].a,snowballs[i].vertex.x,snowballs[i].vertex.z));
 }else{
 	snowballs[i].alive = false;
-snowballs[i].object.position = snowballs[i].end.clone();
+snowballs[i].object.position.copy(snowballs[i].end);
 	}
 }
 }
