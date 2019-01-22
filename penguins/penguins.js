@@ -61,7 +61,7 @@ plane.position.set(0,-1,0);
 					
 					
 							for(let i = 0; i < object.children.length; i++)
-								object.children[i].position.multiplyScalar(3+Math.randFloat(0.5,1.5));
+								object.children[i].position.multiplyScalar(3+THREE.Math.randFloat(0.5,1.5));
 						player = object;
 						scene.add( object );
 
