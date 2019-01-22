@@ -60,6 +60,9 @@ let d = snowballs[i].object.position.distanceTo(snowballs[i].end)/snowballs[i].s
 );
   
 // snowballs[i].object.position.setY(-parabolaY(snowballs[i].object.position.x,snowballs[i].a,snowballs[i].vertex.x,snowballs[i].vertex.z));
-}else snowballs[i].alive = false;
+}else{
+	snowballs[i].alive = false;
+snowballs[i].object.position = snowballs[i].end.clone();
+	}
 }
 }
