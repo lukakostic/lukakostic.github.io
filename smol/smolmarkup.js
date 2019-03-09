@@ -10,9 +10,14 @@ class SmolMarkup
     compile()
     {
     this.compiled = '';
+        let word = '';
+        let inQuotes = false;
+        let gotCommentStart = false;
+        let escapeNext = false;
+        let inComment = false;
       for(let i = 0; i < this.str.length; i++)
       {
-      
+        
       }
     }
 }
