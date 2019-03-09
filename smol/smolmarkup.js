@@ -9,7 +9,7 @@ class SmolMarkup
 
     compile()
     {
-    this.compiled = '';
+        this.compiled = '';
         let parent = '';
         let indentation = 0;
         let word = '';
