@@ -10,14 +10,13 @@ class SmolMarkup
     compile()
     {
         this.compiled = '';
-        let parent = '';
         let indentation = 0;
-        let word = '';
-        let inQuotes = false;
-        let gotCommentStart = false;
+        let state = 0; // 0 = normal , 1 = in quotes , 2 = in ml quotes , 3 = in comment , 4 = in ml comment
         let escapeNext = false;
-        let inComment = false;
-        for(let i = 0; i < this.str.length; i++)
+        
+        let word = '';
+        
+        for(let l = 0; l < this.str.length; l++)
         {
             
         }
