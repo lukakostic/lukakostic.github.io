@@ -1,3 +1,18 @@
+class SmolObject{
+    constructor(type,data){
+        this.type = type;
+        this.data = data;
+        this.children = [];
+    }
+}
+
+class SmolVariable{
+    constructor(name,data){
+        this.name = name;
+        this.data = data;
+    }
+}
+
 class SmolMarkup
 {
     constructor(str)
@@ -15,6 +30,8 @@ class SmolMarkup
         let escapeNext = false;
         
         let word = '';
+        
+        let compiledWords = [];
         
         for(let l = 0; l < this.str.length; l++)
         {
