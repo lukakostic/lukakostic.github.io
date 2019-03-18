@@ -37,7 +37,7 @@ class SmolMarkup
         
         for(let i = 0; i < this.str.length; i++)
         {
-            alert("'"+this.str[i]+"'");
+            alert("'"+this.str[i]+"' : " + this.str[i].charCodeAt(0));
         }
     }
     
