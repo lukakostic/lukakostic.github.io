@@ -19,23 +19,29 @@ class SmolMarkup
     {
         this.str = str;
         this.vars = [];
-        this.compiled = '';
+        this.compiledWords = [];
+        this.compiledVariables = [];
     }
 
     build()
     {
-        this.compiled = '';
+        this.compiledWords = [];
+        this.compiledVariables = [];
+        
         let indentation = 0;
         let state = 0; // 0 = normal , 1 = in quotes , 2 = in ml quotes , 3 = in comment , 4 = in ml comment
         let escapeNext = false;
         
         let word = '';
         
-        let objects = [];
         
         for(let i = 0; i < this.str.length; i++)
         {
             alert(this.str[i]);
         }
+    }
+    
+    compile(){
+     this.compiled = '';   
     }
 }
