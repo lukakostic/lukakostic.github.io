@@ -22,7 +22,7 @@ class SmolMarkup
         this.compiled = '';
     }
 
-    compile()
+    let build()
     {
         this.compiled = '';
         let indentation = 0;
@@ -31,11 +31,11 @@ class SmolMarkup
         
         let word = '';
         
-        let compiledWords = [];
+        let objects = [];
         
-        for(let l = 0; l < this.str.length; l++)
+        for(let i = 0; i < this.str.length; i++)
         {
-            
+            alert(this.str[i]);
         }
     }
 }
