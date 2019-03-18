@@ -22,7 +22,7 @@ class SmolMarkup
         this.compiled = '';
     }
 
-    let build()
+    build()
     {
         this.compiled = '';
         let indentation = 0;
