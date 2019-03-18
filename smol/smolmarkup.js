@@ -1,8 +1,9 @@
 class SmolObject{
-    constructor(type,data){
+    constructor(type,data,parent){
         this.type = type;
         this.data = data;
         this.children = [];
+        this.parent = parent;
     }
 }
 
@@ -27,6 +28,10 @@ class SmolMarkup
     {
         this.compiledWords = [];
         this.compiledVariables = [];
+        
+        let activeVariable = -1;
+        let activeWord = -1;
+        let activeWordsParent = -1;
         
         let indentation = 0;
         let state = 0; // 0 = normal , 1 = in quotes , 2 = in ml quotes , 3 = in comment , 4 = in ml comment
@@ -59,6 +64,9 @@ class SmolMarkup
         if(c == '{')brakeChar = true;
         if(c == '}')brakeChar = true;
         if(c == '`'){brakeChar = true;}
+        if(c == '('){brakeChar = true;}
+        if(c == ')'){brakeChar = true;}
+        if(c == '='){brakeChar = true;}
         if(c == '"' || c == "'"){
             brakeChar = true;
             state = 1;
@@ -66,7 +74,15 @@ class SmolMarkup
             
             //alert("'"+this.str[i]+"' : " + this.str[i].charCodeAt(0));
             if(brakeChar){
-                
+                if(word.length == 0)continue;
+                if(word[0] == '$'){
+                    activeVariable = compiledVariables.push(new SmolVariable(word,null)) - 1;
+                }else{
+                    if(compiledWords[activeWord].parent 
+                    activeWord = compiledVariables.push(new SmolObject(word,null,null)) - 1;
+                    
+                }
+                word = '';
             }else{
             word += c;
             }
