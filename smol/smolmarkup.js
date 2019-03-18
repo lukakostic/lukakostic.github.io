@@ -34,10 +34,42 @@ class SmolMarkup
         
         let word = '';
         
+        let c = '';
+        let brakeChar = false;
         
         for(let i = 0; i < this.str.length; i++)
         {
-            alert("'"+this.str[i]+"' : " + this.str[i].charCodeAt(0));
+            c = this.str[i];
+            brakeChar = false;
+            
+        if(c == '\t'){
+            brakeChar = true;
+            if(state == 0) indentation++;
+        }
+        
+        if(c == ' ')brakeChar = true;
+            
+        if(c == '\n' || c == '\r'){
+            brakeChar = true;
+            if(state != 4) indentation = 0;
+        }
+            
+        if(c == '\0')brakeChar = true;
+        if(c == ';')brakeChar = true;
+        if(c == '{')brakeChar = true;
+        if(c == '}')brakeChar = true;
+        if(c == '`'){brakeChar = true;}
+        if(c == '"' || c == "'"){
+            brakeChar = true;
+            state = 1;
+        }
+            
+            //alert("'"+this.str[i]+"' : " + this.str[i].charCodeAt(0));
+            if(brakeChar){
+                
+            }else{
+            word += c;
+            }
         }
     }
     
