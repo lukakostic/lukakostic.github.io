@@ -8,7 +8,7 @@
 <script src="smolmarkup.js"></script>
 <script>
 function build(){
-  let txt = document.getElementsById('txt').value;
+  let txt = document.getElementById('txt').value;
   alert(txt);
   let comp = new SmolMarkup(txt);
   comp.build();
