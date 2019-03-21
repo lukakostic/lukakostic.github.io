@@ -3,7 +3,6 @@ class SmolObject{
         this.type = type;
         this.data = data;
         this.children = [];
-        this.parent = parent;
     }
 }
 
@@ -30,6 +29,7 @@ class SmolMarkup
         this.compiledVariables = [];
         
         let activeVariable = -1;
+        
         let activeWord = -1;
         let activeWordsParent = -1;
         
@@ -78,9 +78,9 @@ class SmolMarkup
                 if(word[0] == '$'){
                     activeVariable = compiledVariables.push(new SmolVariable(word,null)) - 1;
                 }else{
-                    if(compiledWords[activeWord].parent 
-                    activeWord = compiledVariables.push(new SmolObject(word,null,null)) - 1;
-                    
+                    if(indentation == 0){
+                        activeWord = compiledVariables.push(new SmolObject(word,null)) - 1;
+                    }
                 }
                 word = '';
             }else{
