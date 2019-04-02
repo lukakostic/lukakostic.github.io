@@ -13,7 +13,7 @@ class SmolVariable{
     }
 }
 
-class SmolMarkup
+class SmolBoot
 {
     constructor(str)
     {
