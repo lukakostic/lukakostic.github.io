@@ -6,8 +6,8 @@
 }
 @media (min-width: 768px) {
   .jumbotron {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+   /* padding-top: 2rem; */
+   /* padding-bottom: 2rem; */
   }
 }
 
