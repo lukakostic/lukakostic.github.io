@@ -218,6 +218,7 @@ function displayFiles(files) {
       }
     }
 
+    document.getElementById('writeButton').onclick = function () {
 var ACCESS_TOKEN = 'v_epvcZhxaAAAAAAAAAANNhEfMBoTljdh_XPdAVnM_Ex1GFNPw0RZjc9EShUN-Pn';
       var dbx = new Dropbox.Dropbox({ accessToken: ACCESS_TOKEN });
       console.log('dbx', dbx)
@@ -230,7 +231,7 @@ var ACCESS_TOKEN = 'v_epvcZhxaAAAAAAAAAANNhEfMBoTljdh_XPdAVnM_Ex1GFNPw0RZjc9EShU
         .catch(function(error) {
           console.error(error);
         });
-    
+    };
 
 
 
