@@ -1,5 +1,10 @@
 header{
-  padding-bottom: 4rem;
+  padding-bottom: 2rem;
+}
+
+.slim-header{
+  margin-top: -0.8rem;
+  margin-bottom: -0.8rem;
 }
 
 .btn-spaced-1 {
