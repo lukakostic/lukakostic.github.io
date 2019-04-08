@@ -1,0 +1,17 @@
+header{
+  padding-bottom: 3rem;
+}
+
+.btn-spaced {
+  margin-left: 0.1rem;
+  margin-right: 0.1rem;
+}
+
+footer {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+footer p {
+  margin-bottom: .25rem;
+}
