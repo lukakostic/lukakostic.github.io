@@ -15,3 +15,8 @@ footer {
 footer p {
   margin-bottom: .25rem;
 }
+
+.container-fluid {
+  padding-left: 3.1rem;
+  padding-right: 3.1rem;
+}
