@@ -2,9 +2,19 @@ header{
   padding-bottom: 3rem;
 }
 
-.btn-spaced {
+.btn-spaced-1 {
   margin-left: 0.1rem;
   margin-right: 0.1rem;
+}
+
+.btn-spaced-2 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.btn-spaced-3 {
+  margin-left: 3rem;
+  margin-right: 3rem;
 }
 
 footer {

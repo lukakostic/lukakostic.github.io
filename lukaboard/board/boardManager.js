@@ -32,17 +32,17 @@ let board = null;
 if(boardId == ""){
     //Main board
     
-    document.getElementById('saveBtn').classList.add("invisible");
-    document.getElementById('loadBtn').classList.add("invisible");
+    //document.getElementById('saveBtn').classList.add("invisible");
+    //document.getElementById('loadBtn').classList.add("invisible");
 
 }else{
     //Load board
 
     if(DoesIdExist(boardId) == false){
         alert("Board doesn't exist!");
-        window.location.href = window.location.href.substring(0,window.location.href.indexOf('?board='));
+        throw "Board doesn't exist!";
     }else{
-
+        document.getElementById('saveBtn').onclick = ConvertBoard;
         document.getElementById('saveBtn').onclick = SaveBoard;
         document.getElementById('loadBtn').onclick = LoadBoard;
     }
@@ -98,6 +98,10 @@ function listFiles(files) {
 
     }
 
+    function ConvertBoard(){
+
+    }
+
     function CreateBoard(){
         
     }
@@ -111,38 +115,38 @@ function listFiles(files) {
         alert("Title clicked!");
     }
 
+    function NewBoard(){
+        alert('new board');
+    }
+
+    function NewText(){
+        alert('new text');
+    }
+
 
 /*
-  var client = new Dropbox.Client({ key: 'YOUR-APP-KEY-HERE' });
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+                stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2"
+                viewBox="0 0 24 24" focusable="false">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                <circle cx="12" cy="13" r="4" /></svg>
 
-  function doHelloWorld() {
-      client.writeFile('hello.txt', 'Hello, World!', function (error) {
-          if (error) {
-              alert('Error: ' + error);
-          } else {
-              alert('File written successfully!');
-          }
-      });
-  }
 
-  // Try to complete OAuth flow.
-  client.authenticate({ interactive: false }, function (error, client) {
-      if (error) {
-          alert('Error: ' + error);
-      }
-  });
 
-  if (client.isAuthenticated()) {
-      doHelloWorld();
-  }
 
-  document.getElementById('writeButton').onclick = function () {
-      client.authenticate(function (error, client) {
-          if (error) {
-              alert('Error: ' + error);
-          } else {
-              doHelloWorld();
-          }
-      });
-  }
+
+
+                
+                            <div class="col-md-3">
+                <div class="card mb-4 shadow-sm ">
+                  <div class="card-body text-center justify-content-center">
+
+                    
+                      <div class="btn-group d-flex justify-content-center align-items-center">
+                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="NewText()"><h6>+ Text</h6></button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="NewBoard()"><h6>+ Board</h6></button>
+                      </div>
+                  </div>
+                </div>
+              </div>
   */

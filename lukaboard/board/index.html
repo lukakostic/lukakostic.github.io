@@ -14,6 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropbox.js/4.0.17/Dropbox-sdk.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   
+    <script src="boards.js" defer></script>
     <script src="boardManager.js" defer></script>
 
   <title>LukaKostic - Trello</title>
@@ -36,9 +37,9 @@
               
             <div class="col-sm-2 py-4 align-self-end">
                 <div class="text-center list-unstyled">
-                  <li><a href="#" id="Opt1" class="text-white">Board id</a></li>
-                  <li><a href="#" id="Opt2" class="text-white">Token</a></li>
-                  <li><a href="#" id="Opt3" class="text-white">Email me</a></li>
+                  <li><a href="#" id="Opt1" class="text-white">1</a></li>
+                  <li><a href="#" id="Opt2" class="text-white">2</a></li>
+                  <li><a href="#" id="Opt3" class="text-white">3</a></li>
                 </div>
               </div>
 
@@ -46,16 +47,14 @@
         </div>
       </div>
       <div class="container d-flex justify-content-start">
-        <div class="navbar-brand ">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
-            stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2"
-            viewBox="0 0 24 24" focusable="false">
-            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-            <circle cx="12" cy="13" r="4" /></svg>
-          <a href="#" onclick="TitleClicked()" class="text-white h3"><strong id="projectTitle">LukaBoard</strong></a>
-          <a href="#" id="saveBtn" class="btn btn-spaced btn-primary my-2">Save All</a>
-          <a href="#" id="loadBtn" class="btn btn-spaced btn-secondary my-2">Load All</a>
-        </div>
+          <div class="navbar-brand ">
+              
+                <a href="#" onclick="TitleClicked()" class="text-white h3"><strong id="projectTitle">LukaBoard</strong></a>
+                <a class="col px-3"></a>
+                <a href="#" id="convertBtn" class="btn btn-spaced-1 btn-primary my-2">Convert</a>
+                <a href="#" id="saveBtn" class="btn btn-spaced-1 btn-secondary my-2">Save All</a>
+                <a href="#" id="loadBtn" class="btn btn-spaced-1 btn-secondary my-2">Load All</a>
+            </div>
         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarHeader"
           aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -65,13 +64,62 @@
   </header>
 
 
-
+<body class="bg-dark">
 <main role="main">
 
   <div class="album py-5 bg-light">
     <div class="container">
 
       <div class="row">
+
+          <div class="col-md-4">
+              <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="card-text">Card Title - Very Nice!</p>
+                      <div class="btn-group">
+                          <button type="button" class="btn align-top btn-sm btn-outline-secondary" style="margin-top: -15px;">Edit</button>
+                      </div>
+                    </div>
+                    <small>
+                    <a class="card-description text-muted">This is what a card's description will look like. Its decent id say. It can be long but im not sure how it will handle situations where the text is tooo long? Idk well i guess its time to find out! abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaarrreeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeaaaaaaaaaaaaa oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no it just expands :( IDK if thats what i want :()()</a>
+                  </small>
+                  </div>
+              </div>
+            </div>
+
+            <template id="cardTemplate">
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                      <div class="card-body">
+                          <div class="d-flex justify-content-between align-items-center">
+                              <p class="card-text">Card Title - Very Nice!</p>
+                            <div class="btn-group">
+                                <button type="button" class="btn align-top btn-sm btn-outline-secondary" style="margin-top: -15px;">Edit</button>
+                            </div>
+                          </div>
+                          <small>
+                          <a class="card-description text-muted">This is what a card's description will look like. Its decent id say. It can be long but im not sure how it will handle situations where the text is tooo long? Idk well i guess its time to find out! abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaarrreeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeaaaaaaaaaaaaa oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no it just expands :( IDK if thats what i want :()()</a>
+                        </small>
+                        </div>
+                    </div>
+                  </div>
+            </template>
+
+            <div class="col-md-2">
+                <div class="card mb-4 shadow-sm">
+                  <div class="card-body container text-center justify-content-center">
+
+                      <div class="row btn-group d-flex justify-content-center align-items-center">
+                          <button type="button" class="btn col btn-sm btn-outline-primary" onclick="NewText()"><h6>Text</h6></button>
+                    </div>
+                    <div class="row p-2"></div>
+                      <div class="row btn-group d-flex justify-content-center align-items-center">
+                            <button type="button" class="btn col btn-sm btn-outline-primary" onclick="NewBoard()"><h6>Board</h6></button>
+                      </div>
+                  </div>
+                </div>
+              </div>
 
         <template id="albumPostTemplate">
           <div class="col-md-4">
@@ -98,13 +146,14 @@
   </div>
 
 </main>
+</body>
 
-<footer class="text-muted">
+<footer class="text-muted bg-dark">
     <div class="container">
       <p class="float-right">
         <a href="#">Back to top</a>
       </p>
-      <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+      <p>Made by <a href="https://github.com/lukakostic"> Luka Kostic</a></p>
     </div>
   </footer>
 
