@@ -22,8 +22,10 @@ if(url.includes('?b=')){
     
 }
 
-alert('Token: ' + ACCESS_TOKEN);
-alert('Board: ' + boardId);
+//alert('Token: ' + ACCESS_TOKEN);
+//alert('Board: ' + boardId);
+
+document.getElementById('projectTitle').innerHTML = "Board";
 
 let board = null;
 
