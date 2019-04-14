@@ -42,15 +42,20 @@ document.getElementById('upBtn').onclick = TitleClicked;
 
 function renderCurrent(){
 clearBoards();
-let boardTemplate = document.getElementById('cardTemplate').firstChild;
+let boardTemplate = document.getElementById('cardTemplate').childNodes[0];
 alert(boardTemplate.outerHTML);
+let boards = document.getElementById('boards');
+let board = boardTemplate.cloneNode(true);
+
+boards.appendChild(board);
 }
 
 function clearBoards(){
-  let boards = document.getElementById('boards').children;
+  let boards = document.getElementById('boards').childNodes;
 
-  for(let i = 0; i < boards.length; i++){
+  for(let i = 1; i < boards.length; i++){
     alert(boards[i].outerHTML);
+    $(boards[i]).remove();
   }
 }
 
