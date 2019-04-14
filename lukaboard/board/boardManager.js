@@ -107,6 +107,9 @@ renderCurrent();
     })
     .catch(function(error) {
       bootbox.alert(error.error);
+      allBoards = [];
+currentBoard = '';
+renderCurrent();
       })
 
     }
