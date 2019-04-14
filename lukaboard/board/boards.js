@@ -1,6 +1,7 @@
 class Board{
-    constructor(name, isBoard, content){
+    constructor(name, parent, isBoard, content){
         this.name = name;
+        this.parent = parent;
         this.isBoard = isBoard;
         this.content = content;
     }
