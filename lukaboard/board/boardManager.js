@@ -40,6 +40,17 @@ document.getElementById('saveBtn').onclick = SaveBoard;
 document.getElementById('loadBtn').onclick = LoadBoard;
 document.getElementById('upBtn').onclick = TitleClicked;
 
+function renderCurrent(){
+clearBoards();
+}
+
+function clearBoards(){
+  let boards = document.getElementById('boards').children;
+
+  for(let i = 0; i < boards.length; i++){
+    alert(boards[i].outerHTML);
+  }
+}
 
 function listFiles(files) {
     for (var i = 0; i < files.length; i++) {
@@ -83,15 +94,17 @@ function listFiles(files) {
 
         if(contents != ""){
 allBoards = JSON.parse(contents);
+currentBoard = '';
+renderCurrent();
         }
 
-        alert(contents);
+        bootbox.alert(contents);
     });
 
         reader.readAsText(blob);
     })
     .catch(function(error) {
-        console.error(error);
+      bootbox.alert(error.error);
       })
 
     }

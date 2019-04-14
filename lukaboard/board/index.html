@@ -12,12 +12,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropbox.js/4.0.17/Dropbox-sdk.min.js"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js" integrity="sha256-tcqPYPyxU+Fsv5sVdvnxLYJ7Jq9wWpi4twZbtZ0ubY8=" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="../index.css">
     <script src="boards.js" defer></script>
     <script src="boardManager.js" defer></script>
 
-  <title>LukaKostic - Trello</title>
+  <title>LukaBoard</title>
 </head>
 
 
@@ -69,7 +70,22 @@
   <div class="album py-5 bg-light">
     <div class="container">
 
-      <div class="row">
+      <div class="row" id="boards">
+
+          <div id="newPanel" class="col-md-2 order-last">
+              <div class="card mb-4 shadow-sm">
+                <div class="card-body container text-center justify-content-center">
+
+                    <div class="row btn-group d-flex justify-content-center align-items-center">
+                        <button type="button" class="btn col btn-sm btn-outline-primary" onclick="NewText()"><h6><i class="fas fa-plus"></i> Text</h6></button>
+                  </div>
+                  <div class="row p-2"></div>
+                    <div class="row btn-group d-flex justify-content-center align-items-center">
+                          <button type="button" class="btn col btn-sm btn-outline-primary" onclick="NewBoard()"><h6><i class="fas fa-plus"></i> Board</h6></button>
+                    </div>
+                </div>
+              </div>
+            </div>
 
           <div class="col-md-4">
               <div class="card mb-4 shadow-sm">
@@ -105,20 +121,7 @@
                   </div>
             </template>
 
-            <div class="col-md-2">
-                <div class="card mb-4 shadow-sm">
-                  <div class="card-body container text-center justify-content-center">
 
-                      <div class="row btn-group d-flex justify-content-center align-items-center">
-                          <button type="button" class="btn col btn-sm btn-outline-primary" onclick="NewText()"><h6><i class="fas fa-plus"></i> Text</h6></button>
-                    </div>
-                    <div class="row p-2"></div>
-                      <div class="row btn-group d-flex justify-content-center align-items-center">
-                            <button type="button" class="btn col btn-sm btn-outline-primary" onclick="NewBoard()"><h6><i class="fas fa-plus"></i> Board</h6></button>
-                      </div>
-                  </div>
-                </div>
-              </div>
 
         <template id="albumPostTemplate">
           <div class="col-md-4">
