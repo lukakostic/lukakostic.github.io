@@ -1,0 +1,39 @@
+header{
+  padding-bottom: 2rem;
+}
+
+.slim-header{
+  margin-top: -0.8rem;
+  margin-bottom: -0.8rem;
+  /* padding-top: -0.8rem; */
+  /* padding-bottom: -0.8rem; */
+}
+
+.btn-spaced-1 {
+  margin-left: 0.1rem;
+  margin-right: 0.1rem;
+}
+
+.btn-spaced-2 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.btn-spaced-3 {
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+
+footer {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+footer p {
+  margin-bottom: .25rem;
+}
+
+.container-fluid {
+  padding-left: 3.1rem;
+  padding-right: 3.1rem;
+}

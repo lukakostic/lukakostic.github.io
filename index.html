@@ -1,7 +1,191 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-		<head>
-		<title>Luka Kostic</title>
-		<link rel="icon" href="favicon128.png">
-		</head>
-</html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="index.css">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+  <script src="index.js" defer></script>
+
+
+  <title>Luka Kostic</title>
+  <link rel="icon" href="favicon128.png">
+</head>
+
+
+<header>
+	<div class="navbar navbar-dark bg-dark shadow-sm fixed-top">
+	  <div class="collapse bg-dark" id="navbarHeader">
+		<div class="container-fluid">
+		  <div class="row justify-content-between">
+  
+			<div class="col-sm-9">
+			  <h4 class="text-white">About</h4>
+			  <p class="text-muted">Add some information about the album below, the author, or any other background
+				context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off
+				to some social networking sites or contact information.</p>
+			</div>
+  
+			<div class="col-sm-2 py-4 align-self-end">
+			  <div class="text-center list-unstyled">
+				<li><a href="#" id="Opt1" class="text-white">1</a></li>
+				<li><a href="#" id="Opt2" class="text-white">2</a></li>
+				<li><a href="#" id="Opt3" class="text-white">3</a></li>
+			  </div>
+			</div>
+  
+		  </div>
+		</div>
+	  </div>
+	  <div class="container d-flex justify-content-start slim-header">
+  
+		<div class="navbar-brand">
+		  <input id="BoardTitle" type="text" class="btn btn-spaced-1 col-sm-5"
+			style="text-align: left; color: white; font-weight: bold; font-size: 100%;" placeholder="Title"
+			aria-label="Title" aria-describedby="basic-addon2">
+		</div>
+  
+		<button id="upBtn" class="btn btn-spaced-1 btn-primary"><i class="fas fa-arrow-up"></i></button>
+		<button id="saveBtn" class="btn btn-spaced-1 btn-primary"><i class="fas fa-save"></i></button>
+		<button id="loadBtn" class="btn btn-spaced-1 btn-primary"><i class="fas fa-folder-open"></i></button>
+		<button id="convertBtn" class="btn btn-spaced-1 btn-secondary"><i class="fas fa-exchange-alt"></i></button>
+  
+		<button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarHeader"
+		  aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+  
+	  </div>
+	</div>
+  </header>
+  
+  
+  <body class="bg-dark">
+	<main role="main">
+  
+	  <div class="album py-5 bg-light">
+		<div class="container">
+  
+		  <div class="row" id="boards">
+  
+			<div id="newPanel" class="col-md-2 order-last">
+			  <div class="card mb-4 shadow-sm">
+				<div class="card-body container text-center justify-content-center">
+  
+				  <div class="row btn-group d-flex justify-content-center align-items-center">
+					<button type="button" class="btn col btn-sm btn-outline-primary" onclick="NewText()">
+					  <h6><i class="fas fa-plus"></i> Text</h6>
+					</button>
+				  </div>
+				  <div class="row p-2"></div>
+				  <div class="row btn-group d-flex justify-content-center align-items-center">
+					<button type="button" class="btn col btn-sm btn-outline-primary" onclick="NewBoard()">
+					  <h6><i class="fas fa-plus"></i> Board</h6>
+					</button>
+				  </div>
+				</div>
+			  </div>
+			</div>
+  
+			<div class="col-md-4">
+			  <div class="card mb-4 shadow-sm">
+				<div class="card-body">
+				  <div class="d-flex justify-content-between align-items-center">
+					<p class="card-text">Card Title - Very Nice!</p>
+					<div class="btn-group">
+					  <button type="button" class="btn align-top btn-sm btn-outline-secondary"
+						style="margin-top: -15px;"><i class="fas fa-quote-left"></i></button>
+					</div>
+				  </div>
+				  <small>
+					<a class="card-description text-muted">This is what a card's description will look like. Its decent id
+					  say. It can be long but im not sure how it will handle situations where the text is tooo long? Idk
+					  well i guess its time to find out!
+					  abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaarrreeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeaaaaaaaaaaaaa
+					  oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh
+					  no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no it just
+					  expands :( IDK if thats what i want :()()</a>
+				  </small>
+				</div>
+			  </div>
+			</div>
+  
+			<template id="cardTemplate">
+			  <div class="board col-md-4">
+				<div class="card mb-4 shadow-sm">
+				  <div class="card-body">
+					<div class="d-flex justify-content-between align-items-center">
+					  <p class="card-title">Card Title - Very Nice!</p>
+					  <div class="btn-group">
+						<button type="button" class="btn align-top btn-sm btn-outline-secondary"
+						  style="margin-top: -15px;"><i class="fas fa-quote-left"></i></button>
+					  </div>
+					</div>
+					<small>
+					  <a class="card-description text-muted">This is what a card's description will look like. Its decent
+						id say. It can be long but im not sure how it will handle situations where the text is tooo long?
+						Idk well i guess its time to find out!
+						abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaarrreeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeaaaaaaaaaaaaa
+						oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh
+						no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no it
+						just expands :( IDK if thats what i want :()()</a>
+					</small>
+				  </div>
+				</div>
+			  </div>
+			</template>
+  
+  
+  
+			<template id="albumPostTemplate">
+			  <div class="col-md-4">
+				<div class="card mb-4 shadow-sm">
+				  <img src="thumb.png" width="100%" height="225" background="#55595c" color="#eceeef" class="card-img-top"
+					text="Thumbnail">
+				  <div class="card-body">
+					<p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+					  additional
+					  content. This content is a little bit longer.</p>
+					<div class="d-flex justify-content-between align-items-center">
+					  <div class="btn-group">
+						<button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+						<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+					  </div>
+					  <small class="text-muted">9 mins</small>
+					</div>
+				  </div>
+				</div>
+			  </div>
+			</template>
+  
+		  </div>
+		</div>
+	  </div>
+  
+	</main>
+  </body>
+  
+  <footer class="text-muted bg-dark">
+	<div class="container">
+	  <p class="float-right">
+		<a href="#">Back to top</a>
+	  </p>
+	  <p>Made by <a href="https://github.com/lukakostic"> Luka Kostic</a></p>
+	</div>
+  </footer>
+  
+  </html>
