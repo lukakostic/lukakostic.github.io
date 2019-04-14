@@ -42,6 +42,8 @@ document.getElementById('upBtn').onclick = TitleClicked;
 
 function renderCurrent(){
 clearBoards();
+let boardTemplate = document.getElementById('cardTemplate').firstChild;
+alert(boardTemplate.outerHTML);
 }
 
 function clearBoards(){
