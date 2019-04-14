@@ -25,22 +25,21 @@ let allBoards = [];
 
 if(boardId == ""){
     //Main board
-    
     //document.getElementById('saveBtn').classList.add("invisible");
-    //document.getElementById('loadBtn').classList.add("invisible");
-
 }else{
     //Load board
-
     if(DoesIdExist(boardId) == false){
         alert("Board doesn't exist!");
         throw "Board doesn't exist!";
-    }else{
-        document.getElementById('convertBtn').onclick = ConvertBoard;
-        document.getElementById('saveBtn').onclick = SaveBoard;
-        document.getElementById('loadBtn').onclick = LoadBoard;
     }
 }
+
+
+document.getElementById('convertBtn').onclick = ConvertBoard;
+document.getElementById('saveBtn').onclick = SaveBoard;
+document.getElementById('loadBtn').onclick = LoadBoard;
+document.getElementById('upBtn').onclick = TitleClicked;
+
 
 function listFiles(files) {
     for (var i = 0; i < files.length; i++) {
