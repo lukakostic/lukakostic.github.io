@@ -42,12 +42,16 @@ document.getElementById('upBtn').onclick = TitleClicked;
 
 function renderCurrent(){
 clearBoards();
-let boardTemplate = document.getElementById('cardTemplate').childNodes[0];
-alert(boardTemplate.outerHTML);
+let boardTemplate = document.getElementById('cardTemplate').content.firstElementChild;
 let boards = document.getElementById('boards');
-let board = boardTemplate.cloneNode(true);
 
+for(let i = 0; i < 5; i++){
+let board = boardTemplate.cloneNode(true);
+board.getElementsByClassName("card-text")[0].innerHTML = "Title";
+board.getElementsByClassName("card-description")[0].innerHTML = "Description";
 boards.appendChild(board);
+}
+
 }
 
 function clearBoards(){
