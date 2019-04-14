@@ -9,14 +9,13 @@ alert($(this).html());
 filterURL();
 
 function filterURL(){
-filters = [];
+let filters = [];
 
-url = window.location.href;
+let url = window.location.href;
 for(let i = 0; i < url.length; i++){
     if(url[i] == '#') filters.unshift('');
     else if(filters.length != 0) filters[0]+=url[i];
 }
-
 
 
 if(filters!=[] && filters.every(i=>i=='') == false){
@@ -27,7 +26,13 @@ $("#boards").children().each(function(i) {
     else
     $(this).show();
 });
+}else{
+    $("#boards").children().each(function(i) {
+        $(this).show();
+    });
 }
+
+
 }
 
 window.onhashchange = filterURL;
