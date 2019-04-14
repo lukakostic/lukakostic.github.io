@@ -65,25 +65,23 @@ span{
   display: inline-block;
 } 
 
-.no-right-margin{
-  margin-right: -50px;
-}
 
 .typewriter {
+  margin-right: -50px;
   overflow-x: hidden; /* Ensures the content is not revealed until the animation */
   border-right: .13em solid; /* The typwriter cursor */
   white-space: nowrap; /* Keeps the content on a single line */
   text-align: left;
   animation: 
-    typing 2s steps(100, end),
-    anim-over 0s ease-in 1s forwards,
-    blink-caret .65s step-end 4;
+    typing 3s steps(100, end),
+    anim-over 0s ease-in 2.9s forwards,
+    blink-caret .65s step-end 5;
 }
 
 /* The typing effect */
 @keyframes typing {
-  from { width: 0 }
-  to { width: 100%; }
+  from { max-width: 0 }
+  to { max-width: 150%; }
 }
 
 /* The typewriter cursor effect */
