@@ -5,6 +5,8 @@ header{
 .slim-header{
   margin-top: -0.8rem;
   margin-bottom: -0.8rem;
+  /* padding-top: -0.8rem; */
+  /* padding-bottom: -0.8rem; */
 }
 
 .btn-spaced-1 {
