@@ -47,7 +47,7 @@ let boards = document.getElementById('boards');
 
 for(let i = 0; i < 5; i++){
 let board = boardTemplate.cloneNode(true);
-board.getElementsByClassName("card-text")[0].innerHTML = "Title";
+board.getElementsByClassName("card-title")[0].innerHTML = "Title";
 board.getElementsByClassName("card-description")[0].innerHTML = "Description";
 boards.appendChild(board);
 }
