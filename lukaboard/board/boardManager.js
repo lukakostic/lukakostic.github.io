@@ -53,7 +53,8 @@ boards.appendChild(board);
 function clearBoards(){
   let boards = document.getElementById('boards').childNodes;
 
-  for(let i = 1; i < boards.length; i++){
+  for(let i = 0; i < boards.length; i++){
+    if(boards[i].id!="")continue;
     alert(boards[i].outerHTML);
     $(boards[i]).remove();
   }
