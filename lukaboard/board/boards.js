@@ -34,4 +34,16 @@ class Board{
         }
         this.isBoard = !this.isBoard;
     }
+
+    static makeId(maxLength) {
+        let text = "";
+        let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
+
+        let length = Math.floor(Math.random() * maxLength) + 1;
+
+        for (var i = 0; i < length; i++)
+          text += possible.charAt(Math.floor(Math.random() * possible.length));
+      
+        return text;
+    }
 }

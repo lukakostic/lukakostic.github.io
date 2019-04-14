@@ -1,10 +1,8 @@
 let url = window.location.href.replace('#','');
 
+//get dropbox token
 let ACCESS_TOKEN = "";
-
 if(url.includes('?t=')){
-    //boardId = url.substring(url.indexOf('?b=')+3);
-
     for(let i = url.indexOf('?t=')+3; i < url.length && url[i] != '?'; i++)
         ACCESS_TOKEN += url[i];
 }
@@ -12,22 +10,18 @@ if(url.includes('?t=')){
 let dbx = new Dropbox.Dropbox({ accessToken: ACCESS_TOKEN });
 
 
-let boardId = "";
 //get board id and check if exists
+let boardId = "";
 if(url.includes('?b=')){
-    //boardId = url.substring(url.indexOf('?b=')+3);
-
     for(let i = url.indexOf('?b=')+3; i < url.length && url[i] != '?'; i++)
         boardId += url[i];
-    
 }
+//TODO check if exists
 
-//alert('Token: ' + ACCESS_TOKEN);
-//alert('Board: ' + boardId);
+document.getElementById('BoardTitle').innerHTML = "Board";
 
-document.getElementById('projectTitle').innerHTML = "Board";
-
-let board = null;
+let currentBoard = '';
+let allBoards = [];
 
 if(boardId == ""){
     //Main board
@@ -42,7 +36,7 @@ if(boardId == ""){
         alert("Board doesn't exist!");
         throw "Board doesn't exist!";
     }else{
-        document.getElementById('saveBtn').onclick = ConvertBoard;
+        document.getElementById('convertBtn').onclick = ConvertBoard;
         document.getElementById('saveBtn').onclick = SaveBoard;
         document.getElementById('loadBtn').onclick = LoadBoard;
     }
@@ -67,7 +61,7 @@ function listFiles(files) {
     }
 
     function SaveBoard(){
-        let contents = 'ass';
+        let contents = JSON.stringify(allBoards);
         dbx.filesUpload({path: '/' + 'lukaboard.lb', contents: contents})
           .then(function(response) {
             console.log(response);
@@ -87,6 +81,11 @@ function listFiles(files) {
     
     reader.addEventListener("loadend", function() {
         contents = reader.result;    
+
+        if(contents != ""){
+allBoards = JSON.parse(contents);
+        }
+
         alert(contents);
     });
 
