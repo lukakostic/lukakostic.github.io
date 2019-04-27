@@ -90,14 +90,11 @@ My focus is on engine architecture and performance optimizations.`
 
 
 						div ."col-sm-5"
-							h3
-								`Interests`
+							h3>Interests
+
 							ul ."ul-interests"
-
 								li>Engine Design
-
 								li>Optimizations
-
 								li>GPU based Pipelines
 
 
@@ -105,7 +102,6 @@ My focus is on engine architecture and performance optimizations.`
 						div ."col-sm-7"
 							h3>Education
 							ul ."ul-edu fa-ul"
-
 								li
 									i ."fa-li fa fa-graduation-cap"
 									div ."description"
