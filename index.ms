@@ -1,13 +1,28 @@
-`<!doctype html>`
+$post $title $text $tags $year $url:
+`div ."col-md-4" data-tags="$tags"
+	div ."card mb-4 shadow-sm"
+		a href="$url"
+			img src="/portfolio/penguins.jpg" height="100%" background="#55595c" color="#eceeef" ."card-img-top"
+		div ."card-body"
+			p ."card-text fonted"
+				$text
+			div ."d-flex justify-content-between align-items-center"
+				div ."btn-group"
+					a href="#Web" type="button" ."btn btn-sm btn-outline-secondary"<>Web
+					a href="#3D" type="button" ."btn btn-sm btn-outline-secondary"<>3D
+				small ."text-muted"<>$year`
+
+
+`<!doctype html<>`
 html lang="en"
 
 head
 	meta charset="utf-8"
 
-	title>Luka Kostic
+	title<>Luka Kostic
 
 	meta name="description" content="Luka Kostic - The guy to fulfill all your Software, Game and Web Developer needs. Many years of experience in C#, JavaScript, Python, C/C++ . Experienced in Game developement in Unity and other game engines; Software development in Visual Studio and QT; Scripting in Python and NodeJS; Web automation with web drivers and browser extensions; Machine learning; ... "
-	meta name="keywords" content="Luka Kostic,C#,JavaScript,Python,C,C++,Unity,Game,Developer,Software,Web,Visual Studio,HTML,CSS,Bootstrap,Machine Learning">
+	meta name="keywords" content="Luka Kostic,C#,JavaScript,Python,C,C++,Unity,Game,Developer,Software,Web,Visual Studio,HTML,CSS,Bootstrap,Machine Learning"<>
 	meta name="author" content="Luka Kostic"
 	meta name="viewport" content="width=device-width, initial-scale=1"
 
@@ -46,14 +61,14 @@ main role="main"
 
 
 						div ."portrait-title"
-							h1 itemprop="name">Luka Kostić
-							h4 itemprop="jobTitle">Games, Software & Web
+							h1 itemprop="name"<>Luka Kostić
+							h4 itemprop="jobTitle"<>Games, Software & Web
 
 							h3 itemprop="worksFor" itemscope="" itemtype="http://schema.org/Organization"
 								{
-						  <a href="http://montreal.ubisoft.com/en/" target="_blank" itemprop="url">
-							<span itemprop="name">Ubisoft Montréal</span>
-						  </a>
+						  <a href="http://montreal.ubisoft.com/en/" target="_blank" itemprop="url"<>
+							<span itemprop="name"<>Ubisoft Montréal</span<>
+						  </a<>
 								}
 
 
@@ -75,7 +90,7 @@ main role="main"
 
 
 
-					h1 #"biography">Biography
+					h1 #"biography"<>Biography
 
 					p
 						`In 2015 I joined Ubisoft Montréal as a 3D Programmer on FarCry Primal. After a successful project
@@ -90,35 +105,35 @@ My focus is on engine architecture and performance optimizations.`
 
 
 						div ."col-sm-5"
-							h3>Interests
+							h3<>Interests
 
 							ul ."ul-interests"
-								li>Engine Design
-								li>Optimizations
-								li>GPU based Pipelines
+								li<>Engine Design
+								li<>Optimizations
+								li<>GPU based Pipelines
 
 
 
 						div ."col-sm-7"
-							h3>Education
+							h3<>Education
 							ul ."ul-edu fa-ul"
 								li
 									i ."fa-li fa fa-graduation-cap"
 									div ."description"
-										p ."course">Master Game Technology, 2015
-										p ."institution">NHTV Breda
+										p ."course"<>Master Game Technology, 2015
+										p ."institution"<>NHTV Breda
 
 								li
 									i ."fa-li fa fa-graduation-cap"
 									div ."description"
-										p ."course">B.Eng International Game Architecture and Design, 2010
-										p ."institution">NHTV Breda
+										p ."course"<>B.Eng International Game Architecture and Design, 2010
+										p ."institution"<>NHTV Breda
 
 	div ."container bg-light"
-		a href="#" ."btn text-dark">All
-		a href="#Web" ."btn text-dark">Web
-		a href="#3D" ."btn text-dark">3D
-		a href="#WebGL" ."btn text-dark">WebGL
+		a href="#" ."btn text-dark"<>All
+		a href="#Web" ."btn text-dark"<>Web
+		a href="#3D" ."btn text-dark"<>3D
+		a href="#WebGL" ."btn text-dark"<>WebGL
 
 	div ."album py-5"
 		div ."container"
@@ -131,11 +146,11 @@ My focus is on engine architecture and performance optimizations.`
 						a href="http://lukakostic.com"
 							img src="/portfolio/site.png" height="100%" background="#55595c" color="#eceeef" ."card-img-top"
 						div ."card-body"
-							p ."card-text fonted">Made LukaKostic.com using HTML, Bootstrap and CSS.
+							p ."card-text fonted"<>Made LukaKostic.com using HTML, Bootstrap and CSS.
 							div ."d-flex justify-content-between align-items-center"
 								div ."btn-group"
-									a href="#Web" type="button" ."btn btn-sm btn-outline-secondary">Web
-								small ."text-muted">2019
+									a href="#Web" type="button" ."btn btn-sm btn-outline-secondary"<>Web
+								small ."text-muted"<>2019
 
 				div ."col-md-4" data-tags="Web WebGL 3D"
 					div ."card mb-4 shadow-sm"
@@ -147,11 +162,11 @@ My focus is on engine architecture and performance optimizations.`
 and throw snowballs with T.`
 							div ."d-flex justify-content-between align-items-center"
 								div ."btn-group"
-									a href="#Web" type="button" ."btn btn-sm btn-outline-secondary">Web
-									a href="#3D" type="button" ."btn btn-sm btn-outline-secondary">3D
-								small ."text-muted">2018
+									a href="#Web" type="button" ."btn btn-sm btn-outline-secondary"<>Web
+									a href="#3D" type="button" ."btn btn-sm btn-outline-secondary"<>3D
+								small ."text-muted"<>2018
 
 
 footer ."text-center fonted text-light"
 	div ."container"
-		p>Remember to have a nice day :)
+		p<>Remember to have a nice day :)
