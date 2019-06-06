@@ -25,8 +25,13 @@ header{
 }
 
 footer {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding: 3rem;
+  
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:60px;   /* Height of the footer */
+  background:#6cf;
 }
 
 footer p {
@@ -36,12 +41,4 @@ footer p {
 .container-fluid {
   padding-left: 3.1rem;
   padding-right: 3.1rem;
-}
-
-footer {
-  position:absolute;
-  bottom:0;
-  width:100%;
-  height:60px;   /* Height of the footer */
-  background:#6cf;
 }
