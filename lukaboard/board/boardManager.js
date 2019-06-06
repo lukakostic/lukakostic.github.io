@@ -29,6 +29,7 @@ if (boardId == "") {
   }
 }
 
+UIToFunctions();
 
 function listFiles(files) {
   for (var i = 0; i < files.length; i++) {
