@@ -1,20 +1,15 @@
-let url = window.location.href.replace('#','');
+let url = window.location.href.replace('#', '');
 
-//get dropbox token
-let ACCESS_TOKEN = "";
-if(url.includes('?t=')){
-    for(let i = url.indexOf('?t=')+3; i < url.length && url[i] != '?'; i++)
-        ACCESS_TOKEN += url[i];
-}
+let dbx = DropboxManager.fromUrl(url);
 
-let dbx = new Dropbox.Dropbox({ accessToken: ACCESS_TOKEN });
+
 
 
 //get board id and check if exists
 let boardId = "";
-if(url.includes('?b=')){
-    for(let i = url.indexOf('?b=')+3; i < url.length && url[i] != '?'; i++)
-        boardId += url[i];
+if (url.includes('?b=')) {
+  for (let i = url.indexOf('?b=') + 3; i < url.length && url[i] != '?'; i++)
+    boardId += url[i];
 }
 //TODO check if exists
 
@@ -23,130 +18,74 @@ document.getElementById('BoardTitle').innerHTML = "Board";
 let currentBoard = '';
 let allBoards = [];
 
-if(boardId == ""){
-    //Main board
-    //document.getElementById('saveBtn').classList.add("invisible");
-}else{
-    //Load board
-    if(DoesIdExist(boardId) == false){
-        alert("Board doesn't exist!");
-        throw "Board doesn't exist!";
-    }
-}
-
-
-document.getElementById('convertBtn').onclick = ConvertBoard;
-document.getElementById('saveBtn').onclick = SaveBoard;
-document.getElementById('loadBtn').onclick = LoadBoard;
-document.getElementById('upBtn').onclick = TitleClicked;
-
-function renderCurrent(){
-clearBoards();
-let boardTemplate = document.getElementById('cardTemplate').content.firstElementChild;
-let boards = document.getElementById('boards');
-
-for(let i = 0; i < 5; i++){
-let board = boardTemplate.cloneNode(true);
-board.getElementsByClassName("card-title")[0].innerHTML = "Title";
-board.getElementsByClassName("card-description")[0].innerHTML = "Description";
-boards.appendChild(board);
-}
-
-}
-
-function clearBoards(){
-  let boards = document.getElementById('boards').childNodes;
-
-  for(let i = 0; i < boards.length; i++){
-    if(boards[i].id!="")continue;
-    $(boards[i]).remove();
+if (boardId == "") {
+  //Main board
+  //document.getElementById('saveBtn').classList.add("invisible");
+} else {
+  //Load board
+  if (DoesIdExist(boardId) == false) {
+    alert("Board doesn't exist!");
+    throw "Board doesn't exist!";
   }
 }
+
 
 function listFiles(files) {
-    for (var i = 0; i < files.length; i++) {
-      alert(files[i].name);
-    }
+  for (var i = 0; i < files.length; i++) {
+    alert(files[i].name);
   }
+}
 
 
-  function listAllFiles() {
-        dbx.filesListFolder({path: ''})
-          .then(function(response) {
-            console.log('response', response);
-            listFiles(response.entries);
-          })
-          .catch(function(error) {
-            console.error(error);
-          });
-    }
-
-    function SaveBoard(){
-        let contents = JSON.stringify(allBoards);
-        dbx.filesUpload({path: '/' + 'lukaboard.lb', contents: contents})
-          .then(function(response) {
-            console.log(response);
-          })
-          .catch(function(error) {
-            console.error(error);
-          });
-    }
-
-    function LoadBoard(){
-        let contents = null;
-
-        dbx.filesDownload({path: '/'+'lukaboard.lb'})
+function listAllFiles() {
+  dbx.filesListFolder({ path: '' })
     .then(function (response) {
-        let blob = response.fileBlob;
-        let reader = new FileReader();
-    
-    reader.addEventListener("loadend", function() {
-        contents = reader.result;    
-
-        if(contents != ""){
-allBoards = JSON.parse(contents);
-currentBoard = '';
-renderCurrent();
-        }
-
-        bootbox.alert(contents);
-    });
-
-        reader.readAsText(blob);
+      console.log('response', response);
+      listFiles(response.entries);
     })
-    .catch(function(error) {
-      bootbox.alert(error.error);
-      allBoards = [];
-currentBoard = '';
-renderCurrent();
-      })
+    .catch(function (error) {
+      console.error(error);
+    });
+}
 
-    }
+function SaveBoard() {
+  let contents = JSON.stringify(allBoards);
+  dbx.filesUpload({ path: '/' + 'lukaboard.lb', contents: contents });
+}
 
-    function ConvertBoard(){
+function LoadBoard() {
+  let contents = null;
 
-    }
+  dbx.filesDownload({ path: '/' + 'lukaboard.lb' });
 
-    function CreateBoard(){
-        
-    }
+}
 
-    function DoesIdExist(id){
+function ConvertBoard() {
 
-        return true;
-    }
+}
 
-    function TitleClicked(){
-        alert("Title clicked!");
-    }
+function CreateBoard() {
 
-    function NewBoard(){
-        alert('new board');
-    }
+}
 
-    function NewText(){
-        alert('new text');
-    }
+function DoesIdExist(id) {
+
+  return true;
+}
+
+function TitleClicked() {
+  alert("Title clicked!");
+}
+
+function NewBoard() {
+  alert('new board');
+}
+
+function NewText() {
+  alert('new text');
+}
+
+
 
 
 /*
@@ -161,12 +100,12 @@ renderCurrent();
 
 
 
-                
+
                             <div class="col-md-3">
                 <div class="card mb-4 shadow-sm ">
                   <div class="card-body text-center justify-content-center">
 
-                    
+
                       <div class="btn-group d-flex justify-content-center align-items-center">
                             <button type="button" class="btn btn-sm btn-outline-secondary" onclick="NewText()"><h6>+ Text</h6></button>
                             <button type="button" class="btn btn-sm btn-outline-secondary" onclick="NewBoard()"><h6>+ Board</h6></button>
