@@ -3,25 +3,38 @@ let url = window.location.href.replace('#', '');
 let dbx = DropboxManager.fromUrl(url);
 
 let allBoards = []; //array of all board objects
-let board = Board.fromUrl();
+let board = null;
 
-
-if (board == null) {
-  //Main board
-  //document.getElementById('saveBtn').classList.add("invisible");
-} else {
-  //Load board
-  
-}
+LoadAll();
 
 UIToFunctions();
-drawBoard();
 
+function loadOrDefaultBoard(forceNull){
+
+  if(forceNull) board = null;
+  else board = Board.fromUrl(url);
+
+  
+  if (board == null) {
+    //Board not found
+    board = Board.fromUrl("");
+    //Lets go for main board then
+    if(board == null){
+      //Main board not created
+      allBoards.push(new Board("", "", true, "", [], id = ""));
+      board = Board.fromUrl(""); 
+    }
+  }
+  
+    //Load board
+    drawBoard();
+  
+}
 
 function SaveAll() {
   
   let contents = {
-    current: (board != null ? board.id : ""),
+    current: board.id,
     all: JSON.stringify(allBoards)
   };
 
@@ -29,27 +42,31 @@ function SaveAll() {
 }
 
 function LoadAll() {
-  dbx.filesDownload({ path: '/' + 'lukaboard.lb' });
-}
-
-function Loaded(contents){
+  dbx.filesDownload({ path: '/' + 'lukaboard.lb' },function Loaded(contents){
   
-  if (contents != null) {
-    allBoards = JSON.parse(contents.all);
-    board = Board.fromId(contents.current);
-  }else{
-    allBoards = [];
-    board = null;
-  }
-    
-  bootbox.alert(contents);
+    if (contents != null) {
+      allBoards = JSON.parse(contents.all);
+      board = Board.fromId(contents.current);
+    }else{
+      allBoards = [];
+      board = null;
+    }
+      
+    loadOrDefaultBoard();
 
-  renderCurrent();
+    bootbox.alert(contents);
+  });
 }
+
+
 
 
 function CreateBoard() {
 
+}
+
+function Home(){
+  window.location.href = "https://lukakostic.com/lukaboard/board/?d="+dbx.access;
 }
 
 function TitleClicked() {

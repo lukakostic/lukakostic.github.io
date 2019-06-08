@@ -32,7 +32,7 @@
 
 
 
-<header>
+<header class="header">
   <div class="navbar navbar-dark bg-dark shadow-sm fixed-top">
     <div class="collapse bg-dark" id="navbarHeader">
       <div class="container-fluid">
@@ -56,18 +56,25 @@
         </div>
       </div>
     </div>
-    <div class="container d-flex justify-content-start slim-header">
+    <div class="container d-flex justify-content-start slim-header" style="max-width:100%">
 
+      <button id="homeBtn" class="btn btn-spaced-1 btn-secondary bg-dark"><i class="fas fa-home"></i></button>
+      <button id="upBtn" class="btn btn-spaced-1 btn-secondary bg-dark"><i class="fas fa-arrow-up"></i></button>
+
+      <div class="btn btn-spaced-1 btn-secondary bg-dark" style="visibility: hidden"></div>
       <div class="navbar-brand">
         <input id="BoardTitle" type="text" class="btn btn-spaced-1 col-sm-5"
-          style="text-align: left; color: white; font-weight: bold; font-size: 100%;" placeholder="Title"
-          aria-label="Title" aria-describedby="basic-addon2">
+          style="overflow: hidden; text-overflow: ellipsis; max-width: 100%; text-align: left; color: white; font-weight: bold; font-size: 90%;"
+          placeholder="Title" aria-label="Title" aria-describedby="basic-addon2">
       </div>
+      <div class="btn btn-spaced-1 btn-secondary bg-dark" style="visibility: hidden"></div>
 
-      <button id="upBtn" class="btn btn-spaced-1 btn-primary"><i class="fas fa-arrow-up"></i></button>
-      <button id="saveBtn" class="btn btn-spaced-1 btn-primary"><i class="fas fa-save"></i></button>
-      <button id="loadBtn" class="btn btn-spaced-1 btn-primary"><i class="fas fa-folder-open"></i></button>
-      <button id="convertBtn" class="btn btn-spaced-1 btn-secondary"><i class="fas fa-exchange-alt"></i></button>
+      <button id="saveBtn" class="btn btn-spaced-1 btn-secondary bg-dark"><i class="fas fa-save"></i></button>
+      <button id="loadBtn" class="btn btn-spaced-1 btn-secondary bg-dark"><i class="fas fa-folder-open"></i></button>
+
+      <div class="btn btn-spaced-1 btn-secondary bg-dark" style="visibility: hidden"></div>
+      <button id="convertBtn" class="btn btn-spaced-1 btn-secondary bg-dark"><i
+          class="fas fa-exchange-alt"></i></button>
 
       <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarHeader"
         aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,10 +86,10 @@
 </header>
 
 
-<body class="bg-light">
+<body class="bg-secondary">
   <main role="main">
 
-    <div class="album py-5 bg-light">
+    <div class="album py-5 bg-secondary">
       <div class="container">
 
         <div class="row" id="boards">
@@ -106,52 +113,54 @@
             </div>
           </div>
 
-          <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-              <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center">
-                  <p class="card-text">Card Title - Very Nice!</p>
-                  <div class="btn-group">
-                    <button type="button" class="btn align-top btn-sm btn-outline-secondary"
-                      style="margin-top: -15px;"><i class="fas fa-quote-left"></i></button>
-                  </div>
-                </div>
-                <small>
-                  <a class="card-description text-muted">This is what a card's description will look like. Its decent id
-                    say. It can be long but im not sure how it will handle situations where the text is tooo long? Idk
-                    well i guess its time to find out!
-                    abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaarrreeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeaaaaaaaaaaaaa
-                    oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh
-                    no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no it just
-                    expands :( IDK if thats what i want :()()</a>
-                </small>
-              </div>
-            </div>
-          </div>
 
-          <template id="cardTemplate">
-            <div class="board col-md-4">
+
+
+
+
+
+          <template id="boardTemplate">
+            <section class="col-md-4" style=" margin: 5px; padding: 0px;">
+              <header class="card shadow-sm text-white bg-dark"
+                style="border-radius: 0px; padding: 0px; padding-bottom: 0px; padding-top: 0px;">
+                <div class="row justify-content-between" style="margin: 0px">
+
+                  <input type="text" class="card-name bg-dark"
+                    style="width: calc(100% - 33px); padding-left: 5px; padding-right: 2px; padding-top: 2px; white-space: nowrap; overflow: hidden; font-weight: bolder; text-overflow: ellipsis; color:white; border: 0px;"
+                    value="Card Title - Very Nice!Card Title - Very Nice!asserrt"></input>
+
+                  <button type="button" class="btn btn-sm" style="margin-left:auto; color: white;"><i
+                      class="fas fa-circle"></i></button>
+                      
+                </div>
+              </header>
+              <div class="card mb-4 shadow-sm" style="border-radius: 0px; margin-bottom: 0px !important;">
+                <div class="card-body" style="padding: 4px">
+
+                  <a class="card-text text-muted">This is what a card's description will look like.</a>
+
+                </div>
+              </div>
+            </section>
+          </template>
+
+          <template id="boardTemplate2">
+            <section class="board col-md-4">
               <div class="card mb-4 shadow-sm">
                 <div class="card-body">
                   <div class="d-flex justify-content-between align-items-center">
-                    <p class="card-title">Card Title - Very Nice!</p>
+                    <p class="card-name">Card Title - Very Nice!</p>
                     <div class="btn-group">
                       <button type="button" class="btn align-top btn-sm btn-outline-secondary"
                         style="margin-top: -15px;"><i class="fas fa-quote-left"></i></button>
                     </div>
                   </div>
                   <small>
-                    <a class="card-description text-muted">This is what a card's description will look like. Its decent
-                      id say. It can be long but im not sure how it will handle situations where the text is tooo long?
-                      Idk well i guess its time to find out!
-                      abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaarrreeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeaaaaaaaaaaaaa
-                      oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh
-                      no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no oh no it
-                      just expands :( IDK if thats what i want :()()</a>
+                    <a class="card-text text-muted">This is what a card's description will look like.</a>
                   </small>
                 </div>
               </div>
-            </div>
+            </section>
           </template>
 
 
@@ -186,10 +195,10 @@
 
 <footer class="text-muted bg-dark">
 
-    <p class="float-right">
-      <a href="#">Back to top</a>
-    </p>
-    <p>Made by <a href="https://github.com/lukakostic"> Luka Kostic</a></p>
+  <p class="float-right">
+    <a href="#">Back to top</a>
+  </p>
+  <p>Made by <a href="https://github.com/lukakostic"> Luka Kostic</a></p>
 
 </footer>
 

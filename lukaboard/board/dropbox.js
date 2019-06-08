@@ -27,14 +27,14 @@ class DropboxManager {
             });
     }
 
-    filesDownload(obj){
+    filesDownload(obj,callback){
         this.dropbox.filesDownload(obj)
         .then(function (response) {
           let blob = response.fileBlob;
           let reader = new FileReader();
     
           reader.addEventListener("loadend", function () {
-            Loaded(reader.result);
+            callback(reader.result);
           });
     
           reader.readAsText(blob);

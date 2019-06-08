@@ -22,7 +22,7 @@ class Board {
                 boardId += url[i];
         }
 
-        if (boardId == "") return null;
+        //if (boardId == "") return null;
         //else
 
         //Check if exists

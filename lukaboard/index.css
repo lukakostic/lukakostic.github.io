@@ -1,4 +1,4 @@
-header{
+.header{
   padding-bottom: 2rem;
 }
 
@@ -25,11 +25,10 @@ header{
 }
 
 footer {
-  padding: 8px;
+  padding: 7px;
   position:absolute;
   bottom:0;
   width:100%;
-  background:#6cf;
 }
 
 footer p {
