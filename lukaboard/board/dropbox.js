@@ -34,24 +34,25 @@ class DropboxManager {
           let reader = new FileReader();
     
           reader.addEventListener("loadend", function () {
-            contents = reader.result;
-    
-            if (contents != "") {
-              allBoards = JSON.parse(contents);
-              currentBoard = '';
-              renderCurrent();
-            }
-    
-            bootbox.alert(contents);
+            Loaded(reader.result);
           });
     
           reader.readAsText(blob);
         })
         .catch(function (error) {
-          bootbox.alert(error.error);
-          allBoards = [];
-          currentBoard = '';
-          renderCurrent();
+            Loaded(null);
         });
     }
+
+      
+    filesListFolder(path = '') {
+        this.dropbox.filesListFolder({ path: path })
+          .then(function (response) {
+            console.log('response', response);
+            listFiles(response.entries);
+          })
+          .catch(function (error) {
+            console.error(error);
+          });
+      }
 }

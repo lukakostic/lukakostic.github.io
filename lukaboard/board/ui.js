@@ -1,7 +1,7 @@
 function UIToFunctions(){
-    document.getElementById('convertBtn').onclick = ConvertBoard;
-    document.getElementById('saveBtn').onclick = SaveBoard;
-    document.getElementById('loadBtn').onclick = LoadBoard;
+    //document.getElementById('convertBtn').onclick = ConvertBoard;
+    document.getElementById('saveBtn').onclick = SaveAll;
+    document.getElementById('loadBtn').onclick = LoadAll;
     document.getElementById('upBtn').onclick = TitleClicked;
 }
 
@@ -27,4 +27,8 @@ function renderCurrent() {
       if (boards[i].id != "") continue;
       $(boards[i]).remove();
     }
+  }
+
+  function drawBoard(){
+    document.getElementById('BoardTitle').innerHTML = board.name;
   }

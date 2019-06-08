@@ -1,50 +1,64 @@
-class Board{
-    constructor(name, parent, isBoard, content){
-        this.name = name;
-        this.parent = parent;
-        this.isBoard = isBoard;
-        this.content = content;
+class Board {
+    constructor(name, text, isBoard, parent, children, id = "") {
+        this.name = name; //string
+        this.text = text; //string
+        this.isBoard = isBoard; //bool
+        this.parent = parent; //string
+        this.children = children; //array of ids [string]
+        this.id = id; //string
+        if (id == "") this.id = makeId(8);
     }
 
-    static clone(toClone){
-        return new Board(toClone.name,toClone.isBoard,toClone.content);
+    static clone(toClone) {
+        return new Board(toClone.name,toClone.text,toClone.isBoard,toClone.parent,  toClone.children);
     }
 
-    toJson(){
-
-    }
-
-    convertJsonBoard(){
-        if(this.isBoard){
-            this.content = JSON.stringify(this.content);
-        }else{
-            this.content = JSON.parse(this.content);
+    static fromUrl(url) {
+        let boardId = "";
+        
+        //get id from url
+        if (url.includes('?b=')) {
+            for (let i = url.indexOf('?b=') + 3; i < url.length && url[i] != '?'; i++)
+                boardId += url[i];
         }
-        this.isBoard = !this.isBoard;
+
+        if (boardId == "") return null;
+        //else
+
+        //Check if exists
+        return fromId(boardId);
     }
 
-    convertPlainBoard(){
-        if(this.isBoard){
-            this.convertJsonBoard();
-            this.name = this.content;
-            this.content = null;
-            return;
-        }else{
-            this.name = this.content;
-            this.content = null;
-        }
-        this.isBoard = !this.isBoard;
+    static fromId(id){
+        for(var i = 0; i < allBoards.length; i ++)
+            if(allBoards[i].id == id)
+                return allBoards[i];
+        return null;
     }
 
     static makeId(maxLength) {
-        let text = "";
+        let id = "";
         let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
 
-        let length = Math.floor(Math.random() * maxLength) + 1;
+        var unique = false;
 
+        //find unique id
+        while(unique == false){
+
+        //let length = Math.floor(Math.random() * maxLength) + 1;
+        let length = maxLength;
+
+        //generate rand chars and append
         for (var i = 0; i < length; i++)
-          text += possible.charAt(Math.floor(Math.random() * possible.length));
-      
-        return text;
+            id += possible.charAt(Math.floor(Math.random() * possible.length));
+
+        unique = true;
+        for(var i = 0; i < allBoards.length; i ++)
+            if(allBoards[i].id == id){unique == false; break;}
+        
+
+        }
+
+        return id;
     }
 }

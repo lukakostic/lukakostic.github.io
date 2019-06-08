@@ -2,89 +2,64 @@ let url = window.location.href.replace('#', '');
 
 let dbx = DropboxManager.fromUrl(url);
 
+let allBoards = []; //array of all board objects
+let board = Board.fromUrl();
 
 
-
-//get board id and check if exists
-let boardId = "";
-if (url.includes('?b=')) {
-  for (let i = url.indexOf('?b=') + 3; i < url.length && url[i] != '?'; i++)
-    boardId += url[i];
-}
-//TODO check if exists
-
-document.getElementById('BoardTitle').innerHTML = "Board";
-
-let currentBoard = '';
-let allBoards = [];
-
-if (boardId == "") {
+if (board == null) {
   //Main board
   //document.getElementById('saveBtn').classList.add("invisible");
 } else {
   //Load board
-  if (DoesIdExist(boardId) == false) {
-    alert("Board doesn't exist!");
-    throw "Board doesn't exist!";
-  }
+  
 }
 
 UIToFunctions();
-
-function listFiles(files) {
-  for (var i = 0; i < files.length; i++) {
-    alert(files[i].name);
-  }
-}
+drawBoard();
 
 
-function listAllFiles() {
-  dbx.filesListFolder({ path: '' })
-    .then(function (response) {
-      console.log('response', response);
-      listFiles(response.entries);
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-}
+function SaveAll() {
+  
+  let contents = {
+    current: (board != null ? board.id : ""),
+    all: JSON.stringify(allBoards)
+  };
 
-function SaveBoard() {
-  let contents = JSON.stringify(allBoards);
   dbx.filesUpload({ path: '/' + 'lukaboard.lb', contents: contents });
 }
 
-function LoadBoard() {
-  let contents = null;
-
+function LoadAll() {
   dbx.filesDownload({ path: '/' + 'lukaboard.lb' });
-
 }
 
-function ConvertBoard() {
+function Loaded(contents){
+  
+  if (contents != null) {
+    allBoards = JSON.parse(contents.all);
+    board = Board.fromId(contents.current);
+  }else{
+    allBoards = [];
+    board = null;
+  }
+    
+  bootbox.alert(contents);
 
+  renderCurrent();
 }
+
 
 function CreateBoard() {
 
-}
-
-function DoesIdExist(id) {
-
-  return true;
 }
 
 function TitleClicked() {
   alert("Title clicked!");
 }
 
-function NewBoard() {
-  alert('new board');
+function New(){
+
 }
 
-function NewText() {
-  alert('new text');
-}
 
 
 
