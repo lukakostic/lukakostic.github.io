@@ -6,7 +6,7 @@ class Board {
         this.parent = parent; //string
         this.children = children; //array of ids [string]
         this.id = id; //string
-        if (id == "") this.id = makeId(8);
+        if (id == "") this.id = Board.makeId(8);
     }
 
     static clone(toClone) {
@@ -26,7 +26,7 @@ class Board {
         //else
 
         //Check if exists
-        return fromId(boardId);
+        return Board.fromId(boardId);
     }
 
     static fromId(id){

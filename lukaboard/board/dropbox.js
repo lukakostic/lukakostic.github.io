@@ -1,7 +1,7 @@
 class DropboxManager {
     constructor(ACCESS_TOKEN) {
         this.access = ACCESS_TOKEN;
-        this.dropbox = new Dropbox.Dropbox({ accessToken: accessFromUrl(this.access) });
+        this.dropbox = new Dropbox.Dropbox({ accessToken: this.access });
     }
 
     static accessFromUrl(url) {
@@ -14,7 +14,7 @@ class DropboxManager {
     }
 
     static fromUrl(url) {
-        return new DropboxManager(accessFromUrl(url));
+        return new DropboxManager(DropboxManager.accessFromUrl(url));
     }
 
     filesUpload(obj) {
@@ -40,7 +40,7 @@ class DropboxManager {
           reader.readAsText(blob);
         })
         .catch(function (error) {
-            Loaded(null);
+            callback(null);
         });
     }
 
