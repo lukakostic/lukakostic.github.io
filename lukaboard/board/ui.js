@@ -7,6 +7,11 @@ function UIToFunctions(){
 }
 
 
+setInterval(function(){
+  //Fix this piece of shit mobile web dev crap
+  document.body.style.setProperty("width","100vw");
+
+},100);
   
   function clearBoards() {
     let boards = document.getElementById('boards').childNodes;
