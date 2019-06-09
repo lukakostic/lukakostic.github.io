@@ -1,16 +1,15 @@
 class Board {
-    constructor(name, text, isBoard, parent, children, id = "") {
+    constructor(name, text,  attributes, content, id = "") {
         this.name = name; //string
         this.text = text; //string
-        this.isBoard = isBoard; //bool
-        this.parent = parent; //string
-        this.children = children; //array of ids [string]
+        this.attributes = attributes; //object (isBoard,onMain,tags, etc.)
+        this.content = content; //array of ids [string]
         this.id = id; //string
         if (id == "") this.id = Board.makeId(8);
     }
 
     static clone(toClone) {
-        return new Board(toClone.name,toClone.text,toClone.isBoard,toClone.parent,  toClone.children);
+        return new Board(toClone.name, toClone.text, toClone.attributes, toClone.content);
     }
 
     static fromUrl(url) {

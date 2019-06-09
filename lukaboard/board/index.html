@@ -61,17 +61,18 @@
         <button id="homeBtn" class="btn btn-spaced-1 btn-secondary bg-dark"><i class="fas fa-home"></i></button>
         <button id="upBtn" class="btn btn-spaced-1 btn-secondary bg-dark"><i class="fas fa-arrow-up"></i></button>
 
-        <div class="navbar-brand" style="margin-right: 0px;">
+        <div class="navbar-brand" style="margin-right: 0px; max-width: 50%">
           <input id="BoardTitle" type="text" class="btn btn-spaced-1 col-sm-5"
             style="overflow: hidden; text-overflow: ellipsis; max-width: 100%; text-align: left; color: white; font-weight: bold; font-size: 90%;"
             placeholder="Title" aria-label="Title" aria-describedby="basic-addon2">
         </div>
-
+<!--
         <button id="saveBtn" class="btn btn-spaced-1 btn-secondary bg-dark"><i class="fas fa-save"></i></button>
         <button id="loadBtn" class="btn btn-spaced-1 btn-secondary bg-dark"><i class="fas fa-folder-open"></i></button>
+
         <button id="convertBtn" class="btn btn-spaced-1 btn-secondary bg-dark"><i
             class="fas fa-exchange-alt"></i></button>
-
+-->
         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarHeader"
           aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation"
           style="padding-left: 2px;padding-right: 2px;">
@@ -83,32 +84,55 @@
   </header>
 
 
-    <main role="main">
+    <main role="main" style="overflow-y:auto !important; overflow-x: auto !important;">
+      <div id="album" class="album py-5 bg-secondary" style="padding: 5px !important; overflow-y:auto !important; overflow-x: auto !important;">
 
-      <div class="album py-5 bg-secondary" style="padding: 5px !important;">
-        <div class="container" style="padding: 1px; margin: 1px;">
+          <div class="col list" style="display:inline-block; margin-left:5px !important;margin-right:5px !important; max-width: 300px; min-width: 300px; padding: 0px !important; margin-bottom: 10000px;">
+            
+            <div class="row justify-content-between bg-dark" style="margin: 0px; width:100%;">
 
-          <div class="row" id="boards">
+              <input type="text" class="card-name bg-dark"
+                style="width: calc(100% - 33px); padding-left: 5px; padding-right: 2px; padding-top: 2px; white-space: nowrap; overflow: hidden; font-weight: bolder; text-overflow: ellipsis; color:white; border: 0px;"
+                value="Card Title - Very Nice!Card Title - Very Nice!asserrt"></input>
 
+              <button type="button" class="btn btn-sm" style="margin-left:auto; color: white;"><i
+                  class="fas fa-circle"></i></button>
+
+            </div>
+            
+              <div class="newPanel row row-md-2 order-last" style="margin-left: 0px; margin-right: 0px;">
+                    <div class="container text-center justify-content-center bg-dark">
+    
+                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="NewText()">
+                          Text
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="NewBoard()">
+                          Board
+                        </button>
+                      
+                    </div>
+                </div>
+                
+              
+            <template>
             <div id="newPanel" class="col-md-2 order-last">
-              <div class="card mb-4 shadow-sm">
-                <div class="card-body container text-center justify-content-center">
-
+              <div class="card mb-4 shadow-sm bg-dark">
+                <div class="card-body container text-center justify-content-center bg-dark">
                   <div class="row btn-group d-flex justify-content-center align-items-center">
-                    <button type="button" class="btn col btn-sm btn-outline-primary" onclick="NewText()">
+                    <button type="button" class="btn col btn-sm btn-outline-secondary" onclick="NewText()">
                       <h6><i class="fas fa-plus"></i> Text</h6>
                     </button>
                   </div>
                   <div class="row p-2"></div>
                   <div class="row btn-group d-flex justify-content-center align-items-center">
-                    <button type="button" class="btn col btn-sm btn-outline-primary" onclick="NewBoard()">
+                    <button type="button" class="btn col btn-sm btn-outline-secondary" onclick="NewBoard()">
                       <h6><i class="fas fa-plus"></i> Board</h6>
                     </button>
                   </div>
                 </div>
               </div>
             </div>
-
+          </template>
 
 
 
@@ -183,9 +207,8 @@
             </template>
 
           </div>
-        </div>
-      </div>
 
+      </div>
     </main>
 
   <footer class="text-muted bg-dark">

@@ -21,7 +21,7 @@ function loadOrDefaultBoard(forceNull){
     //Lets go for main board then
     if(board == null){
       //Main board not created
-      allBoards.push(new Board("", "", true, "", [], id = ""));
+      allBoards.push(new Board("", "", {showOnMain:true}, [], id = ""));
       board = Board.fromUrl(""); 
     }
   }

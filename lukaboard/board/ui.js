@@ -9,8 +9,12 @@ function UIToFunctions(){
 
 setInterval(function(){
   //Fix this piece of shit mobile web dev crap
-  document.body.style.setProperty("width","96vw");
-
+  //document.body.style.setProperty("width","100vw");
+  var album = document.getElementById('album');
+  var columnWidth = 310;//px //300 + 5*2 pad
+  if(album){
+    album.style.setProperty('width',((columnWidth*album.childElementCount)+20).toString() + 'px');
+  }
 },100);
   
   function clearBoards() {
