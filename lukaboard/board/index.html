@@ -30,7 +30,8 @@
   <title>LukaBoard</title>
 </head>
 
-<body class="bg-secondary">
+<body style="background-color: #111111">
+
   <header class="header">
     <div class="navbar navbar-dark bg-dark shadow-sm fixed-top" style="padding: 1px !important;">
       <div class="collapse bg-dark" id="navbarHeader">
@@ -66,13 +67,13 @@
             style="overflow: hidden; text-overflow: ellipsis; max-width: 100%; text-align: left; color: white; font-weight: bold; font-size: 90%;"
             placeholder="Title" aria-label="Title" aria-describedby="basic-addon2">
         </div>
-<!--
+        <!--
         <button id="saveBtn" class="btn btn-spaced-1 btn-secondary bg-dark"><i class="fas fa-save"></i></button>
         <button id="loadBtn" class="btn btn-spaced-1 btn-secondary bg-dark"><i class="fas fa-folder-open"></i></button>
 
         <button id="convertBtn" class="btn btn-spaced-1 btn-secondary bg-dark"><i
             class="fas fa-exchange-alt"></i></button>
--->
+        -->
         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarHeader"
           aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation"
           style="padding-left: 2px;padding-right: 2px;">
@@ -84,12 +85,206 @@
   </header>
 
 
-    <main role="main" style="overflow-y:auto !important; overflow-x: auto !important;">
-      <div id="album" class="album py-5 bg-secondary" style="padding: 5px !important; overflow-y:auto !important; overflow-x: auto !important;">
+  <main role="main" style="overflow-y:auto !important; overflow-x: auto !important; background-color: inherit;">
 
-          <div class="col list" style="display:inline-block; margin-left:5px !important;margin-right:5px !important; max-width: 300px; min-width: 300px; padding: 0px !important; margin-bottom: 10000px;">
-            
-            <div class="row justify-content-between bg-dark" style="margin: 0px; width:100%;">
+    <div id="contentAlbum" class="album py-5"
+      style="padding: 5px !important; overflow-y:auto !important; overflow-x: auto !important; background-color: inherit;">
+
+      <div class="col list"
+        style="display:inline-block; margin-left:5px !important;margin-right:5px !important; max-width: 300px; min-width: 300px; padding: 0px !important; margin-bottom: 10000px;">
+
+        <div class="row justify-content-between bg-dark" style="margin: 0px; width:100%;">
+
+          <input type="text" class="card-name bg-dark"
+            style="width: calc(100% - 33px); padding-left: 5px; padding-right: 2px; padding-top: 2px; white-space: nowrap; overflow: hidden; font-weight: bolder; text-overflow: ellipsis; color:white; border: 0px;"
+            value="Card Title - Very Nice!Card Title - Very Nice!asserrt"></input>
+
+          <button type="button" class="btn btn-sm" style="margin-left:auto; color: white;"><i
+              class="fas fa-circle"></i></button>
+
+        </div>
+
+        <div class="newPanel row row-md-2 order-last" style="margin-left: 0px; margin-right: 0px;">
+          <div class="container text-center justify-content-center bg-dark" style=" height: 31px;">
+
+            <button type="button" class="btn btn-sm btn-dark text-secondary" style="" onclick="NewText()">
+              Text
+            </button>
+            <button type="button" class="btn btn-sm btn-dark text-secondary" style="/* margin-top: 2px; margin-bottom: 2px; */" onclick="NewBoard()">
+              Board
+            </button>
+
+          </div>
+        </div>
+
+
+        <template>
+          <div id="newPanel" class="col-md-2 order-last">
+            <div class="card mb-4 shadow-sm bg-dark">
+              <div class="card-body container text-center justify-content-center bg-dark">
+                <div class="row btn-group d-flex justify-content-center align-items-center">
+                  <button type="button" class="btn col btn-sm btn-outline-secondary" onclick="NewText()">
+                    <h6><i class="fas fa-plus"></i> Text</h6>
+                  </button>
+                </div>
+                <div class="row p-2"></div>
+                <div class="row btn-group d-flex justify-content-center align-items-center">
+                  <button type="button" class="btn col btn-sm btn-outline-secondary" onclick="NewBoard()">
+                    <h6><i class="fas fa-plus"></i> Board</h6>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+
+
+
+
+
+
+        <template id="boardTemplate">
+          <section class="col-md-4" style=" margin: 5px; padding: 0px;">
+            <header class="card shadow-sm text-white bg-dark"
+              style="border-radius: 0px; padding: 0px; padding-bottom: 0px; padding-top: 0px;">
+              <div class="row justify-content-between" style="margin: 0px">
+
+                <input type="text" class="card-name bg-dark"
+                  style="width: calc(100% - 33px); padding-left: 5px; padding-right: 2px; padding-top: 2px; white-space: nowrap; overflow: hidden; font-weight: bolder; text-overflow: ellipsis; color:white; border: 0px;"
+                  value="Card Title - Very Nice!Card Title - Very Nice!asserrt"></input>
+
+                <button type="button" class="btn btn-sm" style="margin-left:auto; color: white;"><i
+                    class="fas fa-circle"></i></button>
+
+              </div>
+            </header>
+            <div class="card mb-4 shadow-sm" style="border-radius: 0px; margin-bottom: 0px !important;">
+              <div class="card-body" style="padding: 4px">
+
+                <a class="card-text text-muted">This is what a card's description will look like.</a>
+
+              </div>
+            </div>
+          </section>
+        </template>
+
+        <template id="boardTemplate2">
+          <section class="board col-md-4">
+            <div class="card mb-4 shadow-sm">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                  <p class="card-name">Card Title - Very Nice!</p>
+                  <div class="btn-group">
+                    <button type="button" class="btn align-top btn-sm btn-outline-secondary"
+                      style="margin-top: -15px;"><i class="fas fa-quote-left"></i></button>
+                  </div>
+                </div>
+                <small>
+                  <a class="card-text text-muted">This is what a card's description will look like.</a>
+                </small>
+              </div>
+            </div>
+          </section>
+        </template>
+
+
+
+        <template id="albumPostTemplate">
+          <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+              <img src="thumb.png" width="100%" height="225" background="#55595c" color="#eceeef" class="card-img-top"
+                text="Thumbnail">
+              <div class="card-body">
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                  additional
+                  content. This content is a little bit longer.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  </div>
+                  <small class="text-muted">9 mins</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+
+      </div>
+
+      
+      <form id="newlist" class="col newlist"
+        style="display:inline-block; vertical-align: top; margin-left:5px !important;margin-right:5px !important; max-width: 300px; min-width: 300px; padding: 0px !important; margin-bottom: 10000px;"  onsubmit="event.preventDefault();NewList()">
+
+          <input type="text" class="card-name bg-dark"
+            style="width: 100%; height: 31px; padding-left: 5px; padding-right: 2px; padding-top: 2px; white-space: nowrap; overflow: hidden; font-weight: bolder; text-overflow: ellipsis; color:white; border: 0px;"
+            value="" placeholder="Add a new list..." onfocusout="this.value = ''" ></input>
+            <input type="submit" style="visibility: hidden; width:0px; height:0px; position:absolute;" />
+      </form>
+
+    </div>
+
+    <div id="mainAlbum" class="album py-5"
+    style="padding: 5px !important; overflow-y:auto !important; overflow-x: auto !important; background-color: inherit;">
+
+    <div class="col list"
+      style="display:inline-block; margin-left:5px !important;margin-right:5px !important; max-width: 300px; min-width: 300px; padding: 0px !important; margin-bottom: 10000px;">
+
+      <div class="row justify-content-between bg-dark" style="margin: 0px; width:100%;">
+
+        <input type="text" class="card-name bg-dark"
+          style="width: calc(100% - 33px); padding-left: 5px; padding-right: 2px; padding-top: 2px; white-space: nowrap; overflow: hidden; font-weight: bolder; text-overflow: ellipsis; color:white; border: 0px;"
+          value="Card Title - Very Nice!Card Title - Very Nice!asserrt"></input>
+
+        <button type="button" class="btn btn-sm" style="margin-left:auto; color: white;"><i
+            class="fas fa-circle"></i></button>
+
+      </div>
+
+      <div class="newPanel row row-md-2 order-last" style="margin-left: 0px; margin-right: 0px;">
+        <div class="container text-center justify-content-center bg-dark" style=" height: 31px;">
+
+          <button type="button" class="btn btn-sm btn-dark text-secondary" style="" onclick="NewText()">
+            Text
+          </button>
+          <button type="button" class="btn btn-sm btn-dark text-secondary" style="/* margin-top: 2px; margin-bottom: 2px; */" onclick="NewBoard()">
+            Board
+          </button>
+
+        </div>
+      </div>
+
+
+      <template>
+        <div id="newPanel" class="col-md-2 order-last">
+          <div class="card mb-4 shadow-sm bg-dark">
+            <div class="card-body container text-center justify-content-center bg-dark">
+              <div class="row btn-group d-flex justify-content-center align-items-center">
+                <button type="button" class="btn col btn-sm btn-outline-secondary" onclick="NewText()">
+                  <h6><i class="fas fa-plus"></i> Text</h6>
+                </button>
+              </div>
+              <div class="row p-2"></div>
+              <div class="row btn-group d-flex justify-content-center align-items-center">
+                <button type="button" class="btn col btn-sm btn-outline-secondary" onclick="NewBoard()">
+                  <h6><i class="fas fa-plus"></i> Board</h6>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
+
+
+
+
+
+
+      <template id="boardTemplate">
+        <section class="col-md-4" style=" margin: 5px; padding: 0px;">
+          <header class="card shadow-sm text-white bg-dark"
+            style="border-radius: 0px; padding: 0px; padding-bottom: 0px; padding-top: 0px;">
+            <div class="row justify-content-between" style="margin: 0px">
 
               <input type="text" class="card-name bg-dark"
                 style="width: calc(100% - 33px); padding-left: 5px; padding-right: 2px; padding-top: 2px; white-space: nowrap; overflow: hidden; font-weight: bolder; text-overflow: ellipsis; color:white; border: 0px;"
@@ -99,117 +294,74 @@
                   class="fas fa-circle"></i></button>
 
             </div>
-            
-              <div class="newPanel row row-md-2 order-last" style="margin-left: 0px; margin-right: 0px;">
-                    <div class="container text-center justify-content-center bg-dark">
-    
-                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="NewText()">
-                          Text
-                        </button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="NewBoard()">
-                          Board
-                        </button>
-                      
-                    </div>
+          </header>
+          <div class="card mb-4 shadow-sm" style="border-radius: 0px; margin-bottom: 0px !important;">
+            <div class="card-body" style="padding: 4px">
+
+              <a class="card-text text-muted">This is what a card's description will look like.</a>
+
+            </div>
+          </div>
+        </section>
+      </template>
+
+      <template id="boardTemplate2">
+        <section class="board col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <p class="card-name">Card Title - Very Nice!</p>
+                <div class="btn-group">
+                  <button type="button" class="btn align-top btn-sm btn-outline-secondary"
+                    style="margin-top: -15px;"><i class="fas fa-quote-left"></i></button>
                 </div>
-                
-              
-            <template>
-            <div id="newPanel" class="col-md-2 order-last">
-              <div class="card mb-4 shadow-sm bg-dark">
-                <div class="card-body container text-center justify-content-center bg-dark">
-                  <div class="row btn-group d-flex justify-content-center align-items-center">
-                    <button type="button" class="btn col btn-sm btn-outline-secondary" onclick="NewText()">
-                      <h6><i class="fas fa-plus"></i> Text</h6>
-                    </button>
-                  </div>
-                  <div class="row p-2"></div>
-                  <div class="row btn-group d-flex justify-content-center align-items-center">
-                    <button type="button" class="btn col btn-sm btn-outline-secondary" onclick="NewBoard()">
-                      <h6><i class="fas fa-plus"></i> Board</h6>
-                    </button>
-                  </div>
+              </div>
+              <small>
+                <a class="card-text text-muted">This is what a card's description will look like.</a>
+              </small>
+            </div>
+          </div>
+        </section>
+      </template>
+
+
+
+      <template id="albumPostTemplate">
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <img src="thumb.png" width="100%" height="225" background="#55595c" color="#eceeef" class="card-img-top"
+              text="Thumbnail">
+            <div class="card-body">
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                additional
+                content. This content is a little bit longer.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                 </div>
+                <small class="text-muted">9 mins</small>
               </div>
             </div>
-          </template>
-
-
-
-
-
-
-            <template id="boardTemplate">
-              <section class="col-md-4" style=" margin: 5px; padding: 0px;">
-                <header class="card shadow-sm text-white bg-dark"
-                  style="border-radius: 0px; padding: 0px; padding-bottom: 0px; padding-top: 0px;">
-                  <div class="row justify-content-between" style="margin: 0px">
-
-                    <input type="text" class="card-name bg-dark"
-                      style="width: calc(100% - 33px); padding-left: 5px; padding-right: 2px; padding-top: 2px; white-space: nowrap; overflow: hidden; font-weight: bolder; text-overflow: ellipsis; color:white; border: 0px;"
-                      value="Card Title - Very Nice!Card Title - Very Nice!asserrt"></input>
-
-                    <button type="button" class="btn btn-sm" style="margin-left:auto; color: white;"><i
-                        class="fas fa-circle"></i></button>
-
-                  </div>
-                </header>
-                <div class="card mb-4 shadow-sm" style="border-radius: 0px; margin-bottom: 0px !important;">
-                  <div class="card-body" style="padding: 4px">
-
-                    <a class="card-text text-muted">This is what a card's description will look like.</a>
-
-                  </div>
-                </div>
-              </section>
-            </template>
-
-            <template id="boardTemplate2">
-              <section class="board col-md-4">
-                <div class="card mb-4 shadow-sm">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                      <p class="card-name">Card Title - Very Nice!</p>
-                      <div class="btn-group">
-                        <button type="button" class="btn align-top btn-sm btn-outline-secondary"
-                          style="margin-top: -15px;"><i class="fas fa-quote-left"></i></button>
-                      </div>
-                    </div>
-                    <small>
-                      <a class="card-text text-muted">This is what a card's description will look like.</a>
-                    </small>
-                  </div>
-                </div>
-              </section>
-            </template>
-
-
-
-            <template id="albumPostTemplate">
-              <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                  <img src="thumb.png" width="100%" height="225" background="#55595c" color="#eceeef"
-                    class="card-img-top" text="Thumbnail">
-                  <div class="card-body">
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                      additional
-                      content. This content is a little bit longer.</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                      </div>
-                      <small class="text-muted">9 mins</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </template>
-
           </div>
+        </div>
+      </template>
 
-      </div>
-    </main>
+    </div>
+
+    
+    <form id="newlist" class="col newlist"
+      style="display:inline-block; vertical-align: top; margin-left:5px !important;margin-right:5px !important; max-width: 300px; min-width: 300px; padding: 0px !important; margin-bottom: 10000px;"  onsubmit="event.preventDefault();NewList()">
+
+        <input type="text" class="card-name bg-dark"
+          style="width: 100%; height: 31px; padding-left: 5px; padding-right: 2px; padding-top: 2px; white-space: nowrap; overflow: hidden; font-weight: bolder; text-overflow: ellipsis; color:white; border: 0px;"
+          value="" placeholder="Add a new list..." onfocusout="this.value = ''" ></input>
+          <input type="submit" style="visibility: hidden; width:0px; height:0px; position:absolute;" />
+    </form>
+
+  </div>
+
+  </main>
 
   <footer class="text-muted bg-dark">
 
@@ -219,6 +371,7 @@
     <p>Made by <a href="https://github.com/lukakostic"> Luka Kostic</a></p>
 
   </footer>
+
 </body>
 
 </html>

@@ -6,15 +6,20 @@ function UIToFunctions(){
     document.getElementById('upBtn').onclick = TitleClicked;
 }
 
-
+//UI calculations
 setInterval(function(){
   //Fix this piece of shit mobile web dev crap
-  //document.body.style.setProperty("width","100vw");
-  var album = document.getElementById('album');
+  document.body.style.setProperty("width","100vw");
+
+  var album = document.getElementById('contentAlbum');
   var columnWidth = 310;//px //300 + 5*2 pad
   if(album){
     album.style.setProperty('width',((columnWidth*album.childElementCount)+20).toString() + 'px');
   }
+
+  
+  var newlist = document.getElementById('newlist');
+  newlist.parentNode.appendChild(newlist);
 },100);
   
   function clearBoards() {
@@ -41,4 +46,8 @@ setInterval(function(){
       boards.appendChild(board);
     }
   */
+  }
+
+  function drawMain(){
+    clearBoards();
   }

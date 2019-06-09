@@ -14,20 +14,9 @@ function loadOrDefaultBoard(forceNull){
   if(forceNull) board = null;
   else board = Board.fromUrl(url);
 
-  
-  if (board == null) {
-    //Board not found
-    board = Board.fromUrl("");
-    //Lets go for main board then
-    if(board == null){
-      //Main board not created
-      allBoards.push(new Board("", "", {showOnMain:true}, [], id = ""));
-      board = Board.fromUrl(""); 
-    }
-  }
-  
-    //Load board
+  if(board!=null)
     drawBoard();
+  else drawMain();
   
 }
 
@@ -59,7 +48,17 @@ function LoadAll() {
 }
 
 
+function NewText(){
+  alert(event.srcElement.outerHTML);
+}
 
+function NewBoard(){
+  alert(event.srcElement.outerHTML);
+}
+
+function NewList(){
+  alert(event.srcElement.outerHTML);
+}
 
 function CreateBoard() {
 
