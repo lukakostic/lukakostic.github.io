@@ -1,8 +1,10 @@
+expandInputAll();
+
 function UIToFunctions(){
     document.getElementById('homeBtn').onclick = Home;
     //document.getElementById('convertBtn').onclick = ConvertBoard;
-    document.getElementById('saveBtn').onclick = SaveAll;
-    document.getElementById('loadBtn').onclick = LoadAll;
+    //document.getElementById('saveBtn').onclick = SaveAll;
+    //document.getElementById('loadBtn').onclick = LoadAll;
     document.getElementById('upBtn').onclick = TitleClicked;
 }
 
@@ -11,16 +13,27 @@ setInterval(function(){
   //Fix this piece of shit mobile web dev crap
   document.body.style.setProperty("width","100vw");
 
-  var album = document.getElementById('contentAlbum');
-  var columnWidth = 310;//px //300 + 5*2 pad
-  if(album){
-    album.style.setProperty('width',((columnWidth*album.childElementCount)+20).toString() + 'px');
-  }
 
-  
-  var newlist = document.getElementById('newlist');
-  newlist.parentNode.appendChild(newlist);
+
+
 },100);
+
+function expandInputAll(){
+  let expandoInputs = document.getElementsByClassName('expandInput');
+  for (let i = 0; i < expandoInputs.length; i++) {
+   expandInput(expandoInputs[i]);
+ }
+}
+
+function expandInput(el){
+  el.style.height = '1px';el.style.height = (1+el.scrollHeight)+'px';el.parentNode.style.height = el.style.height;
+}
+
+function draw(){
+  if(board!=null)
+    drawBoard();
+  else drawMain();
+}
   
   function clearBoards() {
     let boards = document.getElementById('boards').childNodes;
@@ -29,6 +42,35 @@ setInterval(function(){
       if (boards[i].id != "") continue;
       $(boards[i]).remove();
     }
+  }
+
+  function FixListUI(listEl=null){
+    if(listEl){
+    var newPanel = listEl.getElementsByClassName('newPanel')[0];
+    newPanel.parentNode.appendChild(newPanel);
+  }else{
+    var album = FixAlbumUI();
+    var lists = album.getElementsByClassName('list');
+    for(var i = 0; i<lists.length; i++){
+      FixListUI(lists[i]);
+    }
+  }
+}
+
+function FixNewListUI(){
+  var newlist = document.getElementById('newlist');
+  newlist.parentNode.appendChild(newlist);
+}
+
+  function FixAlbumUI(){
+    var album = document.getElementById('contentAlbum');
+    var columnWidth = 310;//px //300 + 5*2 pad
+    if(album){
+      album.style.setProperty('width',((columnWidth*album.childElementCount)+20).toString() + 'px');
+      
+      return album;
+    }
+    return null;
   }
 
   function drawBoard(){
@@ -46,7 +88,10 @@ setInterval(function(){
       boards.appendChild(board);
     }
   */
-  }
+
+
+    FixAlbumUI();
+}
 
   function drawMain(){
     clearBoards();

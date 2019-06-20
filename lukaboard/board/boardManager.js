@@ -6,18 +6,16 @@ let allBoards = []; //array of all board objects
 let board = null;
 
 LoadAll();
-
 UIToFunctions();
+
+draw();
 
 function loadOrDefaultBoard(forceNull){
 
   if(forceNull) board = null;
   else board = Board.fromUrl(url);
 
-  if(board!=null)
-    drawBoard();
-  else drawMain();
-  
+  draw();
 }
 
 function SaveAll() {
@@ -49,16 +47,47 @@ function LoadAll() {
 
 
 function NewText(){
-  alert(event.srcElement.outerHTML);
+  //alert(event.srcElement.outerHTML);
+  
+  let template = document.getElementById('textFullBoardTemplate').content.firstElementChild;
+  let parent = event.srcElement.parentNode.parentNode.parentNode;
+
+  let el = template.cloneNode(true);
+
+  parent.appendChild(el);
+
+  FixListUI();
 }
 
 function NewBoard(){
-  alert(event.srcElement.outerHTML);
+  //alert(event.srcElement.outerHTML);
+
+  let template = document.getElementById('boardBoardTemplate').content.firstElementChild;
+  let parent = event.srcElement.parentNode.parentNode.parentNode;
+
+  let el = template.cloneNode(true);
+
+  parent.appendChild(el);
+  
+  FixListUI();
 }
 
 function NewList(){
-  alert(event.srcElement.outerHTML);
+  //alert(event.srcElement.outerHTML);
+
+  let template = document.getElementById('listTemplate').content.firstElementChild;
+  let parent = document.getElementById('contentAlbum');
+
+  let el = template.cloneNode(true);
+
+  el.getElementsByClassName("title-text")[0].value = event.srcElement.firstElementChild.value;
+
+  parent.appendChild(el);
+  
+  FixNewListUI();
+  FixAlbumUI();
 }
+
 
 function CreateBoard() {
 

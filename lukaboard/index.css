@@ -37,3 +37,22 @@ footer p {
   padding-left: 3.1rem;
   padding-right: 3.1rem;
 }
+
+.dot {
+  width: 12px !important;
+  height: 12px !important;
+  border-radius: 50%;
+  padding: 0px;
+  border: 0px;
+  margin: 0px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.bg-inherit{
+  background-color: inherit;
+}
+
+.noborder{
+  border: 0px;
+}
