@@ -17,6 +17,16 @@ class DropboxManager {
         return new DropboxManager(DropboxManager.accessFromUrl(url));
     }
 
+    filesDeleteUpload(obj){
+        this.dropbox.filesDelete(obj).then(function (response){
+            console.log(response);
+            filesUpload(obj);
+        }).catch(function (error){
+            console.log(error);
+            filesUpload(obj);
+        });
+    }
+
     filesUpload(obj) {
         this.dropbox.filesUpload(obj)
             .then(function (response) {

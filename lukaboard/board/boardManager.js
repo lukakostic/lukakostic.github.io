@@ -29,7 +29,7 @@ function saveAll() {
 
     let contents = JSON.stringify(allBoards);
 
-    dbx.filesUpload({ path: '/' + 'lukaboard.lb', contents: contents });
+    dbx.filesDeleteUpload({ path: '/' + 'lukaboard.lb', contents: contents });
 
   }catch(e){bootbox.alert(e.message);}
 }
@@ -49,7 +49,7 @@ function loadAll() {
       }
         
       loadOrDefaultBoard();
-      
+
     });
 
   }catch(e){bootbox.alert(e.message);}
