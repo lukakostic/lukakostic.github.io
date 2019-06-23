@@ -50,7 +50,7 @@ function textDescriptionChanged(){
 
 function loadTextBoard(textBoardEl, brd){
     textBoardEl.setAttribute('data-id', brd.id);
-    $(textBoardEl.getElementsByClassName('textBtn')[0]).contents()[0].nodeValue = brd.name;
+    $(textBoardEl.getElementsByClassName('textBtn')[0]).contents()[1].nodeValue = brd.name;
     
     if(brd.content.length>0) 
         textBoardEl.getElementsByClassName('descriptionIcon')[0].classList.remove('d-none');
