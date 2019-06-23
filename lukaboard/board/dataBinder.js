@@ -2,12 +2,16 @@ function boardTitleChanged(){
     //alert("Board title changed");
     board.name = event.srcElement.value;
 
+    loadAllBoardsByDataId(board);
+
     saveAll();
 }
 
 function boardDescriptionChanged(){
     //alert("Board title changed");
     board.attributes['description'] = event.srcElement.value;
+
+    loadAllBoardsByDataId(board);
 
     saveAll();
 }
@@ -27,6 +31,8 @@ function textTitleChanged(){
     let brd = Board.fromId(listId);
     brd.name = event.srcElement.value;
 
+    loadAllBoardsByDataId(brd);
+
     saveAll();
 }
 
@@ -35,6 +41,8 @@ function textDescriptionChanged(){
     let listId = document.getElementById('textBoardDialog').getAttribute('data-id');
     let brd = Board.fromId(listId);
     brd.content = event.srcElement.value;
+
+    loadAllBoardsByDataId(brd);
 
     saveAll();
 }
@@ -55,7 +63,18 @@ function loadBoardBoard(boardBoardEl, brd){
     $(boardBoardEl.getElementsByClassName('textBtn')[0]).contents()[0].nodeValue = brd.name;
 }
 
-
+function loadAllBoardsByDataId(brd){
+    let boardEls = document.getElementsByClassName('board');
+ 
+    for(let i = 0; i < boardEls.length; i++){
+        if(boardEls[i].getAttribute('data-id')==brd.id){
+            if(brd.type == 'T')
+             loadTextBoard(boardEls[i],brd);
+            else if(brd.type == 'B')
+             loadBoardBoard(boardEls[i],brd);
+        }
+    }
+}
 
 
 
