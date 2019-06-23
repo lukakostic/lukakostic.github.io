@@ -104,9 +104,11 @@ function fixNewListUI(){
 
       let listEl = listTemplate.cloneNode(true);
       parent.appendChild(listEl);
-      loadList(listEl,board.content[l]);
 
+      
       let brd = Board.fromId(board.content[l]);
+      loadList(listEl,brd);
+
       
       for(let i = 0; i < brd.content.length; i++){
         brd2 = Board.fromId(brd.content[i]);
@@ -124,7 +126,7 @@ function fixNewListUI(){
 
         }
       }
-      
+
     }
 
 
