@@ -6,7 +6,7 @@ function showTextBoardDialog(){
     let text = $('#textBoardDialogText');
     text.val(brd.content);
     let modal = $('#textBoardDialog');
-    modal.data('id') = brd.id;
+    modal.data('id',brd.id);
     modal.modal('show');
 
     //can do without timeout, but set timeout to like 0.8 seconds if you add 'modal fade' instead of just 'modal'
