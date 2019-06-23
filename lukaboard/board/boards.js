@@ -29,32 +29,27 @@ class Board {
     }
 
     static fromId(id){
-        for(var i = 0; i < allBoards.length; i ++)
-            if(allBoards[i].id == id)
-                return allBoards[i];
-        return null;
+        return allBoards[id];
     }
 
     static makeId(maxLength) {
         let id = "";
         let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
 
-        var unique = false;
-
         //find unique id
-        while(unique == false){
+        while(true){
 
-        //let length = Math.floor(Math.random() * maxLength) + 1;
-        let length = maxLength;
+            id = "";
+                
+            //let length = Math.floor(Math.random() * maxLength) + 1;
+            let length = maxLength;
 
-        //generate rand chars and append
-        for (var i = 0; i < length; i++)
-            id += possible.charAt(Math.floor(Math.random() * possible.length));
+            //generate rand chars and append
+            for (var i = 0; i < length; i++)
+                id += possible.charAt(Math.floor(Math.random() * possible.length));
 
-        unique = true;
-        for(var i = 0; i < allBoards.length; i ++)
-            if(allBoards[i].id == id){unique == false; break;}
-        
+                
+            if(allBoards[id] == null)break;
 
         }
 

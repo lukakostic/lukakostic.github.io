@@ -2,7 +2,7 @@ let url = window.location.href.replace('#', '');
 
 let dbx = DropboxManager.fromUrl(url);
 
-let allBoards = []; //array of all board objects
+let allBoards = {}; //array of all board objects
 let board = null;
 
 loadAll();
@@ -45,7 +45,7 @@ function loadAll() {
 
         //bootbox.alert(contents);
       }else{
-        allBoards = [];
+        allBoards = {};
         board = null;
       }
         
@@ -68,7 +68,7 @@ function newText(){
   if(board == null)atr['onMain'] = true;
   let brd = new Board('T',"Text","",atr);
 
-  allBoards.push(brd);
+  allBoards[brd.id]=brd;
   if(board != null) Board.fromId(parent.getAttribute('data-id')).content.push(brd.id); //Add to parent list
 
   el.setAttribute('data-id', brd.id);
@@ -91,7 +91,7 @@ function newBoard(){
   if(board == null)atr['onMain'] = true;
   let brd = new Board('B',"Board",[],atr);
 
-  allBoards.push(brd);
+  allBoards[brd.id]=brd;
   if(board != null) Board.fromId(parent.getAttribute('data-id')).content.push(brd.id); //Add to parent list
 
   parent.appendChild(el);
@@ -114,7 +114,7 @@ function newList(){
   el.getElementsByClassName("title-text")[0].value = name;
 
   let brd = new Board('L',name,[],{});
-  allBoards.push(brd);
+  allBoards[brd.id]=brd;
   board.content.push(brd.id);
 
   parent.appendChild(el);

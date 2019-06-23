@@ -147,20 +147,21 @@ function fixNewListUI(){
     let boardBrdTemplate = document.getElementById('boardBoardTemplate').content.firstElementChild;
     let mainList = document.getElementById('main-list');
 
+    let ids = Object.ids(allBoards);
     //fill boards
-    for(let i = 0; i < allBoards.length; i++){
-      if(allBoards[i].attributes['onMain'] == true){
-        if(allBoards[i].type == 'T'){
+    for(let i = 0; i < ids.length; i++){
+      if(allBoards[ids[i]].attributes['onMain'] == true){
+        if(allBoards[ids[i]].type == 'T'){
  
           let el = textBrdTemplate.cloneNode(true);
           mainList.appendChild(el);
-          loadTextBoard(el,allBoards[i]);
+          loadTextBoard(el,allBoards[ids[i]]);
         
-        }else if(allBoards[i].type == 'B'){
+        }else if(allBoards[ids[i]].type == 'B'){
 
           let el = boardBrdTemplate.cloneNode(true);
           mainList.appendChild(el);
-          loadBoardBoard(el,allBoards[i]);
+          loadBoardBoard(el,allBoards[ids[i]]);
 
         }
         
