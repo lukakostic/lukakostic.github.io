@@ -23,7 +23,7 @@ function listTitleChanged(){
 
 function textTitleChanged(){
     //alert("Text title changed");
-    let listId = event.srcElement.parentNode.parentNode.parentNode.parentNode.getAttribute('data-id');
+    let listId = document.getElementById('textBoardDialog').getAttribute('data-id');
     let brd = Board.fromId(listId);
     brd.name = event.srcElement.value;
 
@@ -32,7 +32,7 @@ function textTitleChanged(){
 
 function textDescriptionChanged(){
     //alert("Text description changed");
-    let listId = event.srcElement.parentNode.parentNode.parentNode.parentNode.parentNode.getAttribute('data-id');
+    let listId = document.getElementById('textBoardDialog').getAttribute('data-id');
     let brd = Board.fromId(listId);
     brd.content = event.srcElement.value;
 
