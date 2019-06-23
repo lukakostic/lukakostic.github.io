@@ -80,9 +80,9 @@ function loadAllBoardsByDataId(brdId){
  
     for(let i = 0; i < boardEls.length; i++){
         if(boardEls[i].getAttribute('data-id')==brdId){
-            if(brd.type == 'T')
+            if(allBoards[brdId].type == 'T')
              loadTextBoard(boardEls[i],brdId);
-            else if(brd.type == 'B')
+            else if(allBoards[brdId].type == 'B')
              loadBoardBoard(boardEls[i],brdId);
         }
     }
