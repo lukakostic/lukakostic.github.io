@@ -31,7 +31,7 @@ function expandInput(el){
 }
 
 function draw(){
-  if(board!=null)
+  if(board!="")
     drawBoard();
   else drawMain();
 }
@@ -86,8 +86,8 @@ function fixNewListUI(){
 
     clearBoards();
 
-    document.getElementById('boardTitle').value = board.name;
-    document.getElementById('boardDescription').value = board.attributes['description'];
+    document.getElementById('boardTitle').value = allBoards[board].name;
+    document.getElementById('boardDescription').value = allBoards[board].attributes['description'];
 
     
     let textBrdTemplate = document.getElementById('textBoardTemplate').content.firstElementChild;
@@ -100,18 +100,18 @@ function fixNewListUI(){
   
 
     //fill lists & boards
-    for(let l = 0; l < board.content.length; l++){
+    for(let l = 0; l < allBoards[board].content.length; l++){
 
       let listEl = listTemplate.cloneNode(true);
       parent.appendChild(listEl);
 
       
-      let brd = Board.fromId(board.content[l]);
+      let brd = allBoards[allBoards[board].content[l]];
       loadList(listEl,brd);
 
       
       for(let i = 0; i < brd.content.length; i++){
-        brd2 = Board.fromId(brd.content[i]);
+        brd2 = allBoards[brd.content[i]];
         if(brd2.type == 'T'){
 
           let el = textBrdTemplate.cloneNode(true);

@@ -12,7 +12,7 @@ class Board {
         return new Board(toClone.type, toClone.name, toClone.content, toClone.attributes);
     }
 
-    static fromUrl(url) {
+    static idFromUrl(url) {
         let boardId = "";
         
         //get id from url
@@ -25,11 +25,7 @@ class Board {
         //else
 
         //Check if exists
-        return Board.fromId(boardId);
-    }
-
-    static fromId(id){
-        return allBoards[id];
+        return boardId;
     }
 
     static makeId(maxLength) {

@@ -2,8 +2,8 @@ let url = window.location.href.replace('#', '');
 
 let dbx = DropboxManager.fromUrl(url);
 
-let allBoards = {}; //array of all board objects
-let board = null;
+let alls = {}; //array of all board objects
+let board = "";
 
 loadAll();
 uiToFunctions();
@@ -19,8 +19,8 @@ setTimeout(()=>{expandInputAll()},1000);
 
 function loadOrDefaultBoard(forceNull){
 
-  if(forceNull) board = null;
-  else board = Board.fromUrl(url);
+  if(forceNull) board = "";
+  else board = Board.idFromUrl(url);
 
   draw();
 }
@@ -46,7 +46,7 @@ function loadAll() {
         //bootbox.alert(contents);
       }else{
         allBoards = {};
-        board = null;
+        board = "";
       }
         
       loadOrDefaultBoard();
@@ -65,11 +65,11 @@ function newText(){
   let el = template.cloneNode(true);
 
   let atr = {};
-  if(board == null)atr['onMain'] = true;
+  if(board == "")atr['onMain'] = true;
   let brd = new Board('T',"Text","",atr);
 
   allBoards[brd.id]=brd;
-  if(board != null) Board.fromId(parent.getAttribute('data-id')).content.push(brd.id); //Add to parent list
+  if(board != "") allBoards[parent.getAttribute('data-id')].content.push(brd.id); //Add to parent list
 
   el.setAttribute('data-id', brd.id);
 
@@ -88,11 +88,11 @@ function newBoard(){
   let el = template.cloneNode(true);
 
   let atr = {'description':'Description'};
-  if(board == null)atr['onMain'] = true;
+  if(board == "")atr['onMain'] = true;
   let brd = new Board('B',"Board",[],atr);
 
   allBoards[brd.id]=brd;
-  if(board != null) Board.fromId(parent.getAttribute('data-id')).content.push(brd.id); //Add to parent list
+  if(board != "") allBoards[parent.getAttribute('data-id')].content.push(brd.id); //Add to parent list
 
   parent.appendChild(el);
   el.setAttribute('data-id', brd.id);
@@ -115,7 +115,7 @@ function newList(){
 
   let brd = new Board('L',name,[],{});
   allBoards[brd.id]=brd;
-  board.content.push(brd.id);
+  allBoards[board].content.push(brd.id);
 
   parent.appendChild(el);
   el.setAttribute('data-id', brd.id);

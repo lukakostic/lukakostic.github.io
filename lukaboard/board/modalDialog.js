@@ -1,6 +1,6 @@
 function showTextBoardDialog(){
     var textBtn = event.srcElement;
-    var brd = Board.fromId(textBtn.parentNode.getAttribute('data-id'));
+    var brd = allBoards[textBtn.parentNode.getAttribute('data-id')];
 
     if(brd==null) alert('Text board modal: brd == null');
 

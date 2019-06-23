@@ -1,6 +1,6 @@
 function boardTitleChanged(){
     //alert("Board title changed");
-    board.name = event.srcElement.value;
+    allBoards[board].name = event.srcElement.value;
 
     loadAllBoardsByDataId(board);
 
@@ -9,7 +9,7 @@ function boardTitleChanged(){
 
 function boardDescriptionChanged(){
     //alert("Board title changed");
-    board.attributes['description'] = event.srcElement.value;
+    allBoards[board].attributes['description'] = event.srcElement.value;
 
     loadAllBoardsByDataId(board);
 
@@ -19,7 +19,7 @@ function boardDescriptionChanged(){
 function listTitleChanged(){
     //alert("List title changed");
     let listId = event.srcElement.parentNode.parentNode.getAttribute('data-id');
-    let lst = Board.fromId(listId);
+    let lst = allBoards[listId];
     lst.name = event.srcElement.value;
 
     saveAll();
@@ -28,7 +28,7 @@ function listTitleChanged(){
 function textTitleChanged(){
     //alert("Text title changed");
     let brdId = document.getElementById('textBoardDialog').getAttribute('data-id');
-    let brd = Board.fromId(brdId);
+    let brd = allBoards[brdId];
     brd.name = event.srcElement.value;
 
     loadAllBoardsByDataId(brdId);
@@ -39,7 +39,7 @@ function textTitleChanged(){
 function textDescriptionChanged(){
     //alert("Text description changed");
     let brdId = document.getElementById('textBoardDialog').getAttribute('data-id');
-    let brd = Board.fromId(brdId);
+    let brd = allBoards[brdId];
     brd.content = event.srcElement.value;
 
     loadAllBoardsByDataId(brdId);
@@ -49,7 +49,7 @@ function textDescriptionChanged(){
 
 
 function loadTextBoard(textBoardEl, brd){
-    if (typeof brd === 'string' || brd instanceof String) brd = Board.fromId(brd);
+    if (typeof brd === 'string' || brd instanceof String) brd = allBoards[brd];
 
     textBoardEl.setAttribute('data-id', brd.id);
     $(textBoardEl.getElementsByClassName('textBtn')[0]).contents()[1].nodeValue = brd.name;
@@ -61,14 +61,14 @@ function loadTextBoard(textBoardEl, brd){
 }
 
 function loadBoardBoard(boardBoardEl, brd){
-    if (typeof brd === 'string' || brd instanceof String) brd = Board.fromId(brd);
+    if (typeof brd === 'string' || brd instanceof String) brd = allBoards[brd];
 
     boardBoardEl.setAttribute('data-id', brd.id);
     $(boardBoardEl.getElementsByClassName('textBtn')[0]).contents()[0].nodeValue = brd.name;
 }
 
 function loadList(listEl, brd){
-    if (typeof brd === 'string' || brd instanceof String) brd = Board.fromId(brd);
+    if (typeof brd === 'string' || brd instanceof String) brd = allBoards[brd];
 
     listEl.getElementsByClassName("title-text")[0].value = brd.name;
     listEl.setAttribute('data-id', brd.id);
