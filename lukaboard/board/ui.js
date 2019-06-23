@@ -35,9 +35,9 @@ function clearLists(){
     
   for(let j = 0; j < lists.length; j++){
     if (lists[j].id != "") continue;
-
-      $(lists[j]).remove();
     
+    $(lists[j]).remove();
+    j--;
   }
 }
 
