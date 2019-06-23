@@ -95,8 +95,8 @@ function fixNewListUI(){
   function drawBoard(){
     document.getElementById('header').classList.remove('v-hidden');
 
-    document.getElementById('mainContentAlbum').classList.add('d-none');
-    document.getElementById('contentAlbum').classList.remove('d-none');
+    mainContentAlbum.classList.add('d-none');
+    contentAlbum.classList.remove('d-none');
 
     clearBoards();
 
@@ -117,9 +117,8 @@ function fixNewListUI(){
 
     }
 
-
-    fixNewListUI();
     fixAlbumUI();
+    fixNewListUI();
 }
 
   function drawMain(){

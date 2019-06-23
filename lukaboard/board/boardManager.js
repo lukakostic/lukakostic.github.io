@@ -19,6 +19,8 @@ let boardBrdTemplate = document.getElementById('boardBoardTemplate').content.fir
 let listTemplate = document.getElementById('listTemplate').content.firstElementChild;
 
 let contentAlbum = document.getElementById('contentAlbum');
+let mainContentAlbum= document.getElementById('mainContentAlbum');
+
 let mainList = document.getElementById('main-list');
 
 loadAll();
