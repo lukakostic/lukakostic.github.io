@@ -115,6 +115,7 @@ function newList(){
 
   let brd = new Board('L',name,[],{});
   allBoards.push(brd);
+  board.content.push(brd);
 
   el.setAttribute('data-id', brd.id);
 
