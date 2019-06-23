@@ -2,7 +2,7 @@ let url = window.location.href.replace('#', '');
 
 let dbx = DropboxManager.fromUrl(url);
 
-let alls = {}; //array of all board objects
+let allBoards = {}; //array of all board objects
 let board = "";
 
 loadAll();
