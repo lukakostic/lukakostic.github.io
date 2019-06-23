@@ -114,18 +114,15 @@ function fixNewListUI(){
         if(allBoards[i].type == 'T'){
  
           let el = textBrdTemplate.cloneNode(true);
-        
-          loadTextBoard(el,allBoards[i]);
-        
           mainList.appendChild(el);
+          loadTextBoard(el,allBoards[i]);
         
         }else if(allBoards[i].type == 'B'){
 
           let el = boardBrdTemplate.cloneNode(true);
-        
-          loadBoardBoard(el,allBoards[i]);
-        
           mainList.appendChild(el);
+          loadBoardBoard(el,allBoards[i]);
+          
         }
         
         fixListUI(); //Not needed?
