@@ -147,7 +147,7 @@ function fixNewListUI(){
     let boardBrdTemplate = document.getElementById('boardBoardTemplate').content.firstElementChild;
     let mainList = document.getElementById('main-list');
 
-    let ids = Object.ids(allBoards);
+    let ids = Object.keys(allBoards);
     //fill boards
     for(let i = 0; i < ids.length; i++){
       if(allBoards[ids[i]].attributes['onMain'] == true){
