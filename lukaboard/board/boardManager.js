@@ -5,10 +5,16 @@ let dbx = DropboxManager.fromUrl(url);
 let allBoards = []; //array of all board objects
 let board = null;
 
-LoadAll();
-UIToFunctions();
+loadAll();
+uiToFunctions();
 
 draw();
+
+setTimeout(()=>{expandInputAll()},200);
+setTimeout(()=>{expandInputAll()},1000);
+setInterval(()=>{console.log(allBoards.length);},1000);
+
+//bootbox.alert("hello :3");
 
 function loadOrDefaultBoard(forceNull){
 
@@ -18,22 +24,18 @@ function loadOrDefaultBoard(forceNull){
   draw();
 }
 
-function SaveAll() {
+function saveAll() {
   
-  let contents = {
-    current: board.id,
-    all: JSON.stringify(allBoards)
-  };
+  let contents = JSON.stringify(allBoards);
 
   dbx.filesUpload({ path: '/' + 'lukaboard.lb', contents: contents });
 }
 
-function LoadAll() {
-  dbx.filesDownload({ path: '/' + 'lukaboard.lb' },function Loaded(contents){
+function loadAll() {
+  dbx.filesDownload({ path: '/' + 'lukaboard.lb' },function loaded(contents){
   
     if (contents != null) {
-      allBoards = JSON.parse(contents.all);
-      board = Board.fromId(contents.current);
+      allBoards = JSON.parse(contents);
     }else{
       allBoards = [];
       board = null;
@@ -45,21 +47,29 @@ function LoadAll() {
   });
 }
 
-
-function NewText(){
+function newText(){
   //alert(event.srcElement.outerHTML);
   
-  let template = document.getElementById('textFullBoardTemplate').content.firstElementChild;
+  let template = document.getElementById('textBoardTemplate').content.firstElementChild;
   let parent = event.srcElement.parentNode.parentNode.parentNode;
 
   let el = template.cloneNode(true);
 
+  let atr = {};
+  if(board == null)atr['onMain'] = true;
+  let brd = new Board('T',"Text","",atr);
+
+  allBoards.push(brd);
+  if(board != null) Board.fromId(parent.getAttribute('data-id')).content.push(brd); //Add to parent list
+
+  el.setAttribute('data-id', brd.id);
+
   parent.appendChild(el);
 
-  FixListUI();
+  fixListUI();
 }
 
-function NewBoard(){
+function newBoard(){
   //alert(event.srcElement.outerHTML);
 
   let template = document.getElementById('boardBoardTemplate').content.firstElementChild;
@@ -67,12 +77,21 @@ function NewBoard(){
 
   let el = template.cloneNode(true);
 
+  let atr = {'description':'Description'};
+  if(board == null)atr['onMain'] = true;
+  let brd = new Board('B',"Board",[],atr);
+
+  allBoards.push(brd);
+  if(board != null) Board.fromId(parent.getAttribute('data-id')).content.push(brd); //Add to parent list
+
+  el.setAttribute('data-id', brd.id);
+
   parent.appendChild(el);
   
-  FixListUI();
+  fixListUI();
 }
 
-function NewList(){
+function newList(){
   //alert(event.srcElement.outerHTML);
 
   let template = document.getElementById('listTemplate').content.firstElementChild;
@@ -80,58 +99,24 @@ function NewList(){
 
   let el = template.cloneNode(true);
 
-  el.getElementsByClassName("title-text")[0].value = event.srcElement.firstElementChild.value;
+  let name = event.srcElement.firstElementChild.value;
+  el.getElementsByClassName("title-text")[0].value = name;
+
+  let brd = new Board('L',name,[],{});
+  allBoards.push(brd);
+
+  el.setAttribute('data-id', brd.id);
 
   parent.appendChild(el);
   
-  FixNewListUI();
-  FixAlbumUI();
+  fixNewListUI();
+  fixAlbumUI();
 }
 
-
-function CreateBoard() {
-
-}
-
-function Home(){
+function home(){
   window.location.href = "https://lukakostic.com/lukaboard/board/?d="+dbx.access;
 }
 
-function TitleClicked() {
+function titleClicked() {
   alert("Title clicked!");
 }
-
-function New(){
-
-}
-
-
-
-
-
-/*
-<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
-                stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2"
-                viewBox="0 0 24 24" focusable="false">
-                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-                <circle cx="12" cy="13" r="4" /></svg>
-
-
-
-
-
-
-
-                            <div class="col-md-3">
-                <div class="card mb-4 shadow-sm ">
-                  <div class="card-body text-center justify-content-center">
-
-
-                      <div class="btn-group d-flex justify-content-center align-items-center">
-                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="NewText()"><h6>+ Text</h6></button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="NewBoard()"><h6>+ Board</h6></button>
-                      </div>
-                  </div>
-                </div>
-              </div>
-  */

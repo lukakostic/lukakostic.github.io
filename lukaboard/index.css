@@ -56,3 +56,52 @@ footer p {
 .noborder{
   border: 0px;
 }
+
+.board{
+  display: inline-block;
+  margin: 3px !important;
+  width: 290px !important; /*list width (300px)  - margin*2 (5*2 px) */
+  height: 52px !important;
+  padding: 0px !important;
+  overflow: hidden !important;
+  border-radius: 3px !important;
+  border-top-right-radius: 6px !important;
+  box-shadow: 0px 2px 3px -2px #000;  
+}
+
+.list{
+  display: inline-block !important;
+  vertical-align: top !important;
+  margin: 6px !important;
+  width: 300px !important;
+  padding: 0px !important;
+  margin-bottom: 10000px !important; 
+  overflow: hidden !important;
+  border-radius: 4px !important;
+  box-shadow: 0px 2px 3px -2px #000;
+}
+
+
+.main-list{
+  margin: 0px !important;
+  padding: 0px !important;
+  width: 100% !important;
+  overflow: hidden !important;
+}
+
+.d-none{
+  display: none !important;
+}
+
+.d-init{
+  display: initial !important;
+}
+
+
+.v-hidden{
+  visibility: hidden !important;
+}
+
+.v-init{
+  visibility: initial !important;
+}
