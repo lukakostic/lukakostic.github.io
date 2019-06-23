@@ -79,11 +79,11 @@ function loadAllBoardsByDataId(brdId){
     let boardEls = document.getElementsByClassName('board');
  
     for(let i = 0; i < boardEls.length; i++){
-        if(boardEls[i].getAttribute('data-id')==brd){
+        if(boardEls[i].getAttribute('data-id')==brdId){
             if(brd.type == 'T')
-             loadTextBoard(boardEls[i],brd);
+             loadTextBoard(boardEls[i],brdId);
             else if(brd.type == 'B')
-             loadBoardBoard(boardEls[i],brd);
+             loadBoardBoard(boardEls[i],brdId);
         }
     }
 }
