@@ -49,6 +49,9 @@ function referenceBtn(){
         loadList(lst,lstId);
     }
 
+    
+    allBoards[refer].attributes['references']++;
+
     saveAll();
 }
 
