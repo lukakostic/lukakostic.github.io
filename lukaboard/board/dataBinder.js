@@ -27,28 +27,30 @@ function listTitleChanged(){
 
 function textTitleChanged(){
     //alert("Text title changed");
-    let listId = document.getElementById('textBoardDialog').getAttribute('data-id');
-    let brd = Board.fromId(listId);
+    let brdId = document.getElementById('textBoardDialog').getAttribute('data-id');
+    let brd = Board.fromId(brdId);
     brd.name = event.srcElement.value;
 
-    loadAllBoardsByDataId(brd);
+    loadAllBoardsByDataId(brdId);
 
     saveAll();
 }
 
 function textDescriptionChanged(){
     //alert("Text description changed");
-    let listId = document.getElementById('textBoardDialog').getAttribute('data-id');
-    let brd = Board.fromId(listId);
+    let brdId = document.getElementById('textBoardDialog').getAttribute('data-id');
+    let brd = Board.fromId(brdId);
     brd.content = event.srcElement.value;
 
-    loadAllBoardsByDataId(brd);
+    loadAllBoardsByDataId(brdId);
 
     saveAll();
 }
 
 
 function loadTextBoard(textBoardEl, brd){
+    if (typeof brd === 'string' || brd instanceof String) brd = Board.fromId(brd);
+
     textBoardEl.setAttribute('data-id', brd.id);
     $(textBoardEl.getElementsByClassName('textBtn')[0]).contents()[1].nodeValue = brd.name;
     
@@ -59,20 +61,24 @@ function loadTextBoard(textBoardEl, brd){
 }
 
 function loadBoardBoard(boardBoardEl, brd){
+    if (typeof brd === 'string' || brd instanceof String) brd = Board.fromId(brd);
+
     boardBoardEl.setAttribute('data-id', brd.id);
     $(boardBoardEl.getElementsByClassName('textBtn')[0]).contents()[0].nodeValue = brd.name;
 }
 
 function loadList(listEl, brd){
+    if (typeof brd === 'string' || brd instanceof String) brd = Board.fromId(brd);
+
     listEl.getElementsByClassName("title-text")[0].value = brd.name;
     listEl.setAttribute('data-id', brd.id);
 }
 
-function loadAllBoardsByDataId(brd){
+function loadAllBoardsByDataId(brdId){
     let boardEls = document.getElementsByClassName('board');
  
     for(let i = 0; i < boardEls.length; i++){
-        if(boardEls[i].getAttribute('data-id')==brd.id){
+        if(boardEls[i].getAttribute('data-id')==brd){
             if(brd.type == 'T')
              loadTextBoard(boardEls[i],brd);
             else if(brd.type == 'B')

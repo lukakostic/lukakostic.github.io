@@ -69,7 +69,7 @@ function newText(){
   let brd = new Board('T',"Text","",atr);
 
   allBoards.push(brd);
-  if(board != null) Board.fromId(parent.getAttribute('data-id')).content.push(brd); //Add to parent list
+  if(board != null) Board.fromId(parent.getAttribute('data-id')).content.push(brd.id); //Add to parent list
 
   el.setAttribute('data-id', brd.id);
 
@@ -92,7 +92,7 @@ function newBoard(){
   let brd = new Board('B',"Board",[],atr);
 
   allBoards.push(brd);
-  if(board != null) Board.fromId(parent.getAttribute('data-id')).content.push(brd); //Add to parent list
+  if(board != null) Board.fromId(parent.getAttribute('data-id')).content.push(brd.id); //Add to parent list
 
   parent.appendChild(el);
   el.setAttribute('data-id', brd.id);
@@ -115,7 +115,7 @@ function newList(){
 
   let brd = new Board('L',name,[],{});
   allBoards.push(brd);
-  board.content.push(brd);
+  board.content.push(brd.id);
 
   parent.appendChild(el);
   el.setAttribute('data-id', brd.id);
