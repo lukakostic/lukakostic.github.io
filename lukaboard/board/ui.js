@@ -126,11 +126,11 @@ function fixNewListUI(){
 
         }
       }
+      fixListUI(listEl);
 
     }
 
 
-    fixListUI();
     fixNewListUI();
     fixAlbumUI();
 }
