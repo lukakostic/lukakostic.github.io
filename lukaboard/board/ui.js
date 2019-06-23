@@ -45,6 +45,9 @@ function draw(){
   if(board!="")
     drawBoard();
   else drawMain();
+
+  setTimeout(()=>{expandInputAll()},200);
+  setTimeout(()=>{expandInputAll()},1000);
 }
   
   function clearBoards(lst = null) {
