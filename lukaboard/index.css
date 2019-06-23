@@ -24,6 +24,7 @@ html, body {
 }
 
 footer {
+  height: 36px;
   padding: 7px;
   position:absolute;
   bottom:0;
@@ -83,7 +84,7 @@ footer p {
 }
 
 .scrollable{
-  
+
 }
 
 .main-list{
