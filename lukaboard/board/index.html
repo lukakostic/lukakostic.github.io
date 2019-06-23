@@ -295,7 +295,7 @@
             
               <input type="text" class="card-name bg-inherit" id="textBoardDialogTitle"
               style="width: calc(100% - 35px); padding-left: 5px; padding-right: 2px; padding-top: 2px; white-space: nowrap; overflow: hidden; font-weight: bolder; text-overflow: ellipsis; color:white; border: 0px;"
-              value="Title" oninput="textBoardChanged()" placeholder="Title"></input>
+              value="Title" oninput="textTitleChanged()" placeholder="Title"></input>
 
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding: 2px;margin:0px!important;margin-top:-3px !important;color:white;">
               <span aria-hidden="true">&#215;</span>
@@ -307,7 +307,7 @@
               <form class="row text bg-inherit" style="margin: 0px; width:100%;">
                   <textarea wrap="hard" class="expandInput card-name bg-inherit"  id="textBoardDialogText"
                     style="resize: none; padding-left: 5px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; text-overflow: ellipsis; color:white; border: 0px; width: 100%;"
-                    oninput="expandInput(this);textBoardChanged();" placeholder="Description">Text</textarea>
+                    oninput="expandInput(this);textDescriptionChanged();" placeholder="Description">Text</textarea>
           
                   <input type="submit" style="visibility: hidden; width:0px; height:0px; position:absolute;" />
                 </form>
