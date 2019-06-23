@@ -45,9 +45,9 @@ function loadTextBoard(textBoardEl, brd){
     $(textBoardEl.getElementsByClassName('textBtn')[0]).contents()[0].nodeValue = brd.name;
     
     if(brd.content.length>0) 
-        textBoardEl.getElementsByClassName('descriptionIcon')[0].classList.classList.remove('d-none');
+        textBoardEl.getElementsByClassName('descriptionIcon')[0].classList.remove('d-none');
     else 
-        textBoardEl.getElementsByClassName('descriptionIcon')[0].classList.classList.add('d-none');
+        textBoardEl.getElementsByClassName('descriptionIcon')[0].classList.add('d-none');
 }
 
 function loadBoardBoard(boardBoardEl, brd){
