@@ -10,7 +10,7 @@ uiToFunctions();
 
 draw();
 
-bootbox.alert((board==null)?('main board'):('board: ' + board.id));
+//bootbox.alert((board==null)?('main board'):('board: ' + board.id));
 
 setTimeout(()=>{expandInputAll()},200);
 setTimeout(()=>{expandInputAll()},1000);
