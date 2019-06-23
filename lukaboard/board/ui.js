@@ -134,7 +134,7 @@ function fixNewListUI(){
   }
 
   function home(){
-
+    window.location.href = "https://lukakostic.com/lukaboard/board/?d="+dbx.access;
   }
 
   function up(){

@@ -67,6 +67,7 @@ function newText(){
   parent.appendChild(el);
 
   fixListUI();
+  saveAll();
 }
 
 function newBoard(){
@@ -89,6 +90,7 @@ function newBoard(){
   parent.appendChild(el);
   
   fixListUI();
+  saveAll();
 }
 
 function newList(){
@@ -111,12 +113,5 @@ function newList(){
   
   fixNewListUI();
   fixAlbumUI();
-}
-
-function home(){
-  window.location.href = "https://lukakostic.com/lukaboard/board/?d="+dbx.access;
-}
-
-function titleClicked() {
-  alert("Title clicked!");
+  saveAll();
 }

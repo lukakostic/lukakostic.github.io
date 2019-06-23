@@ -1,11 +1,15 @@
 function boardTitleChanged(){
     //alert("Board title changed");
     board.name = event.srcElement.value;
+
+    saveAll();
 }
 
 function boardDescriptionChanged(){
     //alert("Board title changed");
     board.attributes['description'] = event.srcElement.value;
+
+    saveAll();
 }
 
 function listTitleChanged(){
@@ -13,6 +17,8 @@ function listTitleChanged(){
     let listId = event.srcElement.parentNode.parentNode.getAttribute('data-id');
     let lst = Board.fromId(listId);
     lst.name = event.srcElement.value;
+
+    saveAll();
 }
 
 function textTitleChanged(){
@@ -20,6 +26,8 @@ function textTitleChanged(){
     let listId = event.srcElement.parentNode.parentNode.parentNode.parentNode.getAttribute('data-id');
     let brd = Board.fromId(listId);
     brd.name = event.srcElement.value;
+
+    saveAll();
 }
 
 function textDescriptionChanged(){
@@ -28,6 +36,7 @@ function textDescriptionChanged(){
     let brd = Board.fromId(listId);
     brd.content = event.srcElement.value;
 
+    saveAll();
 }
 
 
