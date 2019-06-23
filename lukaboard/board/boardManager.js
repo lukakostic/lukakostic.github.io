@@ -25,26 +25,34 @@ function loadOrDefaultBoard(forceNull){
 }
 
 function saveAll() {
-  
-  let contents = JSON.stringify(allBoards);
+  try{
 
-  dbx.filesUpload({ path: '/' + 'lukaboard.lb', contents: contents });
+    let contents = JSON.stringify(allBoards);
+
+    dbx.filesUpload({ path: '/' + 'lukaboard.lb', contents: contents });
+
+  }catch(e){bootbox.alert(e.message);}
 }
 
 function loadAll() {
-  dbx.filesDownload({ path: '/' + 'lukaboard.lb' },function loaded(contents){
-  
-    if (contents != null) {
-      allBoards = JSON.parse(contents);
-    }else{
-      allBoards = [];
-      board = null;
-    }
-      
-    loadOrDefaultBoard();
+    try{
 
-    bootbox.alert(contents);
-  });
+    dbx.filesDownload({ path: '/' + 'lukaboard.lb' },function loaded(contents){
+
+      if (contents != null) {
+        allBoards = JSON.parse(contents);
+
+        //bootbox.alert(contents);
+      }else{
+        allBoards = [];
+        board = null;
+      }
+        
+      loadOrDefaultBoard();
+      
+    });
+
+  }catch(e){bootbox.alert(e.message);}
 }
 
 function newText(){
