@@ -36,7 +36,7 @@ function draw(){
   else drawMain();
 }
   
-  function clearBoards(lst) {
+  function clearBoards(lst = null) {
     let lists = [lst];
     if(lst == null) lists = document.getElementsByClassName('list');
     

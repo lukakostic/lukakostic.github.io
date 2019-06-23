@@ -48,6 +48,8 @@ function referenceBtn(){
         clearBoards(lst);
         loadList(lst,lstId);
     }
+
+    saveAll();
 }
 
 function getElementIndex(node) {
@@ -91,6 +93,7 @@ function removeClicked(){
     if(allBoards[id].attributes['references']<=0)
         delete allBoards[id];
 
+    saveAll();
     draw();
 }
 
@@ -113,6 +116,7 @@ function deleteClicked(){
         }
     }
 
+    saveAll();
     draw();
 }
 
