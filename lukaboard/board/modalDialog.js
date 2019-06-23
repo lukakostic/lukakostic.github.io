@@ -28,6 +28,11 @@ function optionsBtn(idEl = null){
     modal.modal('show');
 }
 
+function hideOptionsBtn(){
+    let modal = $('#optionsDialog');
+    modal.modal('hide');
+}
+
 function referenceBtn(){
     let refer = window.prompt("Write/Paste id of board to reference:");
 
@@ -53,6 +58,8 @@ function referenceBtn(){
     allBoards[refer].attributes['references']++;
 
     saveAll();
+
+    hideOptionsBtn();
 }
 
 function getElementIndex(node) {
@@ -97,6 +104,8 @@ function removeClicked(){
         delete allBoards[id];
 
     saveAll();
+
+    hideOptionsBtn();
     clearLists();
     draw();
 }
@@ -122,6 +131,8 @@ function deleteClicked(){
     }
 
     saveAll();
+    
+    hideOptionsBtn();
     clearLists();
     draw();
 }
@@ -129,4 +140,6 @@ function deleteClicked(){
 function copyIdClicked(){
     let id = optionsElement.parentNode.getAttribute('data-id');
     window.prompt("Copy to clipboard: Ctrl+C, Enter", id);
+    
+    hideOptionsBtn();
 }
