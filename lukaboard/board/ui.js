@@ -165,9 +165,10 @@ function fixNewListUI(){
 
         }
         
-        fixListUI(); //Not needed?
       }
     }
+    
+    fixListUI(mainList);
   }
 
   function home(){
