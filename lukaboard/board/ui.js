@@ -90,9 +90,42 @@ function fixNewListUI(){
     document.getElementById('boardDescription').value = board.attributes['description'];
 
     
+    let textBrdTemplate = document.getElementById('textBoardTemplate').content.firstElementChild;
+    let boardBrdTemplate = document.getElementById('boardBoardTemplate').content.firstElementChild;
+    let listTemplate = document.getElementById('listTemplate').content.firstElementChild;
+  
+    let parent = document.getElementById('contentAlbum');
+
+
+  
+
     //fill lists & boards
+    for(let l = 0; l < board.content.length; l++){
+
+      let listEl = listTemplate.cloneNode(true);
+      parent.appendChild(listEl);
+      loadList(listEl,board.content[l]);
+
+      for(let i = 0; i < board.content[l].content; i++){
+          if(board.content[l].content[i].type == 'T'){
+   
+            let el = textBrdTemplate.cloneNode(true);
+            listEl.appendChild(el);
+            loadTextBoard(el,board.content[l].content[i]);
+          
+          }else if(board.content[l].content[i].type == 'B'){
+  
+            let el = boardBrdTemplate.cloneNode(true);
+            listEl.appendChild(el);
+            loadBoardBoard(el,board.content[l].content[i]);
+  
+          }
+      }
+    }
 
 
+    fixListUI();
+    fixNewListUI();
     fixAlbumUI();
 }
 

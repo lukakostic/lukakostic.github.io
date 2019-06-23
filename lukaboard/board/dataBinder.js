@@ -63,6 +63,11 @@ function loadBoardBoard(boardBoardEl, brd){
     $(boardBoardEl.getElementsByClassName('textBtn')[0]).contents()[0].nodeValue = brd.name;
 }
 
+function loadList(listEl, brd){
+    listEl.getElementsByClassName("title-text")[0].value = brd.name;
+    listEl.setAttribute('data-id', brd.id);
+}
+
 function loadAllBoardsByDataId(brd){
     let boardEls = document.getElementsByClassName('board');
  
