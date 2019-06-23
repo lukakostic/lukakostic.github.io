@@ -127,7 +127,7 @@ function fixNewListUI(){
     document.getElementById('contentAlbum').classList.add('d-none');
     document.getElementById('mainContentAlbum').classList.remove('d-none');
 
-    clearBoards();
+    clearBoards(mainList);
 
 
     let ids = Object.keys(allBoards);
