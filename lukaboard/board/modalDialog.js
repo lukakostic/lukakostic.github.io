@@ -114,8 +114,9 @@ function deleteClicked(){
     for(let i = 0; i < ids.length; i++){
         if(allBoards[ids[i]].type == boardTypes.Text) break;
 
+        let ind = allBoards[ids[i]].content.indexOf(id);
         while(ind!=-1){
-            let ind = allBoards[ids[i]].content.indexOf(id);
+            ind = allBoards[ids[i]].content.indexOf(id);
             allBoards[ids[i]].content.splice(ind,1);
         }
     }
