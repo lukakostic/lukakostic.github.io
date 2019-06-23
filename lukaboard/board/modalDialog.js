@@ -19,8 +19,10 @@ function showBoardBoardDialog(){
     window.location.href = "https://lukakostic.com/lukaboard/board/?d="+dbx.access+"?b="+event.srcElement.parentNode.getAttribute('data-id');
 }
 
-function optionsBtn(){
+function optionsBtn(idEl = null){
+    if(idEl == null)idEl = event.srcElement.parentNode;
+
     let modal = $('#optionsDialog');
-    modal[0].setAttribute('data-id',event.srcElement.parentNode.getAttribute('data-id'));
+    modal[0].setAttribute('data-id',idEl.getAttribute('data-id'));
     modal.modal('show');
 }
