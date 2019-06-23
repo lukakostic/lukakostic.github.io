@@ -70,11 +70,11 @@ function removeClicked(){
     if(allBoards[id].attributes['references']<=1 && confirm('This is the last reference to this board, really remove it? (Will delete the board)')==false)return;
 
     if(isBoard){
-        let ind = getElementIndex(idEl);
+        let ind = getElementIndex(idEl)-1;
 
         console.log('removed ind '+ ind);
 
-        allBoards[idEl.parentNode.getAttribute('data-id')].content.splice(ind-1,1);
+        allBoards[idEl.parentNode.getAttribute('data-id')].content.splice(ind,1);
     }else{
         //is List
         if(board == ""){
@@ -94,6 +94,7 @@ function removeClicked(){
         delete allBoards[id];
 
     saveAll();
+    clearLists();
     draw();
 }
 
@@ -117,6 +118,7 @@ function deleteClicked(){
     }
 
     saveAll();
+    clearLists();
     draw();
 }
 

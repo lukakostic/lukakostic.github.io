@@ -30,6 +30,17 @@ function expandInput(el){
   el.parentNode.style.height = el.style.height;
 }
 
+function clearLists(){
+  let lists = document.getElementsByClassName('list');
+    
+  for(let j = 0; j < lists.length; j++){
+    if (lists[j].id != "") continue;
+
+      $(lists[j]).remove();
+    
+  }
+}
+
 function draw(){
   if(board!="")
     drawBoard();
