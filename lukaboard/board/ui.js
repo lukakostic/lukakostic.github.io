@@ -106,7 +106,7 @@ function fixNewListUI(){
       parent.appendChild(listEl);
       loadList(listEl,board.content[l]);
 
-      for(let i = 0; i < board.content[l].content; i++){
+      for(let i = 0; i < board.content[l].content.length; i++){
           if(board.content[l].content[i].type == 'T'){
    
             let el = textBrdTemplate.cloneNode(true);
