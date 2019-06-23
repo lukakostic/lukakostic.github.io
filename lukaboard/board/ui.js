@@ -105,6 +105,26 @@ function fixNewListUI(){
       let listEl = listTemplate.cloneNode(true);
       parent.appendChild(listEl);
       loadList(listEl,board.content[l]);
+
+      let brd = Board.fromId(board.content[l]);
+      
+      for(let i = 0; i < brd.content.length; i++){
+        brd2 = Board.fromId(brd.content[i]);
+        if(brd2.type == 'T'){
+
+          let el = textBrdTemplate.cloneNode(true);
+          listEl.appendChild(el);
+          loadTextBoard(el,brd2);
+        
+        }else if(brd2.type == 'B'){
+
+          let el = boardBrdTemplate.cloneNode(true);
+          listEl.appendChild(el);
+          loadBoardBoard(el,brd2);
+
+        }
+      }
+      
     }
 
 

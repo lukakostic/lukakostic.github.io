@@ -73,22 +73,6 @@ function loadList(listEl, brd){
     listEl.getElementsByClassName("title-text")[0].value = brd.name;
     listEl.setAttribute('data-id', brd.id);
 
-    for(let i = 0; i < brd.content.length; i++){
-        brd2 = Board.fromId(brd.content[i]);
-        if(brd2.type == 'T'){
- 
-          let el = textBrdTemplate.cloneNode(true);
-          listEl.appendChild(el);
-          loadTextBoard(el,brd2);
-        
-        }else if(brd2.type == 'B'){
-
-          let el = boardBrdTemplate.cloneNode(true);
-          listEl.appendChild(el);
-          loadBoardBoard(el,brd2);
-
-        }
-    }
 }
 
 function loadAllBoardsByDataId(brdId){
