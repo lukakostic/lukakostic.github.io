@@ -318,12 +318,12 @@
     </div>
     
     <div id="optionsDialog" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-id="" aria-hidden="true">
-      <div class="modal-dialog" role="document" style="width: 95%; max-width: 100px; background-color: #343434;border-radius: 5px;">
+      <div class="modal-dialog" role="document" style="width: 95%; max-width: 300px; background-color: #343434;border-radius: 5px;">
         <div class="modal-content bg-inherit" style="border-radius: 5px;">
           <div class="modal-body">
             
-            <button type="button" class="bg-inherit btn-dark" style="width: 100%;">Delete</button>
-            <button type="button" class="bg-inherit btn-dark" style="width: 100%;">Copy id</button>
+            <button type="button" class="btn bg-inherit btn-dark" style="width: 100%; margin: 5px; padding: 3px; font-size: 18px;">Delete</button>
+            <button type="button" class="btn bg-inherit btn-dark" style="width: 100%; margin: 5px; padding: 3px; font-size: 18px;">Copy id</button>
 
           </div>
         </div>
@@ -378,21 +378,22 @@
       </form>
       -->
 
+      <section class="newPanel board" id="newBoardMain"
+      style="background-color: #343434;">
 
-      <div class="newPanel row order-last"
-        style="margin: 0px;">
-        <div class="container text-center justify-content-center" style="height: 34px;">
+        <div class="text-center justify-content-center" style="height: 100%;">
 
-          <button type="button" class="btn btn-sm btn-dark bg-inherit noborder" style="height: 100%" onclick="newText()">
+          <button type="button" class="btn btn-sm btn-dark bg-inherit noborder" style="height: 100%; width:49%;" onclick="newText()">
             Text
           </button>
 
-          <button type="button" class="btn btn-sm btn-dark bg-inherit noborder" style="height: 100%" onclick="newBoard()">
+          <button type="button" class="btn btn-sm btn-dark bg-inherit noborder" style="height: 100%; width:49%;" onclick="newBoard()">
             Board
           </button>
 
         </div>
-      </div>
+
+      </section>
 
 
 

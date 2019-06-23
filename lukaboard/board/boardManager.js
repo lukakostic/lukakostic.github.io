@@ -75,7 +75,7 @@ function newText(){
 
   parent.appendChild(el);
 
-  fixListUI();
+  fixListUI(parent);
   saveAll();
 }
 
@@ -98,7 +98,7 @@ function newBoard(){
   el.setAttribute('data-id', brd.id);
 
   
-  fixListUI();
+  fixListUI(parent);
   saveAll();
 }
 
