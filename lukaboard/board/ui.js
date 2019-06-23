@@ -52,11 +52,10 @@ function draw(){
     if(lst == null) lists = document.getElementsByClassName('list');
     
     for(let j = 0; j < lists.length; j++){
-      if (lists[j].id != "") continue;
 
       let boards = lists[j].childNodes;
       for (let i = 0; i < boards.length; i++) {
-        $(boards[i]).remove();
+       if(boards[i].classList.contains('board'))  boards[i].parentNode.removeChild(boards[i]);
       }
     }
   }
