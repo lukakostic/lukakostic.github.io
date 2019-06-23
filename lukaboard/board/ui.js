@@ -58,7 +58,7 @@ function draw(){
 
       let boards = lists[j].childNodes;
       for (let i = 0; i < boards.length; i++) {
-       if(boards[i].classList != null && boards[i].classList.contains('board')){
+       if(boards[i].classList != null && boards[i].classList.contains('board') && boards[i].id == ""){
         boards[i].parentNode.removeChild(boards[i]);
         i--;
        }  
