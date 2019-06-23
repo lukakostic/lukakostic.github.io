@@ -48,51 +48,6 @@ function textDescriptionChanged(){
 }
 
 
-function loadTextBoard(textBoardEl, brd){
-    if (typeof brd === 'string' || brd instanceof String) brd = allBoards[brd];
-
-    textBoardEl.setAttribute('data-id', brd.id);
-    $(textBoardEl.getElementsByClassName('textBtn')[0]).contents()[1].nodeValue = brd.name;
-    
-    if(brd.content.length>0) 
-        textBoardEl.getElementsByClassName('descriptionIcon')[0].classList.remove('d-none');
-    else 
-        textBoardEl.getElementsByClassName('descriptionIcon')[0].classList.add('d-none');
-}
-
-function loadBoardBoard(boardBoardEl, brd){
-    if (typeof brd === 'string' || brd instanceof String) brd = allBoards[brd];
-
-    boardBoardEl.setAttribute('data-id', brd.id);
-    $(boardBoardEl.getElementsByClassName('textBtn')[0]).contents()[0].nodeValue = brd.name;
-}
-
-function loadList(listEl, brd){
-    if (typeof brd === 'string' || brd instanceof String) brd = allBoards[brd];
-
-    listEl.getElementsByClassName("title-text")[0].value = brd.name;
-    listEl.setAttribute('data-id', brd.id);
-
-}
-
-function loadAllBoardsByDataId(brdId){
-    let boardEls = document.getElementsByClassName('board');
- 
-    for(let i = 0; i < boardEls.length; i++){
-        if(boardEls[i].getAttribute('data-id')==brdId){
-            if(allBoards[brdId].type == 'T')
-             loadTextBoard(boardEls[i],brdId);
-            else if(allBoards[brdId].type == 'B')
-             loadBoardBoard(boardEls[i],brdId);
-        }
-    }
-}
-
-
-
-
-
-
 
 
 

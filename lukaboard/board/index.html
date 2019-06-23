@@ -274,6 +274,10 @@
             Board
           </button>
 
+          <button type="button" class="btn btn-sm btn-dark bg-inherit noborder" style="height: 100%" onclick="referenceBtn()">
+            Reference
+          </button>
+
         </div>
       </div>
 
@@ -318,13 +322,14 @@
       </div>
     </div>
     
-    <div id="optionsDialog" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-id="" aria-hidden="true">
+    <div id="optionsDialog" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document" style="width: 95%; max-width: 300px; background-color: #343434;border-radius: 5px;">
         <div class="modal-content bg-inherit" style="border-radius: 5px;">
           <div class="modal-body">
             
-            <button type="button" class="btn bg-inherit btn-dark" style="width: 100%; margin: 5px; padding: 3px; font-size: 18px;">Delete</button>
-            <button type="button" class="btn bg-inherit btn-dark" style="width: 100%; margin: 5px; padding: 3px; font-size: 18px;">Copy id</button>
+            <button type="button" class="btn bg-inherit btn-dark" style="width: 100%; margin: 5px; padding: 3px; font-size: 18px;" onclick="removeClicked()">Remove</button>
+            <button type="button" class="btn bg-inherit btn-dark" style="width: 100%; margin: 5px; padding: 3px; font-size: 18px;" onclick="deleteClicked()">Delete</button>
+            <button type="button" class="btn bg-inherit btn-dark" style="width: 100%; margin: 5px; padding: 3px; font-size: 18px;" onclick="copyIdClicked()">Copy id</button>
 
           </div>
         </div>
@@ -384,12 +389,16 @@
 
         <div class="text-center justify-content-center" style="height: 100%;">
 
-          <button type="button" class="btn btn-sm btn-dark bg-inherit noborder" style="height: 100%; width:49%;" onclick="newText()">
+          <button type="button" class="btn btn-sm btn-dark bg-inherit noborder" style="height: 100%; width:32%;" onclick="newText()">
             Text
           </button>
 
-          <button type="button" class="btn btn-sm btn-dark bg-inherit noborder" style="height: 100%; width:49%;" onclick="newBoard()">
+          <button type="button" class="btn btn-sm btn-dark bg-inherit noborder" style="height: 100%; width:32%;" onclick="newBoard()">
             Board
+          </button>
+          
+          <button type="button" class="btn btn-sm btn-dark bg-inherit noborder" style="height: 100%; width:34%;" onclick="referenceBtn()">
+            Reference
           </button>
 
         </div>

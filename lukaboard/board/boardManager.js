@@ -5,6 +5,22 @@ let dbx = DropboxManager.fromUrl(url);
 let allBoards = {}; //hashmap / object of all board objects: [id]:board
 let board = "";
 
+let optionsElement = null;
+
+let boardTypes = {
+  Text : 1,
+  Board : 2,
+  List : 3
+};
+
+
+let textBrdTemplate = document.getElementById('textBoardTemplate').content.firstElementChild;
+let boardBrdTemplate = document.getElementById('boardBoardTemplate').content.firstElementChild;
+let listTemplate = document.getElementById('listTemplate').content.firstElementChild;
+
+let contentAlbum = document.getElementById('contentAlbum');
+let mainList = document.getElementById('main-list');
+
 loadAll();
 uiToFunctions();
 
@@ -64,9 +80,9 @@ function newText(){
 
   let el = template.cloneNode(true);
 
-  let atr = {};
+  let atr = {references:1};
   if(board == "")atr['onMain'] = true;
-  let brd = new Board('T',"Text","",atr);
+  let brd = new Board(boardTypes.Text,"Text","",atr);
 
   allBoards[brd.id]=brd;
   if(board != "") allBoards[parent.getAttribute('data-id')].content.push(brd.id); //Add to parent list
@@ -87,9 +103,9 @@ function newBoard(){
 
   let el = template.cloneNode(true);
 
-  let atr = {'description':'Description'};
+  let atr = {description:'Description',references:1};
   if(board == "")atr['onMain'] = true;
-  let brd = new Board('B',"Board",[],atr);
+  let brd = new Board(boardTypes.Board,"Board",[],atr);
 
   allBoards[brd.id]=brd;
   if(board != "") allBoards[parent.getAttribute('data-id')].content.push(brd.id); //Add to parent list
@@ -113,7 +129,7 @@ function newList(){
   let name = event.srcElement.firstElementChild.value;
   el.getElementsByClassName("title-text")[0].value = name;
 
-  let brd = new Board('L',name,[],{});
+  let brd = new Board(boardTypes.List,name,[],{references:1});
   allBoards[brd.id]=brd;
   allBoards[board].content.push(brd.id);
 

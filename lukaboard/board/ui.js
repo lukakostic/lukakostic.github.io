@@ -36,8 +36,9 @@ function draw(){
   else drawMain();
 }
   
-  function clearBoards() {
-    let lists = document.getElementsByClassName('list');
+  function clearBoards(lst) {
+    let lists = [lst];
+    if(lst == null) lists = document.getElementsByClassName('list');
     
     for(let j = 0; j < lists.length; j++){
       if (lists[j].id != "") continue;
@@ -89,44 +90,17 @@ function fixNewListUI(){
     document.getElementById('boardTitle').value = allBoards[board].name;
     document.getElementById('boardDescription').value = allBoards[board].attributes['description'];
 
-    
-    let textBrdTemplate = document.getElementById('textBoardTemplate').content.firstElementChild;
-    let boardBrdTemplate = document.getElementById('boardBoardTemplate').content.firstElementChild;
-    let listTemplate = document.getElementById('listTemplate').content.firstElementChild;
-  
-    let parent = document.getElementById('contentAlbum');
-
-
-  
 
     //fill lists & boards
     for(let l = 0; l < allBoards[board].content.length; l++){
 
       let listEl = listTemplate.cloneNode(true);
-      parent.appendChild(listEl);
+      contentAlbum.appendChild(listEl);
 
       
-      let brd = allBoards[allBoards[board].content[l]];
-      loadList(listEl,brd);
+      loadList(listEl,allBoards[board].content[l]);
 
       
-      for(let i = 0; i < brd.content.length; i++){
-        brd2 = allBoards[brd.content[i]];
-        if(brd2.type == 'T'){
-
-          let el = textBrdTemplate.cloneNode(true);
-          listEl.appendChild(el);
-          loadTextBoard(el,brd2);
-        
-        }else if(brd2.type == 'B'){
-
-          let el = boardBrdTemplate.cloneNode(true);
-          listEl.appendChild(el);
-          loadBoardBoard(el,brd2);
-
-        }
-      }
-      fixListUI(listEl);
 
     }
 
@@ -143,21 +117,18 @@ function fixNewListUI(){
 
     clearBoards();
 
-    let textBrdTemplate = document.getElementById('textBoardTemplate').content.firstElementChild;
-    let boardBrdTemplate = document.getElementById('boardBoardTemplate').content.firstElementChild;
-    let mainList = document.getElementById('main-list');
 
     let ids = Object.keys(allBoards);
     //fill boards
     for(let i = 0; i < ids.length; i++){
       if(allBoards[ids[i]].attributes['onMain'] == true){
-        if(allBoards[ids[i]].type == 'T'){
+        if(allBoards[ids[i]].type == boardTypes.Text){
  
           let el = textBrdTemplate.cloneNode(true);
           mainList.appendChild(el);
           loadTextBoard(el,allBoards[ids[i]]);
         
-        }else if(allBoards[ids[i]].type == 'B'){
+        }else if(allBoards[ids[i]].type == boardTypes.Board){
 
           let el = boardBrdTemplate.cloneNode(true);
           mainList.appendChild(el);
@@ -170,6 +141,66 @@ function fixNewListUI(){
     
     fixListUI(mainList);
   }
+
+
+function loadTextBoard(textBoardEl, brd){
+  if (typeof brd === 'string' || brd instanceof String) brd = allBoards[brd];
+
+  textBoardEl.setAttribute('data-id', brd.id);
+  $(textBoardEl.getElementsByClassName('textBtn')[0]).contents()[1].nodeValue = brd.name;
+  
+  if(brd.content.length>0) 
+      textBoardEl.getElementsByClassName('descriptionIcon')[0].classList.remove('d-none');
+  else 
+      textBoardEl.getElementsByClassName('descriptionIcon')[0].classList.add('d-none');
+}
+
+function loadBoardBoard(boardBoardEl, brd){
+  if (typeof brd === 'string' || brd instanceof String) brd = allBoards[brd];
+
+  boardBoardEl.setAttribute('data-id', brd.id);
+  $(boardBoardEl.getElementsByClassName('textBtn')[0]).contents()[0].nodeValue = brd.name;
+}
+
+function loadList(listEl, brd){
+  if (typeof brd === 'string' || brd instanceof String) brd = allBoards[brd];
+
+  listEl.getElementsByClassName("title-text")[0].value = brd.name;
+  listEl.setAttribute('data-id', brd.id);
+
+  
+  for(let i = 0; i < brd.content.length; i++){
+    let brd2 = allBoards[brd.content[i]];
+    if(brd2.type == boardTypes.Text){
+
+      let el = textBrdTemplate.cloneNode(true);
+      listEl.appendChild(el);
+      loadTextBoard(el,brd2);
+    
+    }else if(brd2.type == boardTypes.Board){
+
+      let el = boardBrdTemplate.cloneNode(true);
+      listEl.appendChild(el);
+      loadBoardBoard(el,brd2);
+
+    }
+  }
+  fixListUI(listEl);
+
+}
+
+function loadAllBoardsByDataId(brdId){
+  let boardEls = document.getElementsByClassName('board');
+
+  for(let i = 0; i < boardEls.length; i++){
+      if(boardEls[i].getAttribute('data-id')==brdId){
+          if(allBoards[brdId].type == boardTypes.Text)
+           loadTextBoard(boardEls[i],brdId);
+          else if(allBoards[brdId].type == boardTypes.Board)
+           loadBoardBoard(boardEls[i],brdId);
+      }
+  }
+}
 
   function home(){
     window.location.href = "https://lukakostic.com/lukaboard/board/?d="+dbx.access;
