@@ -168,5 +168,5 @@ function fixNewListUI(){
   }
 
   function up(){
-
+    window.history.back();
   }
