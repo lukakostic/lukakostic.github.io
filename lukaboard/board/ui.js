@@ -105,7 +105,7 @@ function fixNewListUI(){
     clearBoards();
 
     let textBrdTemplate = document.getElementById('textBoardTemplate').content.firstElementChild;
-    let boardBrdTemplate = document.getElementById('textBoardTemplate').content.firstElementChild;
+    let boardBrdTemplate = document.getElementById('boardBoardTemplate').content.firstElementChild;
     let mainList = document.getElementById('main-list');
 
     //fill boards
@@ -122,7 +122,7 @@ function fixNewListUI(){
           let el = boardBrdTemplate.cloneNode(true);
           mainList.appendChild(el);
           loadBoardBoard(el,allBoards[i]);
-          
+
         }
         
         fixListUI(); //Not needed?
