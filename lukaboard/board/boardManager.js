@@ -94,9 +94,9 @@ function newBoard(){
   allBoards.push(brd);
   if(board != null) Board.fromId(parent.getAttribute('data-id')).content.push(brd); //Add to parent list
 
+  parent.appendChild(el);
   el.setAttribute('data-id', brd.id);
 
-  parent.appendChild(el);
   
   fixListUI();
   saveAll();
@@ -117,9 +117,9 @@ function newList(){
   allBoards.push(brd);
   board.content.push(brd);
 
+  parent.appendChild(el);
   el.setAttribute('data-id', brd.id);
 
-  parent.appendChild(el);
   
   fixNewListUI();
   fixAlbumUI();
