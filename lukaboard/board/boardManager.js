@@ -10,9 +10,10 @@ uiToFunctions();
 
 draw();
 
+bootbox.alert((board==null)?('main board'):('board: ' + board.id));
+
 setTimeout(()=>{expandInputAll()},200);
 setTimeout(()=>{expandInputAll()},1000);
-setInterval(()=>{console.log(allBoards.length);},1000);
 
 //bootbox.alert("hello :3");
 
