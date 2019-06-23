@@ -112,7 +112,7 @@ function deleteClicked(){
     let ids = Object.keys(allBoards);
 
     for(let i = 0; i < ids.length; i++){
-        if(allBoards[i].type == boardTypes.Text) break;
+        if(allBoards[ids[i]].type == boardTypes.Text) break;
 
         while(ind!=-1){
             let ind = allBoards[ids[i]].content.indexOf(id);
