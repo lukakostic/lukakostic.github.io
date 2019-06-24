@@ -1,7 +1,7 @@
 class DropboxManager {
     constructor(ACCESS_TOKEN) {
         this.access = ACCESS_TOKEN;
-        this.dropbox = new Dropbox.Dropbox({ accessToken: this.access });
+        this.dropbox = new Dropbox.Dropbox({ accessToken: this.access, fetch: null });
     }
 
     static accessFromUrl(url) {
