@@ -78,10 +78,12 @@ function draw(){
 $(".textBtn").each(function() {
 
   this.addEventListener("mousedown", function(t) {
-      $(this.parentNode).trigger("mousedown",t);
+    $(this.parentNode).trigger("mousedown",t);
+    $(this.parentNode).trigger("onmousedown",t);
   },true);
   this.addEventListener("mouseup", function(t) {
-      $(this.parentNode).trigger("mouseup",t);
+    $(this.parentNode).trigger("mouseup",t);
+    $(this.parentNode).trigger("onmouseup",t);
   },true);
 
 });
