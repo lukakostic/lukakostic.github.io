@@ -92,7 +92,7 @@ function newText(){
   parent.appendChild(el);
   loadTextBoard(el,brd.id);
 
-  el.click(); //////////////////////////
+  el.getElementsByClassName('textBtn')[0].click(); //////////////////////////
 
   fixListUI(parent);
   saveAll();
@@ -116,7 +116,7 @@ function newBoard(){
   parent.appendChild(el);
   loadBoardBoard(el,brd.id);
 
-  el.click(); //////////////////////////
+  el.getElementsByClassName('textBtn')[0].click(); //////////////////////////
   
   fixListUI(parent);
   saveAll();
