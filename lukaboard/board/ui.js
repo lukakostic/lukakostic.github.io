@@ -82,7 +82,7 @@ $(".textBtn").each(function () {
   this.addEventListener("mouseup", function(e) {
       $(this.parentNode).trigger(e);
   });
-});​
+});
 
   setTimeout(()=>{expandInputAll()},200);
   setTimeout(()=>{expandInputAll()},1000);
