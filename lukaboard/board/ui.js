@@ -71,6 +71,7 @@ function draw(){
     change: function(event, ui) {  
       console.log('drag change');
         if(ui.sender) dragNew = ui.placeholder.parent();
+        fixListUI(dragNew[0]);
     },
     connectWith: ".sortableList"
 }).disableSelection();
