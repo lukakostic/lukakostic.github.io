@@ -14,14 +14,14 @@ let boardTypes = {
 };
 
 
-let textBrdTemplate = document.getElementById('textBoardTemplate').content.firstElementChild;
-let boardBrdTemplate = document.getElementById('boardBoardTemplate').content.firstElementChild;
-let listTemplate = document.getElementById('listTemplate').content.firstElementChild;
+let textBrdTemplate = getTemplateFChild('textBoardTemplate');
+let boardBrdTemplate = getTemplateFChild('boardBoardTemplate');
+let listTemplate = getTemplateFChild('listTemplate');
 
-let contentAlbum = document.getElementById('contentAlbum');
-let mainContentAlbum= document.getElementById('mainContentAlbum');
+let contentAlbum = EbyId('contentAlbum');
+let mainContentAlbum= EbyId('mainContentAlbum');
 
-let mainList = document.getElementById('main-list');
+let mainList = EbyId('main-list');
 
 loadAll(()=>{
   newPageOpened();
@@ -70,7 +70,7 @@ function loadAll(callback = null) {
 function newText(){
   //alert(event.srcElement.outerHTML);
   
-  let template = document.getElementById('textBoardTemplate').content.firstElementChild;
+  let template = getTemplateFChild('textBoardTemplate');
   let parent = event.srcElement.parentNode.parentNode.parentNode;
 
   let el = template.cloneNode(true);
@@ -94,7 +94,7 @@ function newText(){
 function newBoard(){
   //alert(event.srcElement.outerHTML);
 
-  let template = document.getElementById('boardBoardTemplate').content.firstElementChild;
+  let template = getTemplateFChild('boardBoardTemplate');
   let parent = event.srcElement.parentNode.parentNode.parentNode;
 
   let el = template.cloneNode(true);
@@ -119,8 +119,7 @@ function newBoard(){
 function newList(){
   //alert(event.srcElement.outerHTML);
 
-  let template = document.getElementById('listTemplate').content.firstElementChild;
-  let parent = document.getElementById('contentAlbum');
+  let template = getTemplateFChild('listTemplate');
 
   let el = template.cloneNode(true);
 
@@ -131,7 +130,7 @@ function newList(){
   allBoards[brd.id]=brd;
   allBoards[board].content.push(brd.id);
 
-  parent.appendChild(el);
+  contentAlbum.appendChild(el);
   el.setAttribute('data-id', brd.id);
 
   

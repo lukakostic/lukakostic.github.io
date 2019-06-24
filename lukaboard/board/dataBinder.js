@@ -27,7 +27,7 @@ function listTitleChanged(){
 
 function textTitleChanged(){
     //alert("Text title changed");
-    let brdId = document.getElementById('textBoardDialog').getAttribute('data-id');
+    let brdId = EbyId('textBoardDialog').getAttribute('data-id');
     let brd = allBoards[brdId];
     brd.name = event.srcElement.value;
 
@@ -38,7 +38,7 @@ function textTitleChanged(){
 
 function textDescriptionChanged(){
     //alert("Text description changed");
-    let brdId = document.getElementById('textBoardDialog').getAttribute('data-id');
+    let brdId = EbyId('textBoardDialog').getAttribute('data-id');
     let brd = allBoards[brdId];
     brd.content = event.srcElement.value;
 

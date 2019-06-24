@@ -6,11 +6,11 @@ function newPageOpened(forceMain = false){
 }
 
 function uiToFunctions(){
-    document.getElementById('homeBtn').onclick = home;
-    document.getElementById('upBtn').onclick = up;
-    //document.getElementById('convertBtn').onclick = ConvertBoard;
-    //document.getElementById('saveBtn').onclick = SaveAll;
-    //document.getElementById('loadBtn').onclick = LoadAll;
+    EbyId('homeBtn').onclick = home;
+    EbyId('upBtn').onclick = up;
+    //EbyId('convertBtn').onclick = ConvertBoard;
+    //EbyId('saveBtn').onclick = SaveAll;
+    //EbyId('loadBtn').onclick = LoadAll;
 }
 
 //UI calculations
@@ -85,12 +85,12 @@ function draw(){
 }
 
 function fixNewListUI(){
-  var newlist = document.getElementById('newlist');
+  var newlist = EbyId('newlist');
   newlist.parentNode.appendChild(newlist);
 }
 
   function fixAlbumUI(){
-    var album = document.getElementById('contentAlbum');
+    var album = EbyId('contentAlbum');
     var columnWidth = 310;//px //300 + 5*2 margin
     if(album){
       album.style.setProperty('width',((columnWidth*album.childElementCount)+10 + 8).toString() + 'px'); //add some space for album pad (2 * 5px atm) + some extra just in case
@@ -101,15 +101,15 @@ function fixNewListUI(){
   }
 
   function drawBoard(){
-    document.getElementById('header').classList.remove('v-hidden');
+    EbyId('header').classList.remove('v-hidden');
 
     mainContentAlbum.classList.add('d-none');
     contentAlbum.classList.remove('d-none');
 
     clearBoards();
 
-    document.getElementById('boardTitle').value = allBoards[board].name;
-    document.getElementById('boardDescription').value = allBoards[board].attributes['description'];
+    EbyId('boardTitle').value = allBoards[board].name;
+    EbyId('boardDescription').value = allBoards[board].attributes['description'];
 
 
     //fill lists & boards
@@ -126,17 +126,17 @@ function fixNewListUI(){
     }
 
     
-    document.getElementById('boardTitle').select(); //autopop
+    EbyId('boardTitle').select(); //autopop
 
     fixAlbumUI();
     fixNewListUI();
 }
 
   function drawMain(){
-    document.getElementById('header').classList.add('v-hidden');
+    EbyId('header').classList.add('v-hidden');
 
-    document.getElementById('contentAlbum').classList.add('d-none');
-    document.getElementById('mainContentAlbum').classList.remove('d-none');
+    EbyId('contentAlbum').classList.add('d-none');
+    EbyId('mainContentAlbum').classList.remove('d-none');
 
     clearBoards(mainList);
 

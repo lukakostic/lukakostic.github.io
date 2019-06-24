@@ -55,9 +55,9 @@ class Board {
     static deleteBoardById(id){
         if(allBoards[id].type != boardTypes.Text){
             for(let i = 0; i < allBoards[id].content.length; i++){
-                allBoards[id].content[i].attributes['references']--;
-                if(allBoards[id].content[i].attributes['references']<=0)
-                    Board.deleteBoardById(allBoards[allBoards[id].content[i]]);
+                allBoards[allBoards[id].content[i]].attributes['references']--;
+                if(allBoards[allBoards[id].content[i]].attributes['references']<=0)
+                    Board.deleteBoardById(allBoards[id].content[i]);
             }
         }
         delete allBoards[id];

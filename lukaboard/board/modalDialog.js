@@ -14,7 +14,7 @@ function showTextBoardDialog(){
     //can do without timeout, but set timeout to like 0.8 seconds if you add 'modal fade' instead of just 'modal'
     setTimeout(()=>{
         expandInput(text[0]);
-        document.getElementById('textBoardDialogTitle').select();
+        EbyId('textBoardDialogTitle').select();
     },10);
 }
 
@@ -190,8 +190,8 @@ function referencesDialog(){
     }
 
     
-    let btnTemplate = document.getElementById('referencesDialogBtn').content.firstElementChild;
-    let list = document.getElementById('referencesDialogList');
+    let btnTemplate = getTemplateFChild('referencesDialogBtn');
+    let list = EbyId('referencesDialogList');
 
     //clear previous buttons
     while (list.firstChild) {
