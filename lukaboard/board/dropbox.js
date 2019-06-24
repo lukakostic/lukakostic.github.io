@@ -31,11 +31,11 @@ class DropboxManager {
         this.dropbox.filesUpload(obj)
             .then(function (response) {
                 console.log(response);
-                callback(response);
+                if(callback) callback(response);
             })
             .catch(function (error) {
                 console.error(error);
-                callback(response);
+                if(callback) callback(response);
             });
     }
 

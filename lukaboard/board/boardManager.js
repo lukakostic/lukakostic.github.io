@@ -43,7 +43,7 @@ function loadOrDefaultBoard(forceNull){
   draw();
 }
 
-function saveAll(callback) {
+function saveAll(callback=null) {
   try{
 
     let contents = JSON.stringify(allBoards);
@@ -92,11 +92,10 @@ function newText(){
   parent.appendChild(el);
   loadTextBoard(el,brd.id);
 
+  el.getElementsByClassName('textBtn')[0].click(); //////////////////////////
 
   fixListUI(parent);
-  saveAll((msg)=>{
-    el.getElementsByClassName('textBtn')[0].click(); //////////////////////////
-  });
+  saveAll();
 }
 
 function newBoard(){
