@@ -202,7 +202,7 @@ function referencesDialog(){
 
     for(let i = 0; i < boardReferences.length; i++){
         let el = btnTemplate.cloneNode(true);
-        modal[0].appendChild(el);
+        //modal[0].appendChild(el);
 
         list.appendChild(el);
 
