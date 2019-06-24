@@ -35,7 +35,7 @@ class DropboxManager {
             })
             .catch(function (error) {
                 console.error(error);
-                if(callback) callback(response);
+                if(callback) callback(error);
             });
     }
 

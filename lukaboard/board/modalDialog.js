@@ -150,3 +150,11 @@ function copyIdClicked(){
     
     hideOptionsBtn();
 }
+
+function referencesDialog(){
+    
+}
+
+function referencesDialogBtn(){
+
+}
