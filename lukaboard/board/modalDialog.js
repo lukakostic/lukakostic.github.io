@@ -12,7 +12,10 @@ function showTextBoardDialog(){
     modal.modal('show');
 
     //can do without timeout, but set timeout to like 0.8 seconds if you add 'modal fade' instead of just 'modal'
-    setTimeout(()=>{expandInput(text[0]);},10);
+    setTimeout(()=>{
+        expandInput(text[0]);
+        document.getElementById('textBoardDialogTitle').select();
+    },10);
 }
 
 function showBoardBoardDialog(){

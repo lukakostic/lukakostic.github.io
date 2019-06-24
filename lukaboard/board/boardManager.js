@@ -86,11 +86,12 @@ function newText(){
   allBoards[brd.id]=brd;
   if(board != "") allBoards[parent.getAttribute('data-id')].content.push(brd.id); //Add to parent list
 
-  el.setAttribute('data-id', brd.id);
-
   parent.appendChild(el);
+  loadTextBoard(el,brd.id);
 
-  fixListUI(parent);
+  el.click(); //////////////////////////
+
+  //fixListUI(parent);
   saveAll();
 }
 
@@ -110,10 +111,11 @@ function newBoard(){
   if(board != "") allBoards[parent.getAttribute('data-id')].content.push(brd.id); //Add to parent list
 
   parent.appendChild(el);
-  el.setAttribute('data-id', brd.id);
+  loadTextBoard(el,brd.id);
 
+  el.click(); //////////////////////////
   
-  fixListUI(parent);
+  //fixListUI(parent);
   saveAll();
 }
 
