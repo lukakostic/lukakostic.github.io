@@ -27,6 +27,9 @@ loadAll();
 uiToFunctions();
 
 
+document.getElementById('boardTitle').select();
+
+
 //bootbox.alert((board==null)?('main board'):('board: ' + board.id));
 
 
