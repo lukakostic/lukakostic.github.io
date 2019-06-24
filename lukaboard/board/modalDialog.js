@@ -184,7 +184,7 @@ function referencesDialog(){
         if(allBoards[ids[i]].type == boardTypes.Board){
             for(let j = 0; j < listReferences.length; j++){
                 if(allBoards[ids[i]].content.includes(listReferences[j]))
-                    boardReferences.push(ids[i]);
+                    boardReferences[ids[i]] = ids[i];
             }
         }
     }
@@ -199,15 +199,16 @@ function referencesDialog(){
     }
 
     let modal = $('#referencesDialog');
+    let brds = Object.keys(boardReferences);
 
-    for(let i = 0; i < boardReferences.length; i++){
+    for(let i = 0; i < brds.length; i++){
         let el = btnTemplate.cloneNode(true);
         //modal[0].appendChild(el);
 
         list.appendChild(el);
 
-        el.setAttribute('data-id',boardReferences[i]);
-        $(el).text('List(s) on board ' + boardReferences[i]);
+        el.setAttribute('data-id',brds[i]);
+        $(el).text('List(s) on board ' + brds[i]);
     }
 
     modal[0].setAttribute('data-id',brd.id);
