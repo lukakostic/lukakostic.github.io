@@ -94,7 +94,7 @@ function newText(){
 
   el.click(); //////////////////////////
 
-  //fixListUI(parent);
+  fixListUI(parent);
   saveAll();
 }
 
@@ -114,11 +114,11 @@ function newBoard(){
   if(board != "") allBoards[parent.getAttribute('data-id')].content.push(brd.id); //Add to parent list
 
   parent.appendChild(el);
-  loadTextBoard(el,brd.id);
+  loadBoardBoard(el,brd.id);
 
   el.click(); //////////////////////////
   
-  //fixListUI(parent);
+  fixListUI(parent);
   saveAll();
 }
 
