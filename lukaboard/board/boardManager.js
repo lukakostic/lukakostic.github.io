@@ -23,6 +23,9 @@ let mainContentAlbum= EbyId('mainContentAlbum');
 
 let mainList = EbyId('main-list');
 
+let dragOld, dragNew, dragItem;
+
+
 loadAll(()=>{
   newPageOpened();
 });

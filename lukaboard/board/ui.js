@@ -51,6 +51,26 @@ function draw(){
     drawBoard();
   else drawMain();
 
+  $('.sortableList').sortable({
+    items: '.text-board.board-board',
+    start: function(event, ui) {
+        dragItem = ui.item;
+        dragNew = dragOld = ui.item.parent();
+    },
+    stop: function(event, ui) {
+        //alert("Moved " + item + " from " + oldList + " to " + newList);
+        
+        //not needed:
+        dragItem.trigger('mouseup');
+        dragNew.trigger('mouseup');
+        dragOld.trigger('mouseup');
+    },
+    change: function(event, ui) {  
+        if(ui.sender) dragNew = ui.placeholder.parent();
+    },
+    connectWith: ".sortableList"
+}).disableSelection();
+
   setTimeout(()=>{expandInputAll()},200);
   setTimeout(()=>{expandInputAll()},1000);
 }
