@@ -52,7 +52,7 @@ function draw(){
   else drawMain();
 
   $('.sortableList').sortable({
-    items: '.text-board.board-board',
+    items: '.sortable',
     start: function(event, ui) {
         dragItem = ui.item;
         dragNew = dragOld = ui.item.parent();
