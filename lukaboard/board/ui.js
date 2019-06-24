@@ -74,7 +74,7 @@ function draw(){
     },
     connectWith: ".sortableList"
 }).disableSelection();
-
+/*
 $(".textBtn").each(function() {
 
   this.addEventListener("mousedown", function(t) {
@@ -96,7 +96,7 @@ $(".textBtn").each(function() {
   },true);
 
 });
-
+*/
   setTimeout(()=>{expandInputAll()},200);
   setTimeout(()=>{expandInputAll()},1000);
 }
