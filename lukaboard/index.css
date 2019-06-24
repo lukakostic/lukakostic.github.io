@@ -69,6 +69,7 @@ footer p {
   border-radius: 3px !important;
   border-top-right-radius: 6px !important;
   box-shadow: 0px 2px 3px -2px #000;  
+  text-align: center;
 }
 
 .list{
