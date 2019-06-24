@@ -60,6 +60,13 @@ function draw(){
     },
     stop: function(event, ui) {
       console.log('drag stop');
+      //With a delay so that dragging a board doesnt click its button at end
+      setTimeout(()=>{
+        //actually move the board
+        
+
+        dragItem = null;
+      },50);
         //alert("Moved " + item + " from " + oldList + " to " + newList);
         /*
         //not needed:

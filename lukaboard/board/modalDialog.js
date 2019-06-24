@@ -1,4 +1,6 @@
 function showTextBoardDialog(){
+    if(event.srcElement==dragItem[0] || event.srcElement.parentNode == dragItem[0])return;
+
     var textBtn = event.srcElement;
     var brd = allBoards[textBtn.parentNode.getAttribute('data-id')];
 
@@ -19,6 +21,8 @@ function showTextBoardDialog(){
 }
 
 function showBoardBoardDialog(id=null){
+    if(event.srcElement==dragItem[0] || event.srcElement.parentNode == dragItem[0])return;
+    
     if(id == null)
         id = event.srcElement.parentNode.getAttribute('data-id');
     
