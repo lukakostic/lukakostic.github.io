@@ -79,10 +79,10 @@ $(".textBtn").each(function() {
 
   this.addEventListener("mousedown", function() {
       $(this.parentNode).trigger(event);
-  });
+  },true);
   this.addEventListener("mouseup", function() {
       $(this.parentNode).trigger(event);
-  });
+  },true);
 
 });
 
