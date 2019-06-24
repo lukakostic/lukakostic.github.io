@@ -18,8 +18,11 @@ function showTextBoardDialog(){
     },10);
 }
 
-function showBoardBoardDialog(){
-    window.location.href = "https://lukakostic.com/lukaboard/board/?d="+dbx.access+"?b="+event.srcElement.parentNode.getAttribute('data-id');
+function showBoardBoardDialog(id=null){
+    if(id == null)
+        id = event.srcElement.parentNode.getAttribute('data-id');
+    
+    window.location.href = "https://lukakostic.com/lukaboard/board/?d="+dbx.access+"?b="+id;
 }
 
 function optionsBtn(idEl = null){
@@ -153,8 +156,66 @@ function copyIdClicked(){
 
 function referencesDialog(){
     
+    hideOptionsBtn();
+
+    var Btn = event.srcElement;
+    
+    if(Btn.parentNode.getAttribute('data-id') == ""){alert('No references');return;}
+    var brd = allBoards[Btn.parentNode.getAttribute('data-id')];
+
+    if(brd.attributes['references'] == 1){alert('This is the only reference');return;}
+
+    let listReferences = [];
+    
+    //go thru every board get references
+    let ids = Object.keys(allBoards);
+
+    for(let i = 0; i < ids.length; i++){
+        if(allBoards[ids[i]].type == boardTypes.List){
+            if(allBoards[ids[i]].content.contains(brd.id))
+                listReferences.push(ids[i]);
+        }
+    }
+
+    let boardReferences = [];
+
+    //go thru each board, see if it contains any of the listReferences
+    for(let i = 0; i < ids.length; i++){
+        if(allBoards[ids[i]].type == boardTypes.Board){
+            for(let j = 0; j < listReferences.length; j++){
+                if(allBoards[ids[i]].content.contains(listReferences[j]))
+                    boardReferences.push(ids[i]);
+            }
+        }
+    }
+
+    
+    let btnTemplate = document.getElementById('referencesDialogBtn').content.firstElementChild;
+    let list = document.getElementById('referencesDialogList');
+
+    //clear previous buttons
+    while (list.firstChild) {
+        list.removeChild(list.firstChild);
+    }
+
+    let modal = $('#referencesDialog');
+
+    for(let i = 0; i < boardReferences.length; i++){
+        let el = btnTemplate.cloneNode(true);
+        modal[0].appendNode(el);
+
+        list.appendChild(el);
+
+        el.setAttribute('data-id',boardReferences[i]);
+        $(el).text('List(s) on board ' + boardReferences[i]);
+    }
+
+    modal[0].setAttribute('data-id',brd.id);
+    modal.modal('show');
+
+
 }
 
 function referencesDialogBtn(){
-
+    showBoardBoardDialog(event.srcElement.getAttribute('data-id'));
 }
