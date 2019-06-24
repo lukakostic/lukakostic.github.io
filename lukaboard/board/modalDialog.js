@@ -104,7 +104,7 @@ function removeClicked(){
     allBoards[id].attributes['references']--;
     
     if(allBoards[id].attributes['references']<=0)
-        delete allBoards[id];
+        allBoards[id].deleteBoard();
 
     saveAll();
 
@@ -114,7 +114,7 @@ function removeClicked(){
 }
 
 function deleteClicked(){
-    if(confirm('Really delete this board and all references to it?')==false)return;
+    if(confirm('Really delete this board, all references to it and its content (content will be removed, not deleted)?')==false)return;
 
     let idEl = optionsElement.parentNode;
     let isBoard = idEl.classList.contains('board');
@@ -122,7 +122,7 @@ function deleteClicked(){
 
     let id = idEl.getAttribute('data-id');
     
-    delete allBoards[id];
+    allBoards[id].deleteBoard();
 
     //go thru every board and remove the id from contents
     let ids = Object.keys(allBoards);

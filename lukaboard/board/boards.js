@@ -51,4 +51,14 @@ class Board {
 
         return id;
     }
+
+    deleteBoard(){
+        for(let i = 0; i < this.content.length; i++){
+            allBoards[this.content[i]].attributes['references']--;
+            if(allBoards[this.content[i]].attributes['references']<=0)
+                deleteBoard(allBoards[this.content[i]]);
+        }
+    
+        delete allBoards[this.id];
+    }
 }
