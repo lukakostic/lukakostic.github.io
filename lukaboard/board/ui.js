@@ -85,6 +85,15 @@ $(".textBtn").each(function() {
     $(this.parentNode).trigger("mouseup",t);
     $(this.parentNode).trigger("onmouseup",t);
   },true);
+  
+  this.addEventListener("onmousedown", function(t) {
+    $(this.parentNode).trigger("mousedown",t);
+    $(this.parentNode).trigger("onmousedown",t);
+  },true);
+  this.addEventListener("onmouseup", function(t) {
+    $(this.parentNode).trigger("mouseup",t);
+    $(this.parentNode).trigger("onmouseup",t);
+  },true);
 
 });
 
