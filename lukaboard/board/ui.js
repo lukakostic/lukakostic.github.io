@@ -77,11 +77,11 @@ function draw(){
 
 $(".textBtn").each(function() {
 
-  this.addEventListener("mousedown", function() {
-      $(this.parentNode).trigger(event);
+  this.addEventListener("mousedown", function(e) {
+      $(this.parentNode).trigger("mousedown",e);
   },true);
-  this.addEventListener("mouseup", function() {
-      $(this.parentNode).trigger(event);
+  this.addEventListener("mouseup", function(e) {
+      $(this.parentNode).trigger("mouseup",e);
   },true);
 
 });
