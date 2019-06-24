@@ -56,7 +56,7 @@ class Board {
         for(let i = 0; i < allBoards[id].content.length; i++){
             allBoards[id].attributes['references']--;
             if(allBoards[id].attributes['references']<=0)
-                deleteBoard(allBoards[allBoards[id].content[i]]);
+                Board.deleteBoardById(allBoards[allBoards[id].content[i]]);
         }
     
         delete allBoards[id];
