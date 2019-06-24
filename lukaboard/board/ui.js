@@ -54,18 +54,22 @@ function draw(){
   $('.sortableList').sortable({
     items: '.sortable',
     start: function(event, ui) {
+      console.log('drag start');
         dragItem = ui.item;
         dragNew = dragOld = ui.item.parent();
     },
     stop: function(event, ui) {
+      console.log('drag stop');
         //alert("Moved " + item + " from " + oldList + " to " + newList);
-        
+        /*
         //not needed:
         dragItem.trigger('mouseup');
         dragNew.trigger('mouseup');
         dragOld.trigger('mouseup');
+        */
     },
     change: function(event, ui) {  
+      console.log('drag change');
         if(ui.sender) dragNew = ui.placeholder.parent();
     },
     connectWith: ".sortableList"
