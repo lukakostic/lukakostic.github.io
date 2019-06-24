@@ -104,7 +104,7 @@ function removeClicked(){
     allBoards[id].attributes['references']--;
     
     if(allBoards[id].attributes['references']<=0)
-        allBoards[id].deleteBoard();
+        Board.deleteBoard(allBoards[id]);
 
     saveAll();
 
@@ -122,7 +122,7 @@ function deleteClicked(){
 
     let id = idEl.getAttribute('data-id');
     
-    allBoards[id].deleteBoard();
+    Board.deleteBoard(allBoards[id]);
 
     //go thru every board and remove the id from contents
     let ids = Object.keys(allBoards);

@@ -27,13 +27,15 @@ class DropboxManager {
         });
     }
 
-    filesUpload(obj) {
+    filesUpload(obj,callback) {
         this.dropbox.filesUpload(obj)
             .then(function (response) {
                 console.log(response);
+                callback(response);
             })
             .catch(function (error) {
                 console.error(error);
+                callback(response);
             });
     }
 

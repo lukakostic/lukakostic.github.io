@@ -43,12 +43,12 @@ function loadOrDefaultBoard(forceNull){
   draw();
 }
 
-function saveAll() {
+function saveAll(callback) {
   try{
 
     let contents = JSON.stringify(allBoards);
 
-    dbx.filesUpload({ path: '/' + 'lukaboard.lb', contents: contents , mode:'overwrite'});
+    dbx.filesUpload({ path: '/' + 'lukaboard.lb', contents: contents , mode:'overwrite'},callback);
 
   }catch(e){bootbox.alert(e.message);}
 }
@@ -92,10 +92,11 @@ function newText(){
   parent.appendChild(el);
   loadTextBoard(el,brd.id);
 
-  el.getElementsByClassName('textBtn')[0].click(); //////////////////////////
 
   fixListUI(parent);
-  saveAll();
+  saveAll((msg)=>{
+    el.getElementsByClassName('textBtn')[0].click(); //////////////////////////
+  });
 }
 
 function newBoard(){
@@ -116,10 +117,11 @@ function newBoard(){
   parent.appendChild(el);
   loadBoardBoard(el,brd.id);
 
-  el.getElementsByClassName('textBtn')[0].click(); //////////////////////////
   
   fixListUI(parent);
-  saveAll();
+  saveAll((msg)=>{
+    el.getElementsByClassName('textBtn')[0].click(); //////////////////////////
+  });
 }
 
 function newList(){

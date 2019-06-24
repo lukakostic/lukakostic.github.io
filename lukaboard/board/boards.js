@@ -52,13 +52,13 @@ class Board {
         return id;
     }
 
-    deleteBoard(){
-        for(let i = 0; i < this.content.length; i++){
-            allBoards[this.content[i]].attributes['references']--;
-            if(allBoards[this.content[i]].attributes['references']<=0)
-                deleteBoard(allBoards[this.content[i]]);
+    static deleteBoardById(id){
+        for(let i = 0; i < allBoards[id].content.length; i++){
+            allBoards[id].attributes['references']--;
+            if(allBoards[id].attributes['references']<=0)
+                deleteBoard(allBoards[allBoards[id].content[i]]);
         }
     
-        delete allBoards[this.id];
+        delete allBoards[id];
     }
 }
