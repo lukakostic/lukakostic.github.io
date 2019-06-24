@@ -75,13 +75,15 @@ function draw(){
     connectWith: ".sortableList"
 }).disableSelection();
 
-$(".textBtn").each(function () {
+$(".textBtn").each(function() {
+
   this.addEventListener("mousedown", function(e) {
       $(this.parentNode).trigger(e);
   });
   this.addEventListener("mouseup", function(e) {
       $(this.parentNode).trigger(e);
   });
+
 });
 
   setTimeout(()=>{expandInputAll()},200);
