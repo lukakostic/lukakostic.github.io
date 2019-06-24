@@ -158,7 +158,7 @@ function referencesDialog(){
     
     hideOptionsBtn();
 
-    var Btn = event.srcElement;
+    var Btn = optionsElement;
     
     if(Btn.parentNode.getAttribute('data-id') == ""){alert('No references');return;}
     var brd = allBoards[Btn.parentNode.getAttribute('data-id')];
