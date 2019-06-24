@@ -52,6 +52,7 @@ class Board {
         return id;
     }
 
+    //delete board by id, and dereference its children. Children get deleted if at 0 references.
     static deleteBoardById(id){
         if(allBoards[id].type != boardTypes.Text){
             for(let i = 0; i < allBoards[id].content.length; i++){
