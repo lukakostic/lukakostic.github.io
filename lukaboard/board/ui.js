@@ -1,4 +1,9 @@
+function newPageOpened(forceMain = false){
+  if(forceMain) board = "";
+  else board = Board.idFromUrl(url);
 
+  draw();
+}
 
 function uiToFunctions(){
     document.getElementById('homeBtn').onclick = home;
@@ -119,6 +124,9 @@ function fixNewListUI(){
       
 
     }
+
+    
+    document.getElementById('boardTitle').select(); //autopop
 
     fixAlbumUI();
     fixNewListUI();

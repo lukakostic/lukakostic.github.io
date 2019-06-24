@@ -78,7 +78,7 @@ function getElementIndex(node) {
 
 function removeClicked(){
     let idEl = optionsElement.parentNode;
-    let isBoard = idEl.classList.contains('board');
+    let isBoard = idEl.classList.includes('board');
     if(isBoard == false) idEl = idEl.parentNode;
 
     let id = idEl.getAttribute('data-id');
@@ -120,7 +120,7 @@ function deleteClicked(){
     if(confirm('Really delete this board, all references to it and its content (content will be removed, not deleted)?')==false)return;
 
     let idEl = optionsElement.parentNode;
-    let isBoard = idEl.classList.contains('board');
+    let isBoard = idEl.classList.includes('board');
     if(isBoard == false) idEl = idEl.parentNode;
 
     let id = idEl.getAttribute('data-id');
@@ -172,18 +172,18 @@ function referencesDialog(){
 
     for(let i = 0; i < ids.length; i++){
         if(allBoards[ids[i]].type == boardTypes.List){
-            if(allBoards[ids[i]].content.contains(brd.id))
+            if(allBoards[ids[i]].content.includes(brd.id))
                 listReferences.push(ids[i]);
         }
     }
 
     let boardReferences = [];
 
-    //go thru each board, see if it contains any of the listReferences
+    //go thru each board, see if it includes any of the listReferences
     for(let i = 0; i < ids.length; i++){
         if(allBoards[ids[i]].type == boardTypes.Board){
             for(let j = 0; j < listReferences.length; j++){
-                if(allBoards[ids[i]].content.contains(listReferences[j]))
+                if(allBoards[ids[i]].content.includes(listReferences[j]))
                     boardReferences.push(ids[i]);
             }
         }

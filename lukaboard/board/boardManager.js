@@ -23,11 +23,11 @@ let mainContentAlbum= document.getElementById('mainContentAlbum');
 
 let mainList = document.getElementById('main-list');
 
-loadAll();
+loadAll(()=>{
+  newPageOpened();
+});
 uiToFunctions();
 
-
-document.getElementById('boardTitle').select();
 
 
 //bootbox.alert((board==null)?('main board'):('board: ' + board.id));
@@ -35,13 +35,6 @@ document.getElementById('boardTitle').select();
 
 //bootbox.alert("hello :3");
 
-function loadOrDefaultBoard(forceNull){
-
-  if(forceNull) board = "";
-  else board = Board.idFromUrl(url);
-
-  draw();
-}
 
 function saveAll(callback=null) {
   try{
@@ -53,7 +46,7 @@ function saveAll(callback=null) {
   }catch(e){bootbox.alert(e.message);}
 }
 
-function loadAll() {
+function loadAll(callback = null) {
     try{
 
     dbx.filesDownload({ path: '/' + 'lukaboard.lb' },function loaded(contents){
@@ -67,7 +60,7 @@ function loadAll() {
         board = "";
       }
         
-      loadOrDefaultBoard();
+      if(callback) callback();
 
     });
 
