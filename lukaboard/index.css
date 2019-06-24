@@ -68,8 +68,7 @@ footer p {
   overflow: hidden !important;
   border-radius: 3px !important;
   border-top-right-radius: 6px !important;
-  box-shadow: 0px 2px 3px -2px #000;  
-  text-align: center;
+  box-shadow: 0px 2px 3px -2px #000;
 }
 
 .list{
@@ -84,8 +83,8 @@ footer p {
   box-shadow: 0px 2px 3px -2px #000;
 }
 
-.scrollable{
-
+.divBtn{
+  text-align: center;
 }
 
 .main-list{
