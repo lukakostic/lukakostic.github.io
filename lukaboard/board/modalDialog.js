@@ -78,7 +78,7 @@ function getElementIndex(node) {
 
 function removeClicked(){
     let idEl = optionsElement.parentNode;
-    let isBoard = idEl.classList.includes('board');
+    let isBoard = idEl.classList.contains('board');
     if(isBoard == false) idEl = idEl.parentNode;
 
     let id = idEl.getAttribute('data-id');
@@ -120,7 +120,7 @@ function deleteClicked(){
     if(confirm('Really delete this board, all references to it and its content (content will be removed, not deleted)?')==false)return;
 
     let idEl = optionsElement.parentNode;
-    let isBoard = idEl.classList.includes('board');
+    let isBoard = idEl.classList.contains('board');
     if(isBoard == false) idEl = idEl.parentNode;
 
     let id = idEl.getAttribute('data-id');
