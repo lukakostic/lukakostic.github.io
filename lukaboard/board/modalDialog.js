@@ -177,14 +177,14 @@ function referencesDialog(){
         }
     }
 
-    let boardReferences = [];
+    let boardReferences = {};
 
     //go thru each board, see if it includes any of the listReferences
     for(let i = 0; i < ids.length; i++){
         if(allBoards[ids[i]].type == boardTypes.Board){
             for(let j = 0; j < listReferences.length; j++){
                 if(allBoards[ids[i]].content.includes(listReferences[j]))
-                    boardReferences[ids[i]] = ids[i];
+                    boardReferences[ids[i]] = null; //just some value
             }
         }
     }
