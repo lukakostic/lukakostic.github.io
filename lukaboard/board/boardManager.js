@@ -5,7 +5,6 @@ let dbx = DropboxManager.fromUrl(url);
 let allBoards = {}; //hashmap / object of all board objects: [id]:board
 let board = "";
 
-let optionsElement = null;
 
 let boardTypes = {
   Text : 1,
@@ -13,24 +12,29 @@ let boardTypes = {
   List : 3
 };
 
-
+/////////////////////////////////////////////////////////////////////// Key page elements
 let textBrdTemplate = getTemplateFChild('textBoardTemplate');
 let boardBrdTemplate = getTemplateFChild('boardBoardTemplate');
 let listTemplate = getTemplateFChild('listTemplate');
 
 let contentAlbum = EbyId('contentAlbum');
 let mainContentAlbum= EbyId('mainContentAlbum');
-
 let mainList = EbyId('main-list');
+///////////////////////////////////////////////////////////////////////
 
+/////////////////////////////////////////////////////////////////////// UI helper / tracking variables
 let dragOld, dragNew, dragItem;
+let oldDragIndex, newDragIndex;
 
+let optionsElement = null;
+///////////////////////////////////////////////////////////////////////
 
+/////////////////////////////////////////////////////////////////////// OnLoad functions
 loadAll(()=>{
   newPageOpened();
 });
 uiToFunctions();
-
+///////////////////////////////////////////////////////////////////////
 
 
 //bootbox.alert((board==null)?('main board'):('board: ' + board.id));
