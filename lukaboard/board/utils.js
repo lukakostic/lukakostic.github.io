@@ -1,6 +1,7 @@
 
 ////////////////////////////////////////////////////////////////////// specific
 
+//if board btn return board element, if board get list element, if list return board
 function getParentElementBoard(el){
 
 }

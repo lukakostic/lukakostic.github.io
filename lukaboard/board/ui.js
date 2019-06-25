@@ -62,6 +62,7 @@ function makeDraggable(){
         //actually move the board
         newDragIndex = getElementIndex(dragItem[0]);
         
+        alert(dragItem[0].outerHTML);
 
         dragItem = null;
       },50);
