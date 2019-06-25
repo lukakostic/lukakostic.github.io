@@ -201,15 +201,9 @@ function fixNewListUI(){
 
     clearBoards(mainList);
 
-    for(let l = 0; l < allBoards[""].content.length; l++){
+    loadList(mainList,"");
 
-      let listEl = listTemplate.cloneNode(true);
-      contentAlbum.appendChild(listEl);
-
-      
-      loadList(listEl,"");
-
-    }
+    
 
     /*
     let ids = Object.keys(allBoards);
@@ -260,9 +254,10 @@ function loadBoardBoard(boardBoardEl, brd){
 function loadList(listEl, brd){
   if (typeof brd === 'string' || brd instanceof String) brd = allBoards[brd];
 
+  //since main board doesnt have a title or ID
+
   listEl.getElementsByClassName("title-text")[0].value = brd.name;
   setBId(listEl, brd.id);
-
   
   for(let i = 0; i < brd.content.length; i++){
     let brd2 = allBoards[brd.content[i]];
