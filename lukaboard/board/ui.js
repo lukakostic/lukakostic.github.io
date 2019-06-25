@@ -162,7 +162,8 @@ function fixNewListUI(){
   }
 
   function drawBoard(){
-    EbyId('header').classList.remove('v-hidden');
+    EbyId('header').classList.remove('d-none');
+    EbyId('headerMain').classList.add('d-none');
 
     mainContentAlbum.classList.add('d-none');
     contentAlbum.classList.remove('d-none');
@@ -194,7 +195,8 @@ function fixNewListUI(){
 }
 
   function drawMain(){
-    EbyId('header').classList.add('v-hidden');
+    EbyId('header').classList.add('d-none');
+    EbyId('headerMain').classList.remove('d-none');
 
     EbyId('contentAlbum').classList.add('d-none');
     EbyId('mainContentAlbum').classList.remove('d-none');
