@@ -46,16 +46,13 @@ function clearLists(){
   }
 }
 
-function draw(){
-  if(board!="")
-    drawBoard();
-  else drawMain();
-
-  $('.sortableList').sortable({
-    items: '.sortable',
+function makeDraggable(){
+  $('.draggableList').sortable({
+    items: '.draggable',
     start: function(event, ui) {
       console.log('drag start');
         dragItem = ui.item;
+        oldDragIndex = getElementIndex(dragItem[0]);
         dragNew = dragOld = ui.item.parent();
     },
     stop: function(event, ui) {
@@ -63,25 +60,21 @@ function draw(){
       //With a delay so that dragging a board doesnt click its button at end
       setTimeout(()=>{
         //actually move the board
+        newDragIndex = getElementIndex(dragItem[0]);
         
 
         dragItem = null;
       },50);
-        //alert("Moved " + item + " from " + oldList + " to " + newList);
-        /*
-        //not needed:
-        dragItem.trigger('mouseup');
-        dragNew.trigger('mouseup');
-        dragOld.trigger('mouseup');
-        */
     },
     change: function(event, ui) {  
       console.log('drag change');
         if(ui.sender) dragNew = ui.placeholder.parent();
         fixListUI(dragNew[0]);
     },
-    connectWith: ".sortableList"
+    connectWith: ".draggableList"
 }).disableSelection();
+
+
 /*
 $(".textBtn").each(function() {
 
@@ -105,6 +98,15 @@ $(".textBtn").each(function() {
 
 });
 */
+}
+
+function draw(){
+  if(board!="")
+    drawBoard();
+  else drawMain();
+
+  makeDraggable();
+
   setTimeout(()=>{expandInputAll()},200);
   setTimeout(()=>{expandInputAll()},1000);
 }
@@ -223,7 +225,8 @@ function fixNewListUI(){
 function loadTextBoard(textBoardEl, brd){
   if (typeof brd === 'string' || brd instanceof String) brd = allBoards[brd];
 
-  textBoardEl.setAttribute('data-id', brd.id);
+  setBid(textBoardEl, brd.id);
+
   $(textBoardEl.getElementsByClassName('textBtn')[0]).contents()[1].nodeValue = brd.name;
   
   if(brd.content.length>0) 
@@ -235,7 +238,7 @@ function loadTextBoard(textBoardEl, brd){
 function loadBoardBoard(boardBoardEl, brd){
   if (typeof brd === 'string' || brd instanceof String) brd = allBoards[brd];
 
-  boardBoardEl.setAttribute('data-id', brd.id);
+  setBid(boardBoardEl, brd.id);
   $(boardBoardEl.getElementsByClassName('textBtn')[0]).contents()[0].nodeValue = brd.name;
 }
 
@@ -243,7 +246,7 @@ function loadList(listEl, brd){
   if (typeof brd === 'string' || brd instanceof String) brd = allBoards[brd];
 
   listEl.getElementsByClassName("title-text")[0].value = brd.name;
-  listEl.setAttribute('data-id', brd.id);
+  setBid(listEl, brd.id);
 
   
   for(let i = 0; i < brd.content.length; i++){
@@ -270,7 +273,7 @@ function loadAllBoardsByDataId(brdId){
   let boardEls = document.getElementsByClassName('board');
 
   for(let i = 0; i < boardEls.length; i++){
-      if(boardEls[i].getAttribute('data-id')==brdId){
+      if(getBid(boardEls[i])==brdId){
           if(allBoards[brdId].type == boardTypes.Text)
            loadTextBoard(boardEls[i],brdId);
           else if(allBoards[brdId].type == boardTypes.Board)

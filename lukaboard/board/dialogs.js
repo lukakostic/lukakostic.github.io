@@ -2,7 +2,7 @@ function showTextBoardDialog(){
     if(dragItem!=null && ( event.srcElement==dragItem[0] || event.srcElement.parentNode == dragItem[0]))return;
 
     var textBtn = event.srcElement;
-    var brd = allBoards[textBtn.parentNode.getAttribute('data-id')];
+    var brd = allBoards[getBId(textBtn.parentNode)];
 
     if(brd==null) alert('Text board modal: brd == null');
 
@@ -10,7 +10,7 @@ function showTextBoardDialog(){
     let text = $('#textBoardDialogText');
     text.val(brd.content);
     let modal = $('#textBoardDialog');
-    modal[0].setAttribute('data-id',brd.id);
+    setBId(modal[0],brd.id);
     modal.modal('show');
 
     //can do without timeout, but set timeout to like 0.8 seconds if you add 'modal fade' instead of just 'modal'
@@ -24,7 +24,7 @@ function showBoardBoardDialog(id=null){
     if(dragItem!=null && ( event.srcElement==dragItem[0] || event.srcElement.parentNode == dragItem[0]))return;
 
     if(id == null)
-        id = event.srcElement.parentNode.getAttribute('data-id');
+        id = getBId(event.srcElement.parentNode);
     
     window.location.href = "https://lukakostic.com/lukaboard/board/?d="+dbx.access+"?b="+id;
 }
@@ -44,8 +44,8 @@ function showSeeReferencesDialog(){
 
     var Btn = optionsElement;
     
-    if(Btn.parentNode.getAttribute('data-id') == ""){alert('No references');return;}
-    var brd = allBoards[Btn.parentNode.getAttribute('data-id')];
+    if(getBId(Btn.parentNode) == ""){alert('No references');return;}
+    var brd = allBoards[getBId(Btn.parentNode)];
 
     if(brd.attributes['references'] == 1){alert('This is the only reference');return;}
 
@@ -91,11 +91,11 @@ function showSeeReferencesDialog(){
 
         list.appendChild(el);
 
-        el.setAttribute('data-id',brds[i]);
+        setBId(el, brds[i]);
         $(el).text('List(s) on board ' + brds[i]);
     }
 
-    modal[0].setAttribute('data-id',brd.id);
+    setBId(modal[0], brd.id);
     modal.modal('show');
 
 
@@ -119,7 +119,7 @@ function newReferenceBtn(){
         drawMain();
     }else{
         let lst = event.srcElement.parentNode.parentNode.parentNode;
-        let lstId = lst.getAttribute('data-id');
+        let lstId = getBId(lst);
 
         allBoards[lstId].content.push(refer);
 
@@ -140,7 +140,7 @@ function removeClicked(){
     let isBoard = idEl.classList.contains('board');
     if(isBoard == false) idEl = idEl.parentNode;
 
-    let id = idEl.getAttribute('data-id');
+    let id = getBId(idEl);
 
     if(allBoards[id].attributes['references']<=1 && confirm('This is the last reference to this board, really remove it? (Will delete the board)')==false)return;
 
@@ -149,7 +149,7 @@ function removeClicked(){
 
         console.log('removed ind '+ ind);
 
-        allBoards[idEl.parentNode.getAttribute('data-id')].content.splice(ind,1);
+        allBoards[getBId(idEl.parentNode)].content.splice(ind,1);
     }else{
         //is List
         if(board == ""){
@@ -182,7 +182,7 @@ function deleteClicked(){
     let isBoard = idEl.classList.contains('board');
     if(isBoard == false) idEl = idEl.parentNode;
 
-    let id = idEl.getAttribute('data-id');
+    let id = getBId(idEl);
     
     Board.deleteBoardById(id);
 
@@ -207,7 +207,7 @@ function deleteClicked(){
 }
 
 function copyIdClicked(){
-    let id = optionsElement.parentNode.getAttribute('data-id');
+    let id = getBId(optionsElement.parentNode);
     window.prompt("Copy to clipboard: Ctrl+C, Enter", id);
     
     hideOptionsDialog();
@@ -215,5 +215,5 @@ function copyIdClicked(){
 
 
 function referencesDialogBtn(){
-    showBoardBoardDialog(event.srcElement.getAttribute('data-id'));
+    showBoardBoardDialog(getBId(event.srcElement));
 }

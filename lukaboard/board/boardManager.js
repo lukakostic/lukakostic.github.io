@@ -3,7 +3,7 @@ let url = window.location.href.replace('#', '');
 let dbx = DropboxManager.fromUrl(url);
 
 let allBoards = {}; //hashmap / object of all board objects: [id]:board
-let board = "";
+let board = ""; //id of current board
 
 
 let boardTypes = {
@@ -37,13 +37,8 @@ uiToFunctions();
 ///////////////////////////////////////////////////////////////////////
 
 
-//bootbox.alert((board==null)?('main board'):('board: ' + board.id));
 
-
-//bootbox.alert("hello :3");
-
-
-function saveAll(callback=null) {
+function saveAll(callback = null) {
   try{
 
     let contents = JSON.stringify(allBoards);
@@ -75,7 +70,6 @@ function loadAll(callback = null) {
 }
 
 function newText(){
-  //alert(event.srcElement.outerHTML);
   
   let template = getTemplateFChild('textBoardTemplate');
   let parent = event.srcElement.parentNode.parentNode.parentNode;
@@ -87,7 +81,7 @@ function newText(){
   let brd = new Board(boardTypes.Text,"Text","",atr);
 
   allBoards[brd.id]=brd;
-  if(board != "") allBoards[parent.getAttribute('data-id')].content.push(brd.id); //Add to parent list
+  if(board != "") allBoards[getBId(parent)].content.push(brd.id); //Add to parent list
 
   parent.appendChild(el);
   loadTextBoard(el,brd.id);
@@ -99,7 +93,6 @@ function newText(){
 }
 
 function newBoard(){
-  //alert(event.srcElement.outerHTML);
 
   let template = getTemplateFChild('boardBoardTemplate');
   let parent = event.srcElement.parentNode.parentNode.parentNode;
@@ -111,7 +104,7 @@ function newBoard(){
   let brd = new Board(boardTypes.Board,"Board",[],atr);
 
   allBoards[brd.id]=brd;
-  if(board != "") allBoards[parent.getAttribute('data-id')].content.push(brd.id); //Add to parent list
+  if(board != "") allBoards[getBId(parent)].content.push(brd.id); //Add to parent list
 
   parent.appendChild(el);
   loadBoardBoard(el,brd.id);
@@ -124,7 +117,6 @@ function newBoard(){
 }
 
 function newList(){
-  //alert(event.srcElement.outerHTML);
 
   let template = getTemplateFChild('listTemplate');
 
@@ -138,7 +130,7 @@ function newList(){
   allBoards[board].content.push(brd.id);
 
   contentAlbum.appendChild(el);
-  el.setAttribute('data-id', brd.id);
+  setBId(el, brd.id);
 
   
   fixNewListUI();
