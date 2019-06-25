@@ -61,6 +61,8 @@ function makeDraggable(){
       setTimeout(()=>{
         //actually move the board
         newDragIndex = getElementIndex(dragItem[0]);
+
+        alert('old index: ' + oldDragIndex + ' new: ' + newDragIndex);
         
         alert(dragItem[0].outerHTML);
 
