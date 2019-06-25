@@ -1,11 +1,11 @@
 class Board {
-    constructor(type, name, content,  attributes = {}, id = "") {
+    constructor(type, name, content,  attributes = {}, id = null) {
         this.type = type;
         this.name = name; //string
         this.content = content; //text or array of ids [string]
         this.attributes = attributes; //object (isBoard,onMain,tags, etc.)
         this.id = id; //string
-        if (id == "") this.id = Board.makeId(8);
+        if (id === null) this.id = Board.makeId(8);
     }
 
     static clone(toClone) {
