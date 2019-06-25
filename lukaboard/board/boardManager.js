@@ -119,7 +119,11 @@ function newList(){
 
   let el = listTemplate.cloneNode(true);
 
-  let name = event.srcElement.firstElementChild.value;
+  let inp = event.srcElement.firstElementChild;
+  
+  $(inp).val('');
+
+  let name = inp.value;
   el.getElementsByClassName("title-text")[0].value = name;
 
   let brd = new Board(boardTypes.List,name,[],{references:1});
