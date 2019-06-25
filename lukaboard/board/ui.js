@@ -226,7 +226,7 @@ function fixNewListUI(){
 function loadTextBoard(textBoardEl, brd){
   if (typeof brd === 'string' || brd instanceof String) brd = allBoards[brd];
 
-  setBid(textBoardEl, brd.id);
+  setBId(textBoardEl, brd.id);
 
   $(textBoardEl.getElementsByClassName('textBtn')[0]).contents()[1].nodeValue = brd.name;
   
@@ -239,7 +239,7 @@ function loadTextBoard(textBoardEl, brd){
 function loadBoardBoard(boardBoardEl, brd){
   if (typeof brd === 'string' || brd instanceof String) brd = allBoards[brd];
 
-  setBid(boardBoardEl, brd.id);
+  setBId(boardBoardEl, brd.id);
   $(boardBoardEl.getElementsByClassName('textBtn')[0]).contents()[0].nodeValue = brd.name;
 }
 
@@ -247,7 +247,7 @@ function loadList(listEl, brd){
   if (typeof brd === 'string' || brd instanceof String) brd = allBoards[brd];
 
   listEl.getElementsByClassName("title-text")[0].value = brd.name;
-  setBid(listEl, brd.id);
+  setBId(listEl, brd.id);
 
   
   for(let i = 0; i < brd.content.length; i++){
@@ -274,7 +274,7 @@ function loadAllBoardsByDataId(brdId){
   let boardEls = document.getElementsByClassName('board');
 
   for(let i = 0; i < boardEls.length; i++){
-      if(getBid(boardEls[i])==brdId){
+      if(getBId(boardEls[i])==brdId){
           if(allBoards[brdId].type == boardTypes.Text)
            loadTextBoard(boardEls[i],brdId);
           else if(allBoards[brdId].type == boardTypes.Board)
