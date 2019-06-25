@@ -67,12 +67,9 @@ function makeDraggable(){
 
         allBoards[getBId(dragNew)].content.splice(newDragIndex-1,0,getBId(dragItem[0]));
 
+        dragItem = null;
         saveAll();
 
-        //alert('old index: ' + oldDragIndex + ' new: ' + newDragIndex);
-        
-
-        dragItem = null;
       },50);
     },
     change: function(event, ui) {  
