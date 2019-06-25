@@ -201,7 +201,17 @@ function fixNewListUI(){
 
     clearBoards(mainList);
 
+    for(let l = 0; l < allBoards[""].content.length; l++){
 
+      let listEl = listTemplate.cloneNode(true);
+      contentAlbum.appendChild(listEl);
+
+      
+      loadList(listEl,"");
+
+    }
+
+    /*
     let ids = Object.keys(allBoards);
     //fill boards
     for(let i = 0; i < ids.length; i++){
@@ -222,7 +232,7 @@ function fixNewListUI(){
         
       }
     }
-    
+    */
     fixListUI(mainList);
   }
 
