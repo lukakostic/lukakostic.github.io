@@ -39,7 +39,7 @@ uiToFunctions();
 function resetBoards(){
   allBoards = {};
   //main board
-  allBoards[""]=new Board(boardTypes.List,"",[],{references:99999999999,main:true});
+  allBoards[""] = new Board(boardTypes.List,"",[],{references:99999999999,main:true},"");
   board = "";
 }
 
