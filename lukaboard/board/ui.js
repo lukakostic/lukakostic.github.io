@@ -62,11 +62,10 @@ function makeDraggable(){
         //actually move the board
         newDragIndex = getElementIndex(dragItem[0]);
 
-        allBoards[getBId(dragOld[0])].content.splice(oldDragIndex-1,1);
         
-
-        allBoards[getBId(dragNew[0])].content.splice(newDragIndex-1,0,getBId(dragItem[0]));
-
+          allBoards[getBId(dragOld[0])].content.splice(oldDragIndex-1,1);
+          allBoards[getBId(dragNew[0])].content.splice(newDragIndex-1,0,getBId(dragItem[0]));
+        
         dragItem = null;
         saveAll();
 

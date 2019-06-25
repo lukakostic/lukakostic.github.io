@@ -2,9 +2,9 @@ let url = window.location.href.replace('#', '');
 
 let dbx = DropboxManager.fromUrl(url);
 
-let allBoards = {}; //hashmap / object of all board objects: [id]:board
-let board = ""; //id of current board
+let allBoards,board; //allBoards = hashmap of all board objects: [id]:board, board = current id
 
+resetBoards();
 
 let boardTypes = {
   Text : 1,
@@ -36,7 +36,12 @@ loadAll(()=>{
 uiToFunctions();
 ///////////////////////////////////////////////////////////////////////
 
-
+function resetBoards(){
+  allBoards = {};
+  //main board
+  allBoards[""]=new Board(boardTypes.List,"",[],{references:99999999999,main:true});
+  board = "";
+}
 
 function saveAll(callback = null) {
   try{
@@ -58,8 +63,7 @@ function loadAll(callback = null) {
 
         //bootbox.alert(contents);
       }else{
-        allBoards = {};
-        board = "";
+        resetBoards();
       }
         
       if(callback) callback();
@@ -71,17 +75,14 @@ function loadAll(callback = null) {
 
 function newText(){
   
-  let template = getTemplateFChild('textBoardTemplate');
   let parent = event.srcElement.parentNode.parentNode.parentNode;
 
-  let el = template.cloneNode(true);
+  let el = textBrdTemplate.cloneNode(true);
 
-  let atr = {references:1};
-  if(board == "")atr['onMain'] = true;
-  let brd = new Board(boardTypes.Text,"Text","",atr);
+  let brd = new Board(boardTypes.Text,"Text","",{references:1});
 
   allBoards[brd.id]=brd;
-  if(board != "") allBoards[getBId(parent)].content.push(brd.id); //Add to parent list
+  allBoards[getBId(parent)].content.push(brd.id); //Add to parent list
 
   parent.appendChild(el);
   loadTextBoard(el,brd.id);
@@ -94,17 +95,15 @@ function newText(){
 
 function newBoard(){
 
-  let template = getTemplateFChild('boardBoardTemplate');
   let parent = event.srcElement.parentNode.parentNode.parentNode;
 
-  let el = template.cloneNode(true);
+  let el = boardBrdTemplate.cloneNode(true);
 
   let atr = {description:'Description',references:1};
-  if(board == "")atr['onMain'] = true;
   let brd = new Board(boardTypes.Board,"Board",[],atr);
 
   allBoards[brd.id]=brd;
-  if(board != "") allBoards[getBId(parent)].content.push(brd.id); //Add to parent list
+  allBoards[getBId(parent)].content.push(brd.id); //Add to parent list
 
   parent.appendChild(el);
   loadBoardBoard(el,brd.id);
@@ -118,9 +117,7 @@ function newBoard(){
 
 function newList(){
 
-  let template = getTemplateFChild('listTemplate');
-
-  let el = template.cloneNode(true);
+  let el = listTemplate.cloneNode(true);
 
   let name = event.srcElement.firstElementChild.value;
   el.getElementsByClassName("title-text")[0].value = name;

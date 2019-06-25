@@ -92,7 +92,11 @@ function showSeeReferencesDialog(){
         list.appendChild(el);
 
         setBId(el, brds[i]);
-        $(el).text('List(s) on board ' + brds[i]);
+        
+        if(brds[i] == "")
+            $(el).text('Main Board');
+        else
+            $(el).text('List(s) on Board ' + brds[i]);
     }
 
     setBId(modal[0], brd.id);
@@ -112,12 +116,13 @@ function newReferenceBtn(){
     if(refer==null)return;
     if(allBoards[refer] == null){alert("ID doesn't exist :(");return;}
     if(allBoards[refer].type == boardTypes.List){alert("Cant embed lists into boards.");return;}
-
+/*
     if(board == ""){
         allBoards[refer].attributes['onMain'] = true;
         
         drawMain();
     }else{
+  */
         let lst = event.srcElement.parentNode.parentNode.parentNode;
         let lstId = getBId(lst);
 
@@ -125,7 +130,7 @@ function newReferenceBtn(){
 
         clearBoards(lst);
         loadList(lst,lstId);
-    }
+    //}
 
     
     allBoards[refer].attributes['references']++;
@@ -152,15 +157,15 @@ function removeClicked(){
         allBoards[getBId(idEl.parentNode)].content.splice(ind,1);
     }else{
         //is List
-        if(board == ""){
-            delete allBoards[id].attributes['onMain']; 
-        }else{
+        //if(board == ""){
+        //    delete allBoards[id].attributes['onMain']; 
+        //}else{
             let ind = getElementIndex(idEl);
 
             console.log('removed ind '+ ind);
 
             allBoards[board].content.splice(ind,1);
-        }
+        //}
     }
     
     allBoards[id].attributes['references']--;
