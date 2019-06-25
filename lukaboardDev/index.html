@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="index.css">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dropbox.js/4.0.17/Dropbox-sdk.min.js"></script>
+
+  <script src="homepage.js" defer></script>
+
+
+  <title>LukaBoard</title>
+</head>
+
+
+<body class="bg-dark">
+<main role="main">
+
+  <div class="modal show" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Modal title</h4>
+        </div>
+        <div class="modal-body">
+          <p>One fine body&hellip;</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <form action="/lukaboard/board">
+      <div class="container-fluid">
+        <div class="input-group mb-3 jumbotron bg-dark">
+          <input id="token" name="d" type="text" placeholder="Dropbox access token" class="form-control" autocomplete="on">
+          <div class="input-group-append">
+            <button id="loginBtn" class="btn btn-outline-primary" type="submit">Open boards</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+
+  <div class="album py-5 bg-dark">
+    <div class="container">
+
+      <div class="row">
+
+        <template id="albumPostTemplate">
+          <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+              <img src="thumb.png" width="100%" height="225" background="#55595c" color="#eceeef" class="card-img-top"
+                text="Thumbnail">
+              <div class="card-body">
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                  content. This content is a little bit longer.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  </div>
+                  <small class="text-muted">9 mins</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+
+      </div>
+    </div>
+  </div>
+
+</main>
+</body>
+
+<footer class="text-muted bg-dark">
+
+      <p class="float-right">
+      </p>
+      <p>Made by <a href="https://github.com/lukakostic"> Luka Kostic</a></p>
+
+  </footer>
+
+</html>
