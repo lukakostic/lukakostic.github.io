@@ -4,13 +4,13 @@ let dbx = DropboxManager.fromUrl(url);
 
 let allBoards,board; //allBoards = hashmap of all board objects: [id]:board, board = current id
 
-resetBoards();
-
 let boardTypes = {
   Text : 1,
   Board : 2,
   List : 3
 };
+
+resetBoards();
 
 /////////////////////////////////////////////////////////////////////// Key page elements
 let textBrdTemplate = getTemplateFChild('textBoardTemplate');
