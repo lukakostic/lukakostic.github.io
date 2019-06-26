@@ -136,5 +136,6 @@ function newList(){
   fixAlbumUI();
   saveAll();
 
+  makeDraggable();
   $(inp).val(''); //clear listbox
 }
