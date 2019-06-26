@@ -47,6 +47,8 @@ function clearLists(){
 }
 
 function makeDraggable(){
+
+  //make boards draggable
   $('.draggableList').sortable({
     items: '.draggable',
     start: function(event, ui) {
@@ -79,6 +81,39 @@ function makeDraggable(){
     connectWith: ".draggableList"
 }).disableSelection();
 
+
+
+  //make lists draggable
+  $('.draggableAlbum').sortable({
+    items: '.draggableList',
+    start: function(event, ui) {
+      console.log('drag list start');
+        dragItem = ui.item;
+        oldDragIndex = getElementIndex(dragItem[0]);
+    },
+    stop: function(event, ui) {
+      console.log('drag list stop');
+      //With a delay so that dragging a board doesnt click its button at end
+      setTimeout(()=>{
+        //actually move the board
+        newDragIndex = getElementIndex(dragItem[0]);
+
+        
+          allBoards[board].content.splice(oldDragIndex,1);
+          allBoards[board].content.splice(newDragIndex,0,getBId(dragItem[0]));
+        
+        dragItem = null;
+        saveAll();
+
+      },50);
+    },
+    change: function(event, ui) {
+      console.log('drag list change');
+      //if(ui.sender) dragNew = ui.placeholder.parent();
+        
+      //fixNewListUI();
+    }
+}).disableSelection();
 
 /*
 $(".textBtn").each(function() {
