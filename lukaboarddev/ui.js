@@ -293,7 +293,7 @@ function loadList(listEl, brd){
 
   //since main board doesnt have a title or ID
 
-  titleText = lestEl.getElementsByClassName("title-text")[0];
+  titleText = listEl.getElementsByClassName("title-text")[0];
   titleText.value = brd.name;
   $(titleText).html(brd.name); //we assume its div at start
   setBId(listEl, brd.id);
