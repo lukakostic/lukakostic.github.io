@@ -295,7 +295,7 @@ function loadAllBoardsByDataId(brdId){
 }
 
   function home(){
-    window.location.href = "https://lukakostic.com/lukaboard/board/?d="+dbx.access;
+    window.location.href = siteUrl+"/?d="+dbx.access;
   }
 
   function up(){
