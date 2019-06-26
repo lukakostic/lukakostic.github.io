@@ -122,7 +122,9 @@ function newList(){
   let inp = event.srcElement.firstElementChild;
   let name = inp.value;
 
-  el.getElementsByClassName("title-text")[0].value = name;
+  titleText = el.getElementsByClassName("title-text")[0];
+  titleText.value = name;
+  titleText.innerHTML = name; //we assume its div at start
 
   let brd = new Board(boardTypes.List,name,[],{references:1});
   allBoards[brd.id]=brd;

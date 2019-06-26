@@ -302,9 +302,9 @@
 
       <div class="title row justify-content-between bg-inherit" style="margin: 0px; width:100%;">
 
-        <input type="text" class="title-text card-name bg-inherit noborder"
-          style="width: calc(100% - 33px); height: 100%; padding-left: 5px; padding-right: 2px; padding-top: 2px; white-space: nowrap; overflow: hidden; font-weight: bolder; text-overflow: ellipsis; color:white;"
-          value="Card Title" oninput="listTitleChanged()"></input>
+        <div type="text" class="title-text card-name bg-inherit noborder"
+          style="width: calc(100% - 33px); height: 27px !important; padding-left: 5px; padding-right: 2px; padding-top: 2px; white-space: nowrap; overflow: hidden; font-weight: bolder; text-overflow: ellipsis; color:white;"
+          value="Card Title" onclick="listTitleClicked(this)" oninput="listTitleChanged()"></div>
 
         <button type="button" class="btn btn-sm" style="margin-left:auto; color: white;" onclick="optionsBtn(this.parentNode.parentNode)"><i
             class="fas fa-circle"></i></button>
