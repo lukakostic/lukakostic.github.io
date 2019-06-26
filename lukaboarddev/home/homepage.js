@@ -1,3 +1,1 @@
-function openBoards(){
-
-}
+document.getElementById('form').setAttribute('action',homeFormAction);
