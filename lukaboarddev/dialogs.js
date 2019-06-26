@@ -116,7 +116,7 @@ function listTitleBlurd(titleText){
     //can only be blur while as input, so turn to div
     titleText.onclick = "listTitleClicked(this)";
     titleText.onblur="";
-    titleText.innerHTML = titleText.value;
+    $(titleText).text(titleText.value);
     titleText.outerHTML = titleText.outerHTML.replace('<input','<div').replace('</input>','</div>');
 }
 
