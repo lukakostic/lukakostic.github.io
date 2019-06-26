@@ -26,7 +26,7 @@ function showBoardBoardDialog(id=null){
     if(id == null)
         id = getBId(event.srcElement.parentNode);
     
-    window.location.href = "https://lukakostic.com/lukaboard/board/?d="+dbx.access+"?b="+id;
+    window.location.href = siteUrl+"/?d="+dbx.access+"?b="+id;
 }
 
 function showOptionsDialog(idEl = null){
