@@ -109,14 +109,14 @@ function listTitleClicked(titleText){
     //can only be clicked while as div, so turn to input
     titleText.onclick = "";
     titleText.onblur="listTitleBlur(this)";
-    titleText.innerHTML = "";
+    $(titleText).html("");
     titleText.outerHTML = titleText.outerHTML.replace('<div','<input').replace('</div>','</input>');
 }
 function listTitleBlurd(titleText){
     //can only be blur while as input, so turn to div
     titleText.onclick = "listTitleClicked(this)";
     titleText.onblur="";
-    $(titleText).text(titleText.value);
+    $(titleText).html(titleText.value);
     titleText.outerHTML = titleText.outerHTML.replace('<input','<div').replace('</input>','</div>');
 }
 
