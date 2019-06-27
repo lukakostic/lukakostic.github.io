@@ -17,10 +17,11 @@ function boardDescriptionChanged(){
 }
 
 function listTitleChanged(){
+    console.log('list title changed');
+
     //alert("List title changed");
     let listId = event.srcElement.parentNode.parentNode.getAttribute('data-id');
-    let lst = allBoards[listId];
-    lst.name = event.srcElement.value;
+    allBoards[listId].name = $(event.srcElement).text();
 
     saveAll();
 }
@@ -28,8 +29,7 @@ function listTitleChanged(){
 function textTitleChanged(){
     //alert("Text title changed");
     let brdId = EbyId('textBoardDialog').getAttribute('data-id');
-    let brd = allBoards[brdId];
-    brd.name = event.srcElement.value;
+    allBoards[brdId].name = event.srcElement.value;
 
     loadAllBoardsByDataId(brdId);
 
@@ -39,8 +39,7 @@ function textTitleChanged(){
 function textDescriptionChanged(){
     //alert("Text description changed");
     let brdId = EbyId('textBoardDialog').getAttribute('data-id');
-    let brd = allBoards[brdId];
-    brd.content = event.srcElement.value;
+    allBoards[brdId].content = event.srcElement.value;
 
     loadAllBoardsByDataId(brdId);
 

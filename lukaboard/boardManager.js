@@ -122,9 +122,12 @@ function newList(){
   let inp = event.srcElement.firstElementChild;
   let name = inp.value;
 
-  titleText = el.getElementsByClassName("title-text")[0];
-  titleText.value = name;
-  titleText.innerHTML = name; //we assume its div at start
+  let titleText = el.getElementsByClassName("title-text")[0];
+//  $(titleText).val(name);
+  $(titleText).html(name); //we assume its div at start
+  //$(titleText).prop("readonly",true);
+  titleText.addEventListener('click',listTitleClicked,true);
+  titleText.onblur = ()=>{listTitleBlur();};
 
   let brd = new Board(boardTypes.List,name,[],{references:1});
   allBoards[brd.id]=brd;
@@ -138,5 +141,6 @@ function newList(){
   fixAlbumUI();
   saveAll();
 
+  makeDraggable();
   $(inp).val(''); //clear listbox
 }

@@ -26,7 +26,7 @@ function showBoardBoardDialog(id=null){
     if(id == null)
         id = getBId(event.srcElement.parentNode);
     
-    window.location.href = "https://lukakostic.com/lukaboard/board/?d="+dbx.access+"?b="+id;
+    window.location.href = siteUrl+"/?d="+dbx.access+"?b="+id;
 }
 
 function showOptionsDialog(idEl = null){
@@ -105,19 +105,27 @@ function showSeeReferencesDialog(){
 
 }
 
-function listTitleClicked(titleText){
+function listTitleClicked(){
+    let titleText = event.srcElement;
+    $(titleText).focus();
+
     //can only be clicked while as div, so turn to input
-    titleText.onclick = "";
-    titleText.onblur="listTitleBlur(this)";
-    titleText.innerHTML = "";
-    titleText.outerHTML = titleText.outerHTML.replace('<div','<input').replace('</div>','</input>');
+//    titleText.onclick = null;
+    
+//    $(titleText).html("");
+//    titleText.outerHTML = titleText.outerHTML.replace('<div','<input').replace('</div>','</input>');
+//    $(titleText).prop("readonly",false);
+console.log('Title click');
 }
-function listTitleBlurd(titleText){
+function listTitleBlur(){
+    let titleText = event.srcElement;
     //can only be blur while as input, so turn to div
-    titleText.onclick = "listTitleClicked(this)";
-    titleText.onblur="";
-    titleText.innerHTML = titleText.value;
-    titleText.outerHTML = titleText.outerHTML.replace('<input','<div').replace('</input>','</div>');
+//    titleText.onclick = ()=>{listTitleClicked();};
+//    titleText.onblur = null;
+//    $(titleText).prop("readonly",true);
+//    $(titleText).html(titleText.value);
+//    titleText.outerHTML = titleText.outerHTML.replace('<input','<div').replace('</input>','</div>');
+console.log('Title blur');
 }
 
 function hideOptionsDialog(){

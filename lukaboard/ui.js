@@ -47,6 +47,8 @@ function clearLists(){
 }
 
 function makeDraggable(){
+
+  //make boards draggable
   $('.draggableList').sortable({
     items: '.draggable',
     start: function(event, ui) {
@@ -79,6 +81,39 @@ function makeDraggable(){
     connectWith: ".draggableList"
 }).disableSelection();
 
+
+
+  //make lists draggable
+  $('.draggableAlbum').sortable({
+    items: '.draggableList',
+    start: function(event, ui) {
+      console.log('drag list start');
+        dragItem = ui.item;
+        oldDragIndex = getElementIndex(dragItem[0]);
+    },
+    stop: function(event, ui) {
+      console.log('drag list stop');
+      //With a delay so that dragging a board doesnt click its button at end
+      setTimeout(()=>{
+        //actually move the board
+        newDragIndex = getElementIndex(dragItem[0]);
+
+        
+          allBoards[board].content.splice(oldDragIndex,1);
+          allBoards[board].content.splice(newDragIndex,0,getBId(dragItem[0]));
+        
+        dragItem = null;
+        saveAll();
+
+      },50);
+    },
+    change: function(event, ui) {
+      console.log('drag list change');
+      //if(ui.sender) dragNew = ui.placeholder.parent();
+        
+      //fixNewListUI();
+    }
+}).disableSelection();
 
 /*
 $(".textBtn").each(function() {
@@ -256,10 +291,24 @@ function loadBoardBoard(boardBoardEl, brd){
 function loadList(listEl, brd){
   if (typeof brd === 'string' || brd instanceof String) brd = allBoards[brd];
 
-  //since main board doesnt have a title or ID
+  titleText = listEl.getElementsByClassName("title-text")[0];
 
-  listEl.getElementsByClassName("title-text")[0].value = brd.name;
+  //could cause issues with main board (probably not)?
+  //can only be blur while as input, so turn to div
+//  titleText.outerHTML = titleText.outerHTML.replace('<input','<div').replace('</input>','</div>');
+//  titleText.onclick = ()=>{listTitleClicked(this)};
+//  titleText.onblur = null;
+
+
+titleText.addEventListener('click',listTitleClicked,true);
+titleText.onblur = ()=>{listTitleBlur();};
+
+//  $(titleText).val(brd.name);
+  $(titleText).html(brd.name); //we assume its div at start
+//  $(titleText).prop("readonly",true);
   setBId(listEl, brd.id);
+
+  
   
   for(let i = 0; i < brd.content.length; i++){
     let brd2 = allBoards[brd.content[i]];
@@ -295,7 +344,7 @@ function loadAllBoardsByDataId(brdId){
 }
 
   function home(){
-    window.location.href = "https://lukakostic.com/lukaboard/board/?d="+dbx.access;
+    window.location.href = siteUrl+"/?d="+dbx.access;
   }
 
   function up(){
