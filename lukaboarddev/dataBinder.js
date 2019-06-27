@@ -17,6 +17,8 @@ function boardDescriptionChanged(){
 }
 
 function listTitleChanged(){
+    console.log('list title changed');
+    
     //alert("List title changed");
     let listId = event.srcElement.parentNode.parentNode.getAttribute('data-id');
     let lst = allBoards[listId];

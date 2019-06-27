@@ -123,7 +123,7 @@ function newList(){
   let name = inp.value;
 
   let titleText = el.getElementsByClassName("title-text")[0];
-  $(titleText).val(name);
+//  $(titleText).val(name);
   $(titleText).html(name); //we assume its div at start
   //$(titleText).prop("readonly",true);
 

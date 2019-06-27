@@ -108,7 +108,7 @@ function showSeeReferencesDialog(){
 function listTitleClicked(){
     let titleText = event.srcElement;
     //can only be clicked while as div, so turn to input
-    titleText.onclick = null;
+//    titleText.onclick = null;
     titleText.onblur = ()=>{listTitleBlur();};
     
 //    $(titleText).html("");
@@ -120,7 +120,7 @@ function listTitleBlur(){
     let titleText = event.srcElement;
     //can only be blur while as input, so turn to div
     titleText.onclick = ()=>{listTitleClicked();};
-    titleText.onblur = null;
+//    titleText.onblur = null;
 //    $(titleText).prop("readonly",true);
 //    $(titleText).html(titleText.value);
 //    titleText.outerHTML = titleText.outerHTML.replace('<input','<div').replace('</input>','</div>');
