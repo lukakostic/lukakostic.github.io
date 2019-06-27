@@ -123,7 +123,7 @@ function newList(){
   let name = inp.value;
 
   titleText = el.getElementsByClassName("title-text")[0];
-  titleText.value = name;
+  $(titleText).val(name);
   $(titleText).html(name); //we assume its div at start
 
   let brd = new Board(boardTypes.List,name,[],{references:1});

@@ -291,19 +291,18 @@ function loadBoardBoard(boardBoardEl, brd){
 function loadList(listEl, brd){
   if (typeof brd === 'string' || brd instanceof String) brd = allBoards[brd];
 
-
   titleText = listEl.getElementsByClassName("title-text")[0];
-  titleText.value = brd.name;
-  $(titleText).html(brd.name); //we assume its div at start
-  setBId(listEl, brd.id);
 
   //could cause issues with main board (probably not)?
-  
   //can only be blur while as input, so turn to div
   titleText.onclick = ()=>{listTitleClicked(this)};
   titleText.onblur = null;
-  $(titleText).html(titleText.value);
   titleText.outerHTML = titleText.outerHTML.replace('<input','<div').replace('</input>','</div>');
+
+  $(titleText).val(brd.name);
+  $(titleText).html(brd.name); //we assume its div at start
+  setBId(listEl, brd.id);
+
   
   
   for(let i = 0; i < brd.content.length; i++){
