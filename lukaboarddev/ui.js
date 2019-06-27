@@ -300,7 +300,8 @@ function loadList(listEl, brd){
 //  titleText.onblur = null;
 
 
-titleText.addEventListener('click',listTitleClicked);
+titleText.addEventListener('click',listTitleClicked,true);
+titleText.onblur = ()=>{listTitleBlur();};
 
 //  $(titleText).val(brd.name);
   $(titleText).html(brd.name); //we assume its div at start
