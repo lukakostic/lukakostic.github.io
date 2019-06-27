@@ -300,8 +300,8 @@ function loadList(listEl, brd){
   titleText.onblur = null;
 
   $(titleText).val(brd.name);
-//  $(titleText).html(brd.name); //we assume its div at start
-  $(titleText).prop("readonly",true);
+  $(titleText).html(brd.name); //we assume its div at start
+//  $(titleText).prop("readonly",true);
   setBId(listEl, brd.id);
 
   

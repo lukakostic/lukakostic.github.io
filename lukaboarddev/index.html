@@ -306,9 +306,9 @@
 
       <div class="title row justify-content-between bg-inherit" style="margin: 0px; width:100%;">
 
-        <input type="text" class="title-text card-name bg-inherit noborder"
+        <div type="text" class="title-text card-name bg-inherit noborder editable" contenteditable="true"
           style="width: calc(100% - 16px); height: 27px !important; padding-left: 5px; padding-right: 2px; padding-top: 2px; white-space: nowrap; overflow: hidden; font-weight: bolder; text-overflow: ellipsis; color:white;"
-          value="Card Title" onclick="listTitleClicked(this)" oninput="listTitleChanged()"></input>
+          value="Card Title" onclick="listTitleClicked(this)" oninput="listTitleChanged()"></div>
 
         <button type="button" class="dot" style="display:block; position:relative; margin-left:auto; color: white; margin-top: 0px;" onclick="showOptionsDialog(this.parentNode.parentNode)"></button>
 

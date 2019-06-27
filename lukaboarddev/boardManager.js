@@ -124,8 +124,8 @@ function newList(){
 
   let titleText = el.getElementsByClassName("title-text")[0];
   $(titleText).val(name);
-//  $(titleText).html(name); //we assume its div at start
-  $(titleText).prop("readonly",true);
+  $(titleText).html(name); //we assume its div at start
+  //$(titleText).prop("readonly",true);
 
   let brd = new Board(boardTypes.List,name,[],{references:1});
   allBoards[brd.id]=brd;
