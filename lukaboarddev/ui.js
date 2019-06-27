@@ -295,7 +295,7 @@ function loadList(listEl, brd){
 
   //could cause issues with main board (probably not)?
   //can only be blur while as input, so turn to div
-  titleText.outerHTML = titleText.outerHTML.replace('<input','<div').replace('</input>','</div>');
+//  titleText.outerHTML = titleText.outerHTML.replace('<input','<div').replace('</input>','</div>');
   titleText.onclick = ()=>{listTitleClicked(this)};
   titleText.onblur = null;
 
