@@ -119,7 +119,7 @@ console.log('Title click');
 function listTitleBlur(){
     let titleText = event.srcElement;
     //can only be blur while as input, so turn to div
-    titleText.onclick = ()=>{listTitleClicked();};
+//    titleText.onclick = ()=>{listTitleClicked();};
 //    titleText.onblur = null;
 //    $(titleText).prop("readonly",true);
 //    $(titleText).html(titleText.value);

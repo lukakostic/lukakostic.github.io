@@ -126,6 +126,7 @@ function newList(){
 //  $(titleText).val(name);
   $(titleText).html(name); //we assume its div at start
   //$(titleText).prop("readonly",true);
+  titleText.addEventListener('click',listTitleClicked);
 
   let brd = new Board(boardTypes.List,name,[],{references:1});
   allBoards[brd.id]=brd;
