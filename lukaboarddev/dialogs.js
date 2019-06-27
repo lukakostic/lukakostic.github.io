@@ -109,7 +109,7 @@ function listTitleClicked(){
     let titleText = event.srcElement;
     //can only be clicked while as div, so turn to input
     titleText.onclick = null;
-    titleText.onblur = ()=>{listTitleBlur()};
+    titleText.onblur = ()=>{listTitleBlur();};
 //    $(titleText).html("");
 //    titleText.outerHTML = titleText.outerHTML.replace('<div','<input').replace('</div>','</input>');
     $(titleText).prop("readonly",false);
@@ -117,7 +117,7 @@ function listTitleClicked(){
 function listTitleBlur(){
     let titleText = event.srcElement;
     //can only be blur while as input, so turn to div
-    titleText.onclick = ()=>{listTitleClicked()};
+    titleText.onclick = ()=>{listTitleClicked();};
     titleText.onblur = null;
     $(titleText).prop("readonly",true);
 //    $(titleText).html(titleText.value);
