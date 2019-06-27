@@ -107,7 +107,7 @@ function showSeeReferencesDialog(){
 
 function listTitleClicked(){
     let titleText = event.srcElement;
-
+    $(titleText).focus();
 
     //can only be clicked while as div, so turn to input
 //    titleText.onclick = null;
