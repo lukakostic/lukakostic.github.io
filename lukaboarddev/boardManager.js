@@ -122,7 +122,7 @@ function newList(){
   let inp = event.srcElement.firstElementChild;
   let name = inp.value;
 
-  titleText = el.getElementsByClassName("title-text")[0];
+  let titleText = el.getElementsByClassName("title-text")[0];
   $(titleText).val(name);
   $(titleText).html(name); //we assume its div at start
 

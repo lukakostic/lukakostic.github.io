@@ -110,14 +110,14 @@ function listTitleClicked(titleText){
     titleText.onclick = null;
     titleText.onblur = ()=>{listTitleBlur(this)};
     $(titleText).html("");
-    titleText.outerHTML = titleText.outerHTML.replace('<div','<input').replace('</div>','</input>');
+//    titleText.outerHTML = titleText.outerHTML.replace('<div','<input').replace('</div>','</input>');
 }
-function listTitleBlurd(titleText){
+function listTitleBlur(titleText){
     //can only be blur while as input, so turn to div
     titleText.onclick = ()=>{listTitleClicked(this)};
     titleText.onblur = null;
     $(titleText).html(titleText.value);
-    titleText.outerHTML = titleText.outerHTML.replace('<input','<div').replace('</input>','</div>');
+//    titleText.outerHTML = titleText.outerHTML.replace('<input','<div').replace('</input>','</div>');
 }
 
 function hideOptionsDialog(){

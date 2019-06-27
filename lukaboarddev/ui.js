@@ -297,7 +297,7 @@ function loadList(listEl, brd){
   //can only be blur while as input, so turn to div
   titleText.onclick = ()=>{listTitleClicked(this)};
   titleText.onblur = null;
-  titleText.outerHTML = titleText.outerHTML.replace('<input','<div').replace('</input>','</div>');
+//  titleText.outerHTML = titleText.outerHTML.replace('<input','<div').replace('</input>','</div>');
 
   $(titleText).val(brd.name);
   $(titleText).html(brd.name); //we assume its div at start
