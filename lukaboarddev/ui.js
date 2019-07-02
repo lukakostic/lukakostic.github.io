@@ -343,10 +343,10 @@ function loadAllBoardsByDataId(brdId){
   }
 }
 
-  function home(){
-    window.location.href = siteUrl+"/?d="+dbx.access;
-  }
+function home(){
+  window.location.href = siteUrl+"/?d="+dbx.access;
+}
 
-  function up(){
-    window.history.back();
-  }
+function up(){
+  window.history.back();
+}
