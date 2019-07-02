@@ -26,25 +26,6 @@ function listTitleChanged(){
     saveAll();
 }
 
-function textTitleChanged(){
-    //alert("Text title changed");
-    let brdId = EbyId('textBoardDialog').getAttribute('data-id');
-    allBoards[brdId].name = event.srcElement.value;
-
-    loadAllBoardsByDataId(brdId);
-
-    saveAll();
-}
-
-function textDescriptionChanged(){
-    //alert("Text description changed");
-    let brdId = EbyId('textBoardDialog').getAttribute('data-id');
-    allBoards[brdId].content = event.srcElement.value;
-
-    loadAllBoardsByDataId(brdId);
-
-    saveAll();
-}
 
 
 

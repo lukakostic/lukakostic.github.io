@@ -35,6 +35,7 @@
   <script src="dialogs.js" defer></script>
   <script src="dataBinder.js" defer></script>
   <script src="ui.js" defer></script>
+  <script src="textEditor.js" defer></script>
   <script src="boardManager.js" defer></script>
   
 
@@ -308,7 +309,11 @@
 
         <div type="text" class="title-text card-name bg-inherit noborder editable"
           style="width: calc(100% - 16px); height: 27px !important; padding-left: 5px; padding-right: 2px; padding-top: 2px; white-space: nowrap; overflow: hidden; font-weight: bolder; text-overflow: ellipsis; color:white;"
-          oninput="listTitleChanged()" contenteditable="true"></div>
+          oninput="listTitleChanged()" contenteditable="true">
+          <input type="text" class="title-text card-name bg-inherit noborder editable"
+          style="width: calc(100% - 16px); height: 27px !important; padding-left: 5px; padding-right: 2px; padding-top: 2px; white-space: nowrap; overflow: hidden; font-weight: bolder; text-overflow: ellipsis; color:white;"
+          oninput="listTitleChanged()" contenteditable="true"></input>
+        </div>
 
         <button type="button" class="dot" style="display:block; position:relative; margin-left:auto; color: white; margin-top: 0px;" onclick="showOptionsDialog(this.parentNode.parentNode)"></button>
 
@@ -358,7 +363,7 @@
 
     <!-- Dialogs -->
 
-    <div id="textBoardDialog" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-id="" aria-hidden="true" onclick="alert('closing back??')">
+    <div id="textBoardDialog" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-id="" aria-hidden="true" onclick="textBackClicked()">
       <div class="modal-dialog" role="document" style="width: 95%; max-width: 600px; background-color: #343434;border-radius: 5px;">
         <div class="modal-content bg-inherit" style="border-radius: 5px;">
           <div class="modal-header text-center bg-inherit" style="padding: 5px;">
