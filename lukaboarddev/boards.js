@@ -1,3 +1,10 @@
+let boardTypes = {
+    Text : 1,
+    Board : 2,
+    List : 3
+};
+
+
 class Board {
     constructor(type, name, content,  attributes = {}, id = null) {
         this.type = type;

@@ -1,4 +1,7 @@
 
+let optionsElement = null;
+
+
 function showOptionsDialog(idEl = null){
     optionsElement = event.srcElement;
     if(idEl == null)idEl = event.srcElement.parentNode;

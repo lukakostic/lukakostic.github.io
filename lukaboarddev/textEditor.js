@@ -22,7 +22,10 @@ function showTextBoardDialog(){
 
 function textBackClicked(){
     if(event.target.id != 'textBoardDialog') return;
-    alert('closing back??');
+
+    //alert('closing back??'); //save now?
+
+    
 }
 
 function textTitleChanged(){

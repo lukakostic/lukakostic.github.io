@@ -4,13 +4,6 @@ let dbx = DropboxManager.fromUrl(url);
 
 let allBoards,board; //allBoards = hashmap of all board objects: [id]:board, board = current id
 
-let boardTypes = {
-  Text : 1,
-  Board : 2,
-  List : 3
-};
-
-resetBoards();
 
 /////////////////////////////////////////////////////////////////////// Key page elements
 let textBrdTemplate = getTemplateFChild('textBoardTemplate');
@@ -20,14 +13,13 @@ let listTemplate = getTemplateFChild('listTemplate');
 let contentAlbum = EbyId('contentAlbum');
 let mainContentAlbum= EbyId('mainContentAlbum');
 let mainList = EbyId('main-list');
+
+let savingIndicator = EbyId('savingIndicator');
 ///////////////////////////////////////////////////////////////////////
 
-/////////////////////////////////////////////////////////////////////// UI helper / tracking variables
-let dragOld, dragNew, dragItem;
-let oldDragIndex, newDragIndex;
 
-let optionsElement = null;
-///////////////////////////////////////////////////////////////////////
+
+resetBoards();
 
 /////////////////////////////////////////////////////////////////////// OnLoad functions
 loadAll(()=>{
@@ -44,11 +36,16 @@ function resetBoards(){
 }
 
 function saveAll(callback = null) {
-  try{
+  try{ 
+
+    startSavingIndicator();
 
     let contents = JSON.stringify(allBoards);
 
-    dbx.filesUpload({ path: '/' + 'lukaboard.lb', contents: contents , mode:'overwrite'},callback);
+    dbx.filesUpload({ path: '/' + 'lukaboard.lb', contents: contents , mode:'overwrite'},()=>{
+      callback();
+      stopSavingIndicator();
+    });
 
   }catch(e){bootbox.alert(e.message);}
 }

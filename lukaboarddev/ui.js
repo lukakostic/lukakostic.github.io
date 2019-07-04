@@ -1,3 +1,8 @@
+
+let dragOld, dragNew, dragItem;
+let oldDragIndex, newDragIndex;
+
+
 function newPageOpened(forceMain = false){
   if(forceMain) board = "";
   else board = Board.idFromUrl(url);
