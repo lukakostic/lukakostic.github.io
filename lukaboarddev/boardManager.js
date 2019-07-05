@@ -32,7 +32,7 @@ uiToFunctions();
 
 
 function urlFromBoardId(boardId){
-  return siteUrl + "/" + "?d=" + dbx.access + "?b=" + boardId;
+  return siteUrl + "#" + "?d=" + dbx.access + "?b=" + boardId;
 }
 
 function loadURL(newUrl, forceRefresh = false){
