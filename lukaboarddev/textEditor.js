@@ -1,3 +1,9 @@
+
+let textSave = false;
+setInterval(()=>{
+if(textSave) saveAll();
+},30000);
+
 function showTextBoardDialog(){
     if(dragItem!=null && ( event.srcElement==dragItem[0] || event.srcElement.parentNode == dragItem[0]))return;
 
@@ -20,30 +26,37 @@ function showTextBoardDialog(){
     },10);
 }
 
+function closeTextBoardDialog(){
+    EbyId('textBoardDialog').click();
+}
+
 function textBackClicked(){
     if(event.target.id != 'textBoardDialog') return;
 
     //alert('closing back??'); //save now?
+    if(textSave) saveAll();
 
-    
+    textSave = false;
 }
 
 function textTitleChanged(){
+    
     //alert("Text title changed");
     let brdId = EbyId('textBoardDialog').getAttribute('data-id');
     allBoards[brdId].name = event.srcElement.value;
 
     loadAllBoardsByDataId(brdId);
 
-    saveAll();
+    textSave = true; //saveAll();
 }
 
 function textDescriptionChanged(){
+
     //alert("Text description changed");
     let brdId = EbyId('textBoardDialog').getAttribute('data-id');
     allBoards[brdId].content = event.srcElement.value;
 
     loadAllBoardsByDataId(brdId);
 
-    saveAll();
+    textSave = true; //saveAll();
 }
