@@ -1,7 +1,10 @@
 
 let textSave = false;
 setInterval(()=>{
-if(textSave) saveAll();
+    if(textSave){
+        textSave = false;
+        saveAll();
+    }
 },30000);
 
 function showTextBoardDialog(){
