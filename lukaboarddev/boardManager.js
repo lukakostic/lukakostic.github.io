@@ -43,7 +43,7 @@ function saveAll(callback = null) {
     let contents = JSON.stringify(allBoards);
 
     dbx.filesUpload({ path: '/' + 'lukaboard.lb', contents: contents , mode:'overwrite'},()=>{
-      callback();
+      if(callback!=null) callback();
       stopSavingIndicator();
     });
 
