@@ -1,7 +1,8 @@
 let boardTypes = {
     Text : 1,
     Board : 2,
-    List : 3
+    List : 3,
+    ListBoard : 4
 };
 
 
