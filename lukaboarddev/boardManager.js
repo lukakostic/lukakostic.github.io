@@ -14,6 +14,7 @@ let contentAlbum = EbyId('contentAlbum');
 let mainContentAlbum= EbyId('mainContentAlbum');
 let mainList = EbyId('main-list');
 
+let loadingIndicator = EbyId('loadingIndicator');
 let savingIndicator = EbyId('savingIndicator');
 ///////////////////////////////////////////////////////////////////////
 
@@ -23,6 +24,7 @@ resetData();
 
 /////////////////////////////////////////////////////////////////////// OnLoad functions
 loadAll(()=>{
+  loadingIndicator.style.display = 'none';
   newPageOpened();
 });
 uiToFunctions();
