@@ -1,11 +1,11 @@
 
 function showBoardBoardDialog(id=null){
-    if(dragItem!=null && ( event.srcElement==dragItem[0] || event.srcElement.parentNode == dragItem[0]))return;
+    if(dragItem!=null && ( event.srcElement==dragItem[0] || event.srcElement.parentNode == dragItem[0]))return; //stop drag-click
 
     if(id == null)
         id = getBId(event.srcElement.parentNode);
     
-    window.location.href = siteUrl+"/?d="+dbx.access+"?b="+id;
+    loadBoardId(id);
 }
 
 function listTitleClicked(){

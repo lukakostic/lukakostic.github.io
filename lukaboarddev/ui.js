@@ -2,11 +2,16 @@
 let dragOld, dragNew, dragItem;
 let oldDragIndex, newDragIndex;
 
+let historyStack = [];
 
 function newPageOpened(forceMain = false){
+  historyStack.push(url);
+
   if(forceMain) board = "";
   else board = Board.idFromUrl(url);
 
+  clearBoards();
+  clearLists();
   draw();
 }
 
@@ -23,9 +28,15 @@ setInterval(function(){
   //Fix this piece of shit mobile web dev crap
   document.body.style.setProperty("width","100vw");
 
-
-
 },100);
+
+function startSavingIndicator(){
+  savingIndicator.style.display = 'block';
+}
+
+function stopSavingIndicator(){
+  savingIndicator.style.display = 'none';
+}
 
 function expandInputAll(){
   let expandoInputs = document.getElementsByClassName('expandInput');
@@ -349,9 +360,13 @@ function loadAllBoardsByDataId(brdId){
 }
 
 function home(){
-  window.location.href = siteUrl+"/?d="+dbx.access;
+  loadBoardId("");
+  //window.location.href = siteUrl+"/?d="+dbx.access;
 }
 
 function up(){
-  window.history.back();
+  let prev = historyStack.pop();
+  if(prev == null) prev = urlFromBoardId("");
+  loadBoardId(prev);
+  //window.history.back();
 }

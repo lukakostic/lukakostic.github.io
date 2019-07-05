@@ -1,10 +1,18 @@
+let dataSave = false;
+setInterval(()=>{
+    if(dataSave){
+        dataSave = false;
+        saveAll();
+    }
+},5000);
+
 function boardTitleChanged(){
     //alert("Board title changed");
     allBoards[board].name = event.srcElement.value;
 
     loadAllBoardsByDataId(board);
 
-    saveAll();
+    dataSave = true;
 }
 
 function boardDescriptionChanged(){
@@ -13,7 +21,7 @@ function boardDescriptionChanged(){
 
     loadAllBoardsByDataId(board);
 
-    saveAll();
+    dataSave = true;
 }
 
 function listTitleChanged(){
@@ -23,7 +31,7 @@ function listTitleChanged(){
     let listId = event.srcElement.parentNode.parentNode.getAttribute('data-id');
     allBoards[listId].name = $(event.srcElement).text();
 
-    saveAll();
+    dataSave = true;
 }
 
 

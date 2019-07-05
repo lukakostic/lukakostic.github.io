@@ -27,7 +27,7 @@ class DropboxManager {
         });
     }
 
-    filesUpload(obj,callback=null, log=null) {
+    filesUpload(obj, callback=null, log=null) {
         this.dropbox.filesUpload(obj)
             .then(function (response) {
                 if(log) log({msg: response, type: 'log'});
@@ -41,7 +41,7 @@ class DropboxManager {
             });
     }
 
-    filesDownload(obj,callback=null){
+    filesDownload(obj, callback=null, log = null){
         this.dropbox.filesDownload(obj)
         .then(function (response) {
           let blob = response.fileBlob;
@@ -49,12 +49,14 @@ class DropboxManager {
     
           reader.addEventListener("loadend", function () {
             if(callback) callback(reader.result);
+            if(log) log({msg: response, type: 'log'});
           });
     
           reader.readAsText(blob);
         })
         .catch(function (error) {
             if(callback) callback(null);
+            if(log) log({msg: error, type: 'error'});
         });
     }
 

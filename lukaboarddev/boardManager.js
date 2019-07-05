@@ -19,7 +19,7 @@ let savingIndicator = EbyId('savingIndicator');
 
 
 
-resetBoards();
+resetData();
 
 /////////////////////////////////////////////////////////////////////// OnLoad functions
 loadAll(()=>{
@@ -28,10 +28,29 @@ loadAll(()=>{
 uiToFunctions();
 ///////////////////////////////////////////////////////////////////////
 
-function resetBoards(){
+
+function urlFromBoardId(boardId){
+  return siteUrl + "/" + "?d=" + dbx.access + "?b=" + boardId;
+}
+
+function loadURL(newUrl, forceRefresh = false){
+  url = newUrl;
+  if(forceRefresh) window.location.href = url;
+  else{
+    newPageOpened();
+  }
+}
+
+function loadBoardId(boardToLoad, forceRefresh = false){
+  loadURL(urlFromBoardId(boardToLoad, forceRefresh));
+}
+
+
+
+function resetData(){
   allBoards = {};
   //main board
-  allBoards[""] = new Board(boardTypes.List,"",[],{references:99999999999,main:true},"");
+  allBoards[""] = new Board(boardTypes.List,"",[],{references:99999999999,main:true},""); //////////////////////////////////////// change to ListBoard ?
   board = "";
 }
 
@@ -54,7 +73,7 @@ function saveAll(callback = null, log = null) {
   }catch(e){bootbox.alert(e.message);}
 }
 
-function loadAll(callback = null) {
+function loadAll(callback = null, log = null) {
     try{
 
     dbx.filesDownload({ path: '/' + 'lukaboard.lb' },function loaded(contents){
@@ -64,11 +83,15 @@ function loadAll(callback = null) {
 
         //bootbox.alert(contents);
       }else{
-        resetBoards();
+        resetData();
       }
         
       if(callback) callback();
 
+    },
+    (msg)=>{
+      if(msg.type == 'error') bootbox.alert(msg.msg + '');
+      if(log)log(msg);
     });
 
   }catch(e){bootbox.alert(e.message);}
@@ -76,7 +99,7 @@ function loadAll(callback = null) {
 
 function newText(){
   
-  let parent = event.srcElement.parentNode.parentNode.parentNode;
+  let parent = event.srcElement.parentNode.parentNode.parentNode; ////////////// replace by find parent thing?
 
   let el = textBrdTemplate.cloneNode(true);
 
@@ -96,7 +119,7 @@ function newText(){
 
 function newBoard(){
 
-  let parent = event.srcElement.parentNode.parentNode.parentNode;
+  let parent = event.srcElement.parentNode.parentNode.parentNode; ////////////// replace by find parent thing?
 
   let el = boardBrdTemplate.cloneNode(true);
 
@@ -111,8 +134,8 @@ function newBoard(){
 
   
   fixListUI(parent);
-  saveAll((msg)=>{
-    el.getElementsByClassName('textBtn')[0].click(); //////////////////////////
+  saveAll(()=>{
+    el.getElementsByClassName('textBtn')[0].click(); ////////////////////////// load board on add, might not want to do this. and to be moved to before saving, since
   });
 }
 
@@ -143,5 +166,5 @@ function newList(){
   saveAll();
 
   makeDraggable();
-  $(inp).val(''); //clear listbox
+  $(inp).val(''); //clear new list textbox
 }
