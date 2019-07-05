@@ -12,6 +12,10 @@ function listTitleClicked(){
     let titleText = event.srcElement;
     $(titleText).focus();
 
+    try{
+        document.execCommand('selectAll',false,null);
+    }catch(e){}
+
     //can only be clicked while as div, so turn to input
 //    titleText.onclick = null;
     
