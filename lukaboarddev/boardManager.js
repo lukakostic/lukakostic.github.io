@@ -16,6 +16,9 @@ let mainList = EbyId('main-list');
 
 let loadingIndicator = EbyId('loadingIndicator');
 let savingIndicator = EbyId('savingIndicator');
+
+let header = EbyId('header');
+let headerMain = EbyId('headerMain');
 ///////////////////////////////////////////////////////////////////////
 
 

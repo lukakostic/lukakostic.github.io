@@ -10,6 +10,14 @@ function newPageOpened(forceMain = false){
   if(forceMain) board = "";
   else board = Board.idFromUrl(url);
 
+  if(board == ""){
+    header.style.display = 'none';
+    headerMain.style.display = 'block';
+  }else{
+    header.style.display = 'block';
+    headerMain.style.display = 'none';
+  }
+
   clearBoards();
   clearLists();
   draw();
@@ -213,8 +221,6 @@ function fixNewListUI(){
   }
 
   function drawBoard(){
-    EbyId('header').classList.remove('d-none');
-    EbyId('headerMain').classList.add('d-none');
 
     mainContentAlbum.classList.add('d-none');
     contentAlbum.classList.remove('d-none');
@@ -246,8 +252,6 @@ function fixNewListUI(){
 }
 
   function drawMain(){
-    EbyId('header').classList.add('d-none');
-    EbyId('headerMain').classList.remove('d-none');
 
     EbyId('contentAlbum').classList.add('d-none');
     EbyId('mainContentAlbum').classList.remove('d-none');
