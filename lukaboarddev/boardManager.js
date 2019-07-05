@@ -32,7 +32,7 @@ uiToFunctions();
 
 
 function urlFromBoardId(boardId){
-  return siteUrl + "#" + "?d=" + dbx.access + "?b=" + boardId;
+  return siteUrl + "/#" + "?d=" + dbx.access + "?b=" + boardId;
 }
 
 
@@ -71,7 +71,7 @@ function saveAll(callback = null, log = null) {
       stopSavingIndicator();
     },
     (msg)=>{
-      if(msg.type == 'error') bootbox.alert(msg.msg + '');
+      if(msg.type == 'error') bootbox.alert(JSON.stringify(msg.msg));
       if(log)log(msg);
     });
 
@@ -95,7 +95,7 @@ function loadAll(callback = null, log = null) {
 
     },
     (msg)=>{
-      if(msg.type == 'error') bootbox.alert(msg.msg + '');
+      if(msg.type == 'error') bootbox.alert(JSON.stringify(msg.msg) + '');
       if(log)log(msg);
     });
 
