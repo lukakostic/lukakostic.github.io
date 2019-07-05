@@ -367,6 +367,6 @@ function home(){
 function up(){
   let prev = historyStack.pop();
   if(prev == null) prev = urlFromBoardId("");
-  loadBoardId(prev);
+  loadBoardId(Board.idFromUrl(prev));
   //window.history.back();
 }
