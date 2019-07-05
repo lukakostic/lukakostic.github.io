@@ -35,8 +35,11 @@ function urlFromBoardId(boardId){
   return siteUrl + "#" + "?d=" + dbx.access + "?b=" + boardId;
 }
 
+
+
 function loadURL(newUrl, forceRefresh = false){
   url = newUrl;
+  window.location.hash = getHashFromUrl(url);
   if(forceRefresh) window.location.href = url;
   else{
     newPageOpened();

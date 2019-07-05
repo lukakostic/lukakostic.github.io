@@ -57,3 +57,12 @@ function getElementIndex(node) {
     }
     return index;
 }
+
+function getHashFromUrl(someUrl){
+let h = "";
+if (someUrl.includes('#')) {
+    for (let i = someUrl.indexOf('#') + 1; i < someUrl.length; i++)
+        h += someUrl[i];
+}
+return h;
+}
