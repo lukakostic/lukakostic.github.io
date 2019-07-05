@@ -35,7 +35,7 @@ function resetBoards(){
   board = "";
 }
 
-function saveAll(callback = null) {
+function saveAll(callback = null, log = null) {
   try{ 
 
     startSavingIndicator();
@@ -45,6 +45,10 @@ function saveAll(callback = null) {
     dbx.filesUpload({ path: '/' + 'lukaboard.lb', contents: contents , mode:'overwrite'},()=>{
       if(callback!=null) callback();
       stopSavingIndicator();
+    },
+    (msg)=>{
+      if(msg.type == 'error') bootbox.alert(msg.msg.message);
+      if(log)log(msg);
     });
 
   }catch(e){bootbox.alert(e.message);}
