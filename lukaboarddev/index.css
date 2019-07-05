@@ -50,6 +50,7 @@ footer p {
   margin-top: auto;
   margin-bottom: auto;
   color:  rgba(255,255,255,.4) !important;
+  border-color:  rgba(255,255,255,.4) !important;
 }
 
 .bg-inherit {
