@@ -42,7 +42,7 @@
           </br>
           <a>Hosted on github, uses dropbox as storage</a>
         </div>
-        <form id="form" class="modal-footer" action="/lukaboarddev">
+        <form id="form" class="modal-footer" onsubmit="event.preventDefault(); loadFromDropbox();">
           <input id="token" name="d" type="text" placeholder="Dropbox access token" class="form-control" autocomplete="on">
           <input type="submit" class="btn btn-primary" value="Open">
         </form>

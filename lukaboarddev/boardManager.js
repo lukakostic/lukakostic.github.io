@@ -1,4 +1,4 @@
-let url = window.location.href.replace('#', '');
+let url = window.location.href;
 
 let dbx = DropboxManager.fromUrl(url);
 
@@ -138,7 +138,7 @@ function newBoard(){
   fixListUI(parent);
 
   el.getElementsByClassName('textBtn')[0].click(); // load board on add, might not want to do this.
-  
+
   saveAll(()=>{
     //el.getElementsByClassName('textBtn')[0].click(); // load board on add, might not want to do this. and to be moved to before saving?
   });
