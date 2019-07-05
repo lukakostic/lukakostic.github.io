@@ -47,7 +47,7 @@ function saveAll(callback = null, log = null) {
       stopSavingIndicator();
     },
     (msg)=>{
-      if(msg.type == 'error') bootbox.alert(msg.msg.message);
+      if(msg.type == 'error') bootbox.alert(msg.msg + '');
       if(log)log(msg);
     });
 
