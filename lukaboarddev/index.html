@@ -52,13 +52,15 @@
       <div class="collapse bg-dark" id="navbarHeader" style="width: 100%; transition: none; padding: 0px !important;">
         <div class="container-fluid" style="width: 100%; padding: 0px !important;">
           
-            <form class="row text bg-inherit" style="margin: 0px; width:100%;">
+            <form class="row text bg-inherit" style="margin: 0px; width: calc(100% - 40px);">
                 <textarea wrap="hard" class="expandInput card-name bg-inherit"  id="boardDescription"
                   style="resize: none;  padding: 0.5rem !important; text-overflow: ellipsis; color:white; border: 0px; width: 100%;"
                   oninput="expandInput(this);boardDescriptionChanged();" placeholder="Board Description">Board Description</textarea>
         
                 <input type="submit" style="visibility: hidden; width:0px; height:0px; position:absolute;" />
               </form>
+
+              <button style="position: absolute; right: 0px; height: 0px; width: 40px; height: 40px;"><i class="fas fa-cogs"></i></button>
 
           <!--
           <div class="row justify-content-between">
