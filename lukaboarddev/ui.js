@@ -24,7 +24,7 @@ function newPageOpened(forceMain = false){
 }
 
 function loadBoardBackgroundImage(){
-  getBId('main').style.backgroundImage = "url('"+allBoards[board].attributes['background']+"')";
+  EbyId('main').style.backgroundImage = "url('"+allBoards[board].attributes['background']+"')";
 }
 
 function uiToFunctions(){
