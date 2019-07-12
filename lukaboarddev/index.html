@@ -36,6 +36,7 @@
   <script src="dataBinder.js" defer></script>
   <script src="textEditor.js" defer></script>
   <script src="optionsDialog.js" defer></script>
+  <script src="extrasDialog.js" defer></script>
   <script src="ui.js" defer></script>
   <script src="boardManager.js" defer></script>
   
@@ -60,7 +61,7 @@
                 <input type="submit" style="visibility: hidden; width:0px; height:0px; position:absolute;" />
               </form>
 
-              <button style="position: absolute; right: 0px; top: 0px; width: 40px; height: 40px;"><i class="fas fa-cogs"></i></button>
+              <button class="btn" style="position: absolute; right: 0px; top: 0px; width: 40px; height: 40px;" onclick="showExtrasDialog()"><i class="fas fa-cogs"></i></button>
 
           <!--
           <div class="row justify-content-between">
@@ -123,7 +124,7 @@
             TEXT
           </div>
             
-          <button style="position: absolute; right: 0px; top: 0px; width: 40px; height: 40px;"><i class="fas fa-cogs"></i></button>
+          <button class="btn" style="position: absolute; right: 0px; top: 0px; width: 40px; height: 40px;" onclick="showExtrasDialog()"><i class="fas fa-cogs"></i></button>
 
           <!--
           <div class="row justify-content-between" style="margin: 5px; padding: 0px;">
@@ -365,7 +366,7 @@
   <!-- End Of Templates -->
 
 
-  <main role="main" class="bg-inherit" style="position:absolute; overflow-y:auto !important; overflow-x: auto !important; background-color: inherit; width: 100%; height: calc(100% - (5px + 45px)); padding-bottom: 40px;">
+  <main id="main" role="main" class="bg-inherit" style="position:absolute; overflow-y:auto !important; overflow-x: auto !important; background-color: inherit; width: 100%; height: calc(100% - (5px + 45px)); padding-bottom: 40px; object-fit: cover;">
 
     <img id="savingIndicator" src="saveIndicator.gif" style="position: absolute; top: 3px; left: 3px; z-index: 1000; display: none;" tabindex="-1"></img>
 
@@ -411,6 +412,19 @@
             <button type="button" class="btn bg-inherit btn-dark" style="width: 100%; margin: 5px; padding: 3px; font-size: 18px;" onclick="deleteClicked()">Delete</button>
             <button type="button" class="btn bg-inherit btn-dark" style="width: 100%; margin: 5px; padding: 3px; font-size: 18px;" onclick="copyIdClicked()">Copy ID (reference)</button>
             <button type="button" class="btn bg-inherit btn-dark" style="width: 100%; margin: 5px; padding: 3px; font-size: 18px;" onclick="showSeeReferencesDialog()">See References</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <div id="extrasDialog" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document" style="width: 95%; max-width: 300px; background-color: #343434;border-radius: 5px;">
+        <div class="modal-content bg-inherit" style="border-radius: 5px;">
+          <div class="modal-body">
+            
+            <button type="button" class="btn bg-inherit btn-dark" style="width: 100%; margin: 5px; padding: 3px; font-size: 18px;" onclick="setBackgroundClicked()">Set Background Image</button>
 
           </div>
         </div>

@@ -23,6 +23,10 @@ function newPageOpened(forceMain = false){
   draw();
 }
 
+function loadBoardBackgroundImage(){
+  getBId('main').style.backgroundImage = "url('"+allBoards[board].attributes['background']+"')";
+}
+
 function uiToFunctions(){
     EbyId('homeBtn').onclick = home;
     EbyId('upBtn').onclick = up;
@@ -169,6 +173,7 @@ function draw(){
     drawBoard();
   else drawMain();
 
+  loadBoardBackgroundImage();
   makeDraggable();
 
   setTimeout(()=>{expandInputAll()},200);
