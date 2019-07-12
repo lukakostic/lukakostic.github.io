@@ -12,6 +12,7 @@ function setBackgroundClicked(){
     if(backgroundURL==null)backgroundURL="";
 
     allBoards[board].attributes['background'] = backgroundURL;
+    if(backgroundURL=="") delete allBoards[board].attributes['background'];
 
     loadBoardBackgroundImage();
 
