@@ -1,8 +1,7 @@
 let boardTypes = {
     Text : 1,
     Board : 2,
-    List : 3,
-    ListBoard : 4
+    List : 3
 };
 
 
@@ -70,6 +69,21 @@ class Board {
                     Board.deleteBoardById(allBoards[id].content[i]);
             }
         }
+
         delete allBoards[id];
+        
+        //go thru every board and remove the id from contents
+        let ids = Object.keys(allBoards);
+
+        for(let i = 0; i < ids.length; i++){
+            if(allBoards[ids[i]].type == boardTypes.Text) continue;
+
+            let ind = allBoards[ids[i]].content.indexOf(id);
+            while(ind!=-1){
+                allBoards[ids[i]].content.splice(ind,1);
+                ind = allBoards[ids[i]].content.indexOf(id);
+            }
+        }
+
     }
 }

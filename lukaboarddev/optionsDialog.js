@@ -134,18 +134,7 @@ function deleteClicked(){
     
     Board.deleteBoardById(id);
 
-    //go thru every board and remove the id from contents
-    let ids = Object.keys(allBoards);
 
-    for(let i = 0; i < ids.length; i++){
-        if(allBoards[ids[i]].type == boardTypes.Text) continue;
-
-        let ind = allBoards[ids[i]].content.indexOf(id);
-        while(ind!=-1){
-            allBoards[ids[i]].content.splice(ind,1);
-            ind = allBoards[ids[i]].content.indexOf(id);
-        }
-    }
 
     saveAll();
     
