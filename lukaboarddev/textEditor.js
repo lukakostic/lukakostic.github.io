@@ -11,7 +11,7 @@ function showTextBoardDialog(){
     if(dragItem!=null && ( event.srcElement==dragItem[0] || event.srcElement.parentNode == dragItem[0]))return;
 
     var textBtn = event.srcElement;
-    var brd = allBoards[getBId(textBtn.parentNode)];
+    var brd = project.allBoards[getBId(textBtn.parentNode)];
 
     if(brd==null) alert('Text board modal: brd == null');
 
@@ -46,7 +46,7 @@ function textTitleChanged(){
     
     //alert("Text title changed");
     let brdId = EbyId('textBoardDialog').getAttribute('data-id');
-    allBoards[brdId].name = event.srcElement.value;
+    project.allBoards[brdId].name = event.srcElement.value;
 
     loadAllBoardsByDataId(brdId);
 
@@ -57,7 +57,7 @@ function textDescriptionChanged(){
 
     //alert("Text description changed");
     let brdId = EbyId('textBoardDialog').getAttribute('data-id');
-    allBoards[brdId].content = event.srcElement.value;
+    project.allBoards[brdId].content = event.srcElement.value;
 
     loadAllBoardsByDataId(brdId);
 

@@ -52,7 +52,7 @@ class Board {
                 id += possible.charAt(Math.floor(Math.random() * possible.length));
 
                 
-            if(allBoards[id] == null)break;
+            if(project.allBoards[id] == null)break;
 
         }
 
@@ -62,26 +62,26 @@ class Board {
     //delete board by id, and dereference its children. Children get deleted if at 0 references.
     static deleteBoardById(id){
         if(id=="")return;
-        if(allBoards[id].type != boardTypes.Text){
-            for(let i = 0; i < allBoards[id].content.length; i++){
-                allBoards[allBoards[id].content[i]].attributes['references']--;
-                if(allBoards[allBoards[id].content[i]].attributes['references']<=0)
-                    Board.deleteBoardById(allBoards[id].content[i]);
+        if(project.allBoards[id].type != boardTypes.Text){
+            for(let i = 0; i < project.allBoards[id].content.length; i++){
+                project.allBoards[project.allBoards[id].content[i]].attributes['references']--;
+                if(project.allBoards[project.allBoards[id].content[i]].attributes['references']<=0)
+                    Board.deleteBoardById(project.allBoards[id].content[i]);
             }
         }
 
-        delete allBoards[id];
+        delete project.allBoards[id];
         
         //go thru every board and remove the id from contents
-        let ids = Object.keys(allBoards);
+        let ids = Object.keys(project.allBoards);
 
         for(let i = 0; i < ids.length; i++){
-            if(allBoards[ids[i]].type == boardTypes.Text) continue;
+            if(project.allBoards[ids[i]].type == boardTypes.Text) continue;
 
-            let ind = allBoards[ids[i]].content.indexOf(id);
+            let ind = project.allBoards[ids[i]].content.indexOf(id);
             while(ind!=-1){
-                allBoards[ids[i]].content.splice(ind,1);
-                ind = allBoards[ids[i]].content.indexOf(id);
+                project.allBoards[ids[i]].content.splice(ind,1);
+                ind = project.allBoards[ids[i]].content.indexOf(id);
             }
         }
 

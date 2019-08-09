@@ -24,7 +24,7 @@ function newPageOpened(forceMain = false){
 }
 
 function loadBoardBackgroundImage(){
-  EbyId('main').style.backgroundImage = "url('"+allBoards[board].attributes['background']+"')";
+  EbyId('main').style.backgroundImage = "url('"+project.allBoards[board].attributes['background']+"')";
 }
 
 function uiToFunctions(){
@@ -93,8 +93,8 @@ function makeDraggable(){
         newDragIndex = getElementIndex(dragItem[0]);
 
         
-          allBoards[getBId(dragOld[0])].content.splice(oldDragIndex-1,1);
-          allBoards[getBId(dragNew[0])].content.splice(newDragIndex-1,0,getBId(dragItem[0]));
+          project.allBoards[getBId(dragOld[0])].content.splice(oldDragIndex-1,1);
+          project.allBoards[getBId(dragNew[0])].content.splice(newDragIndex-1,0,getBId(dragItem[0]));
         
         dragItem = null;
         saveAll();
@@ -127,8 +127,8 @@ function makeDraggable(){
         newDragIndex = getElementIndex(dragItem[0]);
 
         
-          allBoards[board].content.splice(oldDragIndex,1);
-          allBoards[board].content.splice(newDragIndex,0,getBId(dragItem[0]));
+          project.allBoards[board].content.splice(oldDragIndex,1);
+          project.allBoards[board].content.splice(newDragIndex,0,getBId(dragItem[0]));
         
         dragItem = null;
         saveAll();
@@ -232,18 +232,18 @@ function fixNewListUI(){
 
     clearBoards();
 
-    EbyId('boardTitle').value = allBoards[board].name;
-    EbyId('boardDescription').value = allBoards[board].attributes['description'];
+    EbyId('boardTitle').value = project.allBoards[board].name;
+    EbyId('boardDescription').value = project.allBoards[board].attributes['description'];
 
 
     //fill lists & boards
-    for(let l = 0; l < allBoards[board].content.length; l++){
+    for(let l = 0; l < project.allBoards[board].content.length; l++){
 
       let listEl = listTemplate.cloneNode(true);
       contentAlbum.appendChild(listEl);
 
       
-      loadList(listEl,allBoards[board].content[l]);
+      loadList(listEl,project.allBoards[board].content[l]);
 
       
 
@@ -268,21 +268,21 @@ function fixNewListUI(){
     
 
     /*
-    let ids = Object.keys(allBoards);
+    let ids = Object.keys(project.allBoards);
     //fill boards
     for(let i = 0; i < ids.length; i++){
-      if(allBoards[ids[i]].attributes['onMain'] == true){
-        if(allBoards[ids[i]].type == boardTypes.Text){
+      if(project.allBoards[ids[i]].attributes['onMain'] == true){
+        if(project.allBoards[ids[i]].type == boardTypes.Text){
  
           let el = textBrdTemplate.cloneNode(true);
           mainList.appendChild(el);
-          loadTextBoard(el,allBoards[ids[i]]);
+          loadTextBoard(el,project.allBoards[ids[i]]);
         
-        }else if(allBoards[ids[i]].type == boardTypes.Board){
+        }else if(project.allBoards[ids[i]].type == boardTypes.Board){
 
           let el = boardBrdTemplate.cloneNode(true);
           mainList.appendChild(el);
-          loadBoardBoard(el,allBoards[ids[i]]);
+          loadBoardBoard(el,project.allBoards[ids[i]]);
 
         }
         
@@ -294,7 +294,7 @@ function fixNewListUI(){
 
 
 function loadTextBoard(textBoardEl, brd){
-  if (typeof brd === 'string' || brd instanceof String) brd = allBoards[brd];
+  if (typeof brd === 'string' || brd instanceof String) brd = project.allBoards[brd];
 
   setBId(textBoardEl, brd.id);
 
@@ -307,14 +307,14 @@ function loadTextBoard(textBoardEl, brd){
 }
 
 function loadBoardBoard(boardBoardEl, brd){
-  if (typeof brd === 'string' || brd instanceof String) brd = allBoards[brd];
+  if (typeof brd === 'string' || brd instanceof String) brd = project.allBoards[brd];
 
   setBId(boardBoardEl, brd.id);
   $(boardBoardEl.getElementsByClassName('textBtn')[0]).contents()[0].nodeValue = brd.name;
 }
 
 function loadList(listEl, brd){
-  if (typeof brd === 'string' || brd instanceof String) brd = allBoards[brd];
+  if (typeof brd === 'string' || brd instanceof String) brd = project.allBoards[brd];
 
   titleText = listEl.getElementsByClassName("title-text")[0];
 
@@ -336,7 +336,7 @@ titleText.onblur = ()=>{listTitleBlur();};
   
   
   for(let i = 0; i < brd.content.length; i++){
-    let brd2 = allBoards[brd.content[i]];
+    let brd2 = project.allBoards[brd.content[i]];
     if(brd2.type == boardTypes.Text){
 
       let el = textBrdTemplate.cloneNode(true);
@@ -360,9 +360,9 @@ function loadAllBoardsByDataId(brdId){
 
   for(let i = 0; i < boardEls.length; i++){
       if(getBId(boardEls[i])==brdId){
-          if(allBoards[brdId].type == boardTypes.Text)
+          if(project.allBoards[brdId].type == boardTypes.Text)
            loadTextBoard(boardEls[i],brdId);
-          else if(allBoards[brdId].type == boardTypes.Board)
+          else if(project.allBoards[brdId].type == boardTypes.Board)
            loadBoardBoard(boardEls[i],brdId);
       }
   }

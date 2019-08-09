@@ -11,7 +11,7 @@ function getParentElementBoard(el,state=-1){
         }else if(id == ""){ //has attribute but empty
             return el;
         }else{
-            state = allBoards[id].type;
+            state = project.allBoards[id].type;
         }
     }
     

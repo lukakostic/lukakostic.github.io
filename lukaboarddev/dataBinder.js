@@ -8,7 +8,7 @@ setInterval(()=>{
 
 function boardTitleChanged(){
     //alert("Board title changed");
-    allBoards[board].name = event.srcElement.value;
+    project.allBoards[board].name = event.srcElement.value;
 
     loadAllBoardsByDataId(board);
 
@@ -17,7 +17,7 @@ function boardTitleChanged(){
 
 function boardDescriptionChanged(){
     //alert("Board title changed");
-    allBoards[board].attributes['description'] = event.srcElement.value;
+    project.allBoards[board].attributes['description'] = event.srcElement.value;
 
     loadAllBoardsByDataId(board);
 
@@ -29,7 +29,7 @@ function listTitleChanged(){
 
     //alert("List title changed");
     let listId = event.srcElement.parentNode.parentNode.getAttribute('data-id');
-    allBoards[listId].name = $(event.srcElement).text();
+    project.allBoards[listId].name = $(event.srcElement).text();
 
     dataSave = true;
 }

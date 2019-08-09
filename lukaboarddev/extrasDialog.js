@@ -11,8 +11,8 @@ function setBackgroundClicked(){
     backgroundURL = prompt("Enter the url of the background:");
     if(backgroundURL==null)backgroundURL="";
 
-    allBoards[board].attributes['background'] = backgroundURL;
-    if(backgroundURL=="") delete allBoards[board].attributes['background'];
+    project.allBoards[board].attributes['background'] = backgroundURL;
+    if(backgroundURL=="") delete project.allBoards[board].attributes['background'];
 
     loadBoardBackgroundImage();
 

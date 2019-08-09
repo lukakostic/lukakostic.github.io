@@ -39,11 +39,11 @@ function newReferenceBtn(){
     let refer = window.prompt("Write/Paste id of board to reference:");
 
     if(refer==null)return;
-    if(allBoards[refer] == null){alert("ID doesn't exist :(");return;}
-    if(allBoards[refer].type == boardTypes.List){alert("Cant embed lists into boards.");return;}
+    if(project.allBoards[refer] == null){alert("ID doesn't exist :(");return;}
+    if(project.allBoards[refer].type == boardTypes.List){alert("Cant embed lists into boards.");return;}
 /*
     if(board == ""){
-        allBoards[refer].attributes['onMain'] = true;
+        project.allBoards[refer].attributes['onMain'] = true;
         
         drawMain();
     }else{
@@ -51,14 +51,14 @@ function newReferenceBtn(){
         let lst = event.srcElement.parentNode.parentNode.parentNode;
         let lstId = getBId(lst);
 
-        allBoards[lstId].content.push(refer);
+        project.allBoards[lstId].content.push(refer);
 
         clearBoards(lst);
         loadList(lst,lstId);
     //}
 
     
-    allBoards[refer].attributes['references']++;
+    project.allBoards[refer].attributes['references']++;
 
     saveAll();
 
