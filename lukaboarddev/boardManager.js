@@ -5,23 +5,6 @@ let dbx = DropboxManager.fromUrl(url);
 let project,board; //project.allBoards = hashmap of all board objects: [id]:board, board = current id
 
 
-/////////////////////////////////////////////////////////////////////// Key page elements
-let textBrdTemplate = getTemplateFChild('textBoardTemplate');
-let boardBrdTemplate = getTemplateFChild('boardBoardTemplate');
-let listTemplate = getTemplateFChild('listTemplate');
-
-let contentAlbum = EbyId('contentAlbum');
-let mainContentAlbum= EbyId('mainContentAlbum');
-let mainList = EbyId('main-list');
-
-let loadingIndicator = EbyId('loadingIndicator');
-let savingIndicator = EbyId('savingIndicator');
-
-let header = EbyId('header');
-let headerMain = EbyId('headerMain');
-///////////////////////////////////////////////////////////////////////
-
-
 
 resetData();
 

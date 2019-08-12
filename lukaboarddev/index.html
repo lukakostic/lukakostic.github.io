@@ -44,6 +44,7 @@
   <script src="./tagEditor.js"></script>
   
   <script src="./ui.js"></script>
+  <script src="./htmlStaticElements.js" defer></script>
   <script src="./boardManager.js" defer></script>
   
 
@@ -67,7 +68,7 @@
                 <input type="submit" style="visibility: hidden; width:0px; height:0px; position:absolute;" />
               </form>
 
-              <button class="btn btn-spaced-1 btn-secondary" style="position: absolute; right: 2px; top: 0px; width: 40px; height: 40px;" onclick="showExtrasDialog()"><i class="fas fa-cogs"></i></button>
+              <button class="btn btn-spaced-1 btn-secondary" style="position: absolute; right: 2px; top: 0px; width: 40px; height: 40px;" onclick="showExtrasClicked()"><i class="fas fa-cogs"></i></button>
 
           <!--
           <div class="row justify-content-between">
@@ -139,7 +140,7 @@
           -->
           
             
-          <button class="btn btn-spaced-1 btn-secondary" style="position: absolute; right: 2px; top: 0px; width: 40px; height: 40px;" onclick="showExtrasDialog()"><i class="fas fa-cogs"></i></button>
+          <button class="btn btn-spaced-1 btn-secondary" style="position: absolute; right: 2px; top: 0px; width: 40px; height: 40px;" onclick="showExtrasClicked()"><i class="fas fa-cogs"></i></button>
 
           <!--
           <div class="row justify-content-between" style="margin: 5px; padding: 0px;">
@@ -410,13 +411,41 @@
                     oninput="expandInput(this);textDescriptionChanged();" placeholder="Description">Text</textarea>
           
                   <input type="submit" style="visibility: hidden; width:0px; height:0px; position:absolute;" />
-                </form>
+              </form>
 
           </div>
         </div>
       </div>
     </div>
     
+
+    <div id="extensionEditorDialog" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-id="" aria-hidden="true" onclick="textBackClicked()">
+      <div class="modal-dialog" role="document" style="width: 95%; max-width: 600px; background-color: #343434;border-radius: 5px;">
+        <div class="modal-content bg-inherit" style="border-radius: 5px;">
+          <div class="modal-header text-center bg-inherit" style="padding: 5px;">
+            <form onsubmit="event.preventDefault(); closeExtensionEditorTitleChanged()" placeholder="Title"></input>
+              <input type="submit" style="visibility: hidden; width:0px; height:0px; position:absolute;" />
+            </form >
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"  tabindex="-1" style="padding: 4px;margin:0px!important;margin-top:-3px !important;color:white;" onclick="alert('closing button??')">
+              <span aria-hidden="true">&#215;</span>
+            </button>
+            
+          </div>
+          <div class="modal-body">
+            
+              <form class="row text bg-inherit" style="margin: 0px; width:100%;">
+                  <textarea wrap="hard" class="expandInput card-name bg-inherit"  id="extensionEditorText"
+                    style="resize: none; padding: 2px 2px 2px 5px; text-overflow: ellipsis; color: white; border: 0px; width: 100%; height: 59px; font-size: 18px;"
+                    oninput="expandInput(this);textDescriptionChanged();" placeholder="Description">Text</textarea>
+          
+                  <input type="submit" style="visibility: hidden; width:0px; height:0px; position:absolute;" />
+              </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
 
     <div id="optionsDialog" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document" style="width: 95%; max-width: 300px; background-color: #343434;border-radius: 5px;">
@@ -434,13 +463,20 @@
     </div>
     
 
-    <div id="extrasDialog" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document" style="width: 95%; max-width: 300px; background-color: #343434;border-radius: 5px;">
+    <div id="extrasDialog" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" onclick="extrasBackgroundClicked()">
+      <div class="modal-dialog" role="document" style="width: 95%; max-width: 800px; background-color: #343434;border-radius: 5px;">
         <div class="modal-content bg-inherit" style="border-radius: 5px;">
-          <div class="modal-body">
-            
-            <button type="button" class="btn bg-inherit btn-dark" style="width: 100%; margin: 5px; padding: 3px; font-size: 18px;" onclick="setBackgroundClicked()">Set Background Image</button>
+          <div class="modal-body" style="text-align: center;">
 
+            <div>
+              <a id="extrasTitle" style="color: white; background-color: black;">Board Extras</a>
+              <button id="extrasBack" style="float: right; color: white; background-color: black; border: 0px;"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+            </div>
+
+            <!-- Content goes here -->
+            
+            <div  id="extrasContent" style="width:100%; margin:2px;">
+            </div>
           </div>
         </div>
       </div>
@@ -462,7 +498,8 @@
       </div>
     </div>
 
-    <!-- Content -->
+
+    <!-- Opened board -->
 
     <div id="contentAlbum" class="bg-inherit draggableAlbum"
       style="padding: 5px !important; background-image: inherit;">
@@ -488,6 +525,8 @@
 
 
     
+    <!-- Main board -->
+
     <div id="mainContentAlbum" class="d-none bg-inherit"
       style="padding: 5px !important; background-image: inherit;">
 
