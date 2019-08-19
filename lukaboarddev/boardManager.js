@@ -2,7 +2,6 @@ let url = window.location.href;
 
 let dbx = DropboxManager.fromUrl(url);
 
-<<<<<<< HEAD
 let historyStack = [];
 let project,board; //project.boards = hashmap of all board objects: [id]:board, board = current id
 
@@ -17,9 +16,6 @@ let extensionListeners = {
 };
 
 let static = {};
-=======
-let project,board; //project.allBoards = hashmap of all board objects: [id]:board, board = current id
->>>>>>> fab8f27673e4fe7609f7768b5db5ccc2ef0126da
 
 let htmlBackup = document.createElement('template');
 htmlBackup.innerHTML = document.body.outerHTML;
@@ -78,11 +74,7 @@ function loadBoardId(boardToLoad, forceRefresh = false){
 function resetData(){
   project = new Project("", curVer);
   //main board
-<<<<<<< HEAD
   project.boards[""] = new Board(boardTypes.List,"",[],{references:99999999999,main:true},""); //////////////////////////////////////// change to ListBoard ?
-=======
-  project.allBoards[""] = new Board(boardTypes.List,"",[],{references:99999999999,main:true},""); //////////////////////////////////////// change to ListBoard ?
->>>>>>> fab8f27673e4fe7609f7768b5db5ccc2ef0126da
   board = "";
 }
 
@@ -92,11 +84,7 @@ function saveAll(callback = null, log = null) {
 
     startSavingIndicator();
 
-<<<<<<< HEAD
     let contents = buildProject();
-=======
-    let contents = JSON.stringify(project);
->>>>>>> fab8f27673e4fe7609f7768b5db5ccc2ef0126da
 
     dbx.filesUpload({ path: '/' + 'lukaboard.lb', contents: contents , mode:'overwrite'},()=>{
       if(callback!=null) callback();
@@ -127,15 +115,10 @@ function loadAll(callback = null, log = null) {
 
       if (contents != null) {
         
-<<<<<<< HEAD
         load(contents);
     
         invokeListeners('loadAll');
     
-=======
-        project = updateProject(JSON.parse(contents));
-
->>>>>>> fab8f27673e4fe7609f7768b5db5ccc2ef0126da
         //bootbox.alert(contents);
       }else{
         resetData();
@@ -160,13 +143,8 @@ function newText(){
 
   let brd = new Board(boardTypes.Text,"Text","",{references:1});
 
-<<<<<<< HEAD
   project.boards[brd.id]=brd;
   project.boards[getDataId(parent)].content.push(brd.id); //Add to parent list
-=======
-  project.allBoards[brd.id]=brd;
-  project.allBoards[getBId(parent)].content.push(brd.id); //Add to parent list
->>>>>>> fab8f27673e4fe7609f7768b5db5ccc2ef0126da
 
   parent.appendChild(el);
   loadTextBoard(el,brd.id);
@@ -186,13 +164,8 @@ function newBoard(){
   let atr = {description:'Description',references:1};
   let brd = new Board(boardTypes.Board,"Board",[],atr);
 
-<<<<<<< HEAD
   project.boards[brd.id]=brd;
   project.boards[getDataId(parent)].content.push(brd.id); //Add to parent list
-=======
-  project.allBoards[brd.id]=brd;
-  project.allBoards[getBId(parent)].content.push(brd.id); //Add to parent list
->>>>>>> fab8f27673e4fe7609f7768b5db5ccc2ef0126da
 
   parent.appendChild(el);
   loadBoardBoard(el,brd.id);
@@ -222,13 +195,8 @@ function newList(){
   titleText.onblur = ()=>{listTitleBlur();};
 
   let brd = new Board(boardTypes.List,name,[],{references:1});
-<<<<<<< HEAD
   project.boards[brd.id]=brd;
   project.boards[board].content.push(brd.id);
-=======
-  project.allBoards[brd.id]=brd;
-  project.allBoards[board].content.push(brd.id);
->>>>>>> fab8f27673e4fe7609f7768b5db5ccc2ef0126da
 
   static.contentAlbum.appendChild(el);
   setDataId(el, brd.id);

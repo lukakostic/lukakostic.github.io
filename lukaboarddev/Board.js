@@ -55,11 +55,7 @@ class Board {
                 id += possible.charAt(Math.floor(Math.random() * possible.length));
 
                 
-<<<<<<< HEAD:lukaboarddev/Board.js
             if(project.boards[id] == null)break;
-=======
-            if(project.allBoards[id] == null)break;
->>>>>>> fab8f27673e4fe7609f7768b5db5ccc2ef0126da:lukaboarddev/Board.js
 
         }
 
@@ -69,7 +65,6 @@ class Board {
     //delete board by id, and dereference its children. Children get deleted if at 0 references.
     static deleteBoardById(id){
         if(id=="")return;
-<<<<<<< HEAD:lukaboarddev/Board.js
         if(project.boards[id].type != boardTypes.Text){
             for(let i = 0; i < project.boards[id].content.length; i++){
                 project.boards[project.boards[id].content[i]].attributes['references']--;
@@ -90,28 +85,6 @@ class Board {
             while(ind!=-1){
                 project.boards[ids[i]].content.splice(ind,1);
                 ind = project.boards[ids[i]].content.indexOf(id);
-=======
-        if(project.allBoards[id].type != boardTypes.Text){
-            for(let i = 0; i < project.allBoards[id].content.length; i++){
-                project.allBoards[project.allBoards[id].content[i]].attributes['references']--;
-                if(project.allBoards[project.allBoards[id].content[i]].attributes['references']<=0)
-                    Board.deleteBoardById(project.allBoards[id].content[i]);
-            }
-        }
-
-        delete project.allBoards[id];
-        
-        //go thru every board and remove the id from contents
-        let ids = Object.keys(project.allBoards);
-
-        for(let i = 0; i < ids.length; i++){
-            if(project.allBoards[ids[i]].type == boardTypes.Text) continue;
-
-            let ind = project.allBoards[ids[i]].content.indexOf(id);
-            while(ind!=-1){
-                project.allBoards[ids[i]].content.splice(ind,1);
-                ind = project.allBoards[ids[i]].content.indexOf(id);
->>>>>>> fab8f27673e4fe7609f7768b5db5ccc2ef0126da:lukaboarddev/Board.js
             }
         }
 

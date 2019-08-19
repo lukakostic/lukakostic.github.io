@@ -24,11 +24,7 @@ function getParentElementBoard(el,state=-1){
             alert('empty attribute');
             return null;
         }else{
-<<<<<<< HEAD
             state = project.boards[id].type;
-=======
-            state = project.allBoards[id].type;
->>>>>>> fab8f27673e4fe7609f7768b5db5ccc2ef0126da
         }
     }
     

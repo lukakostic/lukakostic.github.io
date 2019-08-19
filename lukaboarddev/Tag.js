@@ -1,5 +1,4 @@
 class Tag {
-<<<<<<< HEAD
     constructor(name = "",id=null){
         this.name = name;
         this.id = id; //string
@@ -55,10 +54,3 @@ class Tag {
         return lst;
     }
 }
-=======
-    constructor(name = ""){
-        this.name = name;
-        this.parentTags = {};
-    }
-}
->>>>>>> fab8f27673e4fe7609f7768b5db5ccc2ef0126da

@@ -1,6 +1,5 @@
 function showTagsDialog(){
     
-<<<<<<< HEAD
     static.extrasTitle.innerHTML = 'Board Tags';
     static.extrasContent.innerHTML = `
     <a style="color: white;">Board tags</a><br>
@@ -80,23 +79,4 @@ function tagsDialogSearched(){
     }
 
     
-=======
-    extrasTitle.innerHTML = 'Board Tags';
-    extrasContent.innerHTML = `
-    <form id="form" onsubmit="event.preventDefault(); tagsDialogSearched();" style="width:100%">
-        <input id="tagsDialogSearch" name="d" type="text" placeholder="Search Tags" class="form-control" autocomplete="on">
-        <input type="submit" class="btn btn-primary" value="Search">
-    </form>
-    <div>
-        <br><br><br><br><br><br><br><br><br><br><br>
-    </div>
-    `;
-    extrasBack.onclick = showExtrasClicked;
-
-    showExtrasDialog();
-}
-
-function tagsDialogSearched(){
-
->>>>>>> fab8f27673e4fe7609f7768b5db5ccc2ef0126da
 }

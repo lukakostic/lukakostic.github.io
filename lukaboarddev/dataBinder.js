@@ -8,11 +8,7 @@ setInterval(()=>{
 
 function boardTitleChanged(){
     //alert("Board title changed");
-<<<<<<< HEAD
     project.boards[board].name = event.srcElement.value;
-=======
-    project.allBoards[board].name = event.srcElement.value;
->>>>>>> fab8f27673e4fe7609f7768b5db5ccc2ef0126da
 
     loadAllBoardsByDataId(board);
 
@@ -21,11 +17,7 @@ function boardTitleChanged(){
 
 function boardDescriptionChanged(){
     //alert("Board title changed");
-<<<<<<< HEAD
     setBrdAttr(board,'description',event.srcElement.value);
-=======
-    project.allBoards[board].attributes['description'] = event.srcElement.value;
->>>>>>> fab8f27673e4fe7609f7768b5db5ccc2ef0126da
 
     loadAllBoardsByDataId(board);
 
@@ -37,11 +29,7 @@ function listTitleChanged(){
 
     //alert("List title changed");
     let listId = event.srcElement.parentNode.parentNode.getAttribute('data-id');
-<<<<<<< HEAD
     project.boards[listId].name = $(event.srcElement).text();
-=======
-    project.allBoards[listId].name = $(event.srcElement).text();
->>>>>>> fab8f27673e4fe7609f7768b5db5ccc2ef0126da
 
     dataSave = true;
 }
