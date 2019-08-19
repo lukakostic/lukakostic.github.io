@@ -2,7 +2,7 @@ let url = window.location.href.replace('#', '');
 
 let dbx = DropboxManager.fromUrl(url);
 
-let allBoards,board; //allBoards = hashmap of all board objects: [id]:board, board = current id
+let project.allBoards,board; //project.allBoards = hashmap of all board objects: [id]:board, board = current id
 
 let boardTypes = {
   Text : 1,
@@ -37,16 +37,16 @@ uiToFunctions();
 ///////////////////////////////////////////////////////////////////////
 
 function resetBoards(){
-  allBoards = {};
+  project.allBoards = {};
   //main board
-  allBoards[""] = new Board(boardTypes.List,"",[],{references:99999999999,main:true},"");
+  project.allBoards[""] = new Board(boardTypes.List,"",[],{references:99999999999,main:true},"");
   board = "";
 }
 
 function saveAll(callback = null) {
   try{
 
-    let contents = JSON.stringify(allBoards);
+    let contents = JSON.stringify(project.allBoards);
 
     dbx.filesUpload({ path: '/' + 'lukaboard.lb', contents: contents , mode:'overwrite'},callback);
 
@@ -59,7 +59,7 @@ function loadAll(callback = null) {
     dbx.filesDownload({ path: '/' + 'lukaboard.lb' },function loaded(contents){
 
       if (contents != null) {
-        allBoards = JSON.parse(contents);
+        project.allBoards = JSON.parse(contents);
 
         //bootbox.alert(contents);
       }else{
@@ -81,8 +81,8 @@ function newText(){
 
   let brd = new Board(boardTypes.Text,"Text","",{references:1});
 
-  allBoards[brd.id]=brd;
-  allBoards[getBId(parent)].content.push(brd.id); //Add to parent list
+  project.allBoards[brd.id]=brd;
+  project.allBoards[getBId(parent)].content.push(brd.id); //Add to parent list
 
   parent.appendChild(el);
   loadTextBoard(el,brd.id);
@@ -102,8 +102,8 @@ function newBoard(){
   let atr = {description:'Description',references:1};
   let brd = new Board(boardTypes.Board,"Board",[],atr);
 
-  allBoards[brd.id]=brd;
-  allBoards[getBId(parent)].content.push(brd.id); //Add to parent list
+  project.allBoards[brd.id]=brd;
+  project.allBoards[getBId(parent)].content.push(brd.id); //Add to parent list
 
   parent.appendChild(el);
   loadBoardBoard(el,brd.id);
@@ -130,8 +130,8 @@ function newList(){
   titleText.onblur = ()=>{listTitleBlur();};
 
   let brd = new Board(boardTypes.List,name,[],{references:1});
-  allBoards[brd.id]=brd;
-  allBoards[board].content.push(brd.id);
+  project.allBoards[brd.id]=brd;
+  project.allBoards[board].content.push(brd.id);
 
   contentAlbum.appendChild(el);
   setBId(el, brd.id);

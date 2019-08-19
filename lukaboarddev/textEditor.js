@@ -1,17 +1,9 @@
 
-let textSave = false;
-setInterval(()=>{
-    if(textSave){
-        textSave = false;
-        saveAll();
-    }
-},30000);
-
 function showTextBoardDialog(){
     if(dragItem!=null && ( event.srcElement==dragItem[0] || event.srcElement.parentNode == dragItem[0]))return;
 
     var textBtn = event.srcElement;
-    var brd = allBoards[getBId(textBtn.parentNode)];
+    var brd = project.boards[getDataId(textBtn.parentNode)];
 
     if(brd==null) alert('Text board modal: brd == null');
 
@@ -19,7 +11,7 @@ function showTextBoardDialog(){
     let text = $('#textBoardDialogText');
     text.val(brd.content);
     let modal = $('#textBoardDialog');
-    setBId(modal[0],brd.id);
+    setDataId(modal[0],brd.id);
     modal.modal('show');
 
     //can do without timeout, but set timeout to like 0.8 seconds if you add 'modal fade' instead of just 'modal'
@@ -33,20 +25,24 @@ function closeTextBoardDialog(){
     EbyId('textBoardDialog').click();
 }
 
+function textCloseClicked(){
+    if(textSave) saveAll(); ////////[NOTICE] what if save fails?
+
+    textSave = false;
+}
+
 function textBackClicked(){
     if(event.target.id != 'textBoardDialog') return;
 
     //alert('closing back??'); //save now?
-    if(textSave) saveAll();
-
-    textSave = false;
+    textCloseClicked();
 }
 
 function textTitleChanged(){
     
     //alert("Text title changed");
     let brdId = EbyId('textBoardDialog').getAttribute('data-id');
-    allBoards[brdId].name = event.srcElement.value;
+    project.boards[brdId].name = event.srcElement.value;
 
     loadAllBoardsByDataId(brdId);
 
@@ -57,7 +53,7 @@ function textDescriptionChanged(){
 
     //alert("Text description changed");
     let brdId = EbyId('textBoardDialog').getAttribute('data-id');
-    allBoards[brdId].content = event.srcElement.value;
+    project.boards[brdId].content = event.srcElement.value;
 
     loadAllBoardsByDataId(brdId);
 

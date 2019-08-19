@@ -3,7 +3,7 @@ function showBoardBoardDialog(id=null){
     if(dragItem!=null && ( event.srcElement==dragItem[0] || event.srcElement.parentNode == dragItem[0]))return; //stop drag-click
 
     if(id == null)
-        id = getBId(event.srcElement.parentNode);
+        id = getDataId(event.srcElement.parentNode);
     
     loadBoardId(id);
 }
@@ -39,28 +39,29 @@ function newReferenceBtn(){
     let refer = window.prompt("Write/Paste id of board to reference:");
 
     if(refer==null)return;
-    if(allBoards[refer] == null){alert("ID doesn't exist :(");return;}
-    if(allBoards[refer].type == boardTypes.List){alert("Cant embed lists into boards.");return;}
+    if(project.boards[refer] == null){alert("ID doesn't exist :(");return;}
+    if(project.boards[refer].type == boardTypes.List){alert("Cant embed lists into boards.");return;}
 /*
     if(board == ""){
-        allBoards[refer].attributes['onMain'] = true;
+        project.boards[refer].attributes['onMain'] = true;
         
         drawMain();
     }else{
   */
         let lst = event.srcElement.parentNode.parentNode.parentNode;
-        let lstId = getBId(lst);
+        let lstId = getDataId(lst);
 
-        allBoards[lstId].content.push(refer);
+        project.boards[lstId].content.push(refer);
 
         clearBoards(lst);
         loadList(lst,lstId);
     //}
 
     
-    allBoards[refer].attributes['references']++;
+    project.boards[refer].attributes['references']++;
 
-    saveAll();
 
     hideOptionsDialog();
+
+    saveAll();
 }

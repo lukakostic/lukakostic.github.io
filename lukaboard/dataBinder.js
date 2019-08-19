@@ -1,17 +1,17 @@
 function boardTitleChanged(){
     //alert("Board title changed");
-    allBoards[board].name = event.srcElement.value;
+    project.allBoards[board].name = event.srcElement.value;
 
-    loadAllBoardsByDataId(board);
+    loadproject.allBoardsByDataId(board);
 
     saveAll();
 }
 
 function boardDescriptionChanged(){
     //alert("Board title changed");
-    allBoards[board].attributes['description'] = event.srcElement.value;
+    project.allBoards[board].attributes['description'] = event.srcElement.value;
 
-    loadAllBoardsByDataId(board);
+    loadproject.allBoardsByDataId(board);
 
     saveAll();
 }
@@ -21,7 +21,7 @@ function listTitleChanged(){
 
     //alert("List title changed");
     let listId = event.srcElement.parentNode.parentNode.getAttribute('data-id');
-    allBoards[listId].name = $(event.srcElement).text();
+    project.allBoards[listId].name = $(event.srcElement).text();
 
     saveAll();
 }
@@ -29,9 +29,9 @@ function listTitleChanged(){
 function textTitleChanged(){
     //alert("Text title changed");
     let brdId = EbyId('textBoardDialog').getAttribute('data-id');
-    allBoards[brdId].name = event.srcElement.value;
+    project.allBoards[brdId].name = event.srcElement.value;
 
-    loadAllBoardsByDataId(brdId);
+    loadproject.allBoardsByDataId(brdId);
 
     saveAll();
 }
@@ -39,9 +39,9 @@ function textTitleChanged(){
 function textDescriptionChanged(){
     //alert("Text description changed");
     let brdId = EbyId('textBoardDialog').getAttribute('data-id');
-    allBoards[brdId].content = event.srcElement.value;
+    project.allBoards[brdId].content = event.srcElement.value;
 
-    loadAllBoardsByDataId(brdId);
+    loadproject.allBoardsByDataId(brdId);
 
     saveAll();
 }

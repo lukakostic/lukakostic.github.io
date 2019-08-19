@@ -2,43 +2,61 @@ let url = window.location.href;
 
 let dbx = DropboxManager.fromUrl(url);
 
-let allBoards,board; //allBoards = hashmap of all board objects: [id]:board, board = current id
+let historyStack = [];
+let project,board; //project.boards = hashmap of all board objects: [id]:board, board = current id
 
+let extensionListeners = {
+  newPage: [],
+  pre_newPage: [],
+  saveAll: [],
+  pre_saveAll: [],
+  loadAll: [],
+  pre_loadAll: [],
+  reloadHTML: []
+};
 
-/////////////////////////////////////////////////////////////////////// Key page elements
-let textBrdTemplate = getTemplateFChild('textBoardTemplate');
-let boardBrdTemplate = getTemplateFChild('boardBoardTemplate');
-let listTemplate = getTemplateFChild('listTemplate');
+let static = {};
 
-let contentAlbum = EbyId('contentAlbum');
-let mainContentAlbum= EbyId('mainContentAlbum');
-let mainList = EbyId('main-list');
-
-let loadingIndicator = EbyId('loadingIndicator');
-let savingIndicator = EbyId('savingIndicator');
-
-let header = EbyId('header');
-let headerMain = EbyId('headerMain');
-///////////////////////////////////////////////////////////////////////
-
+let htmlBackup = document.createElement('template');
+htmlBackup.innerHTML = document.body.outerHTML;
 
 
 resetData();
 
-/////////////////////////////////////////////////////////////////////// OnLoad functions
 loadAll(()=>{
-  loadingIndicator.style.display = 'none';
   newPageOpened();
 });
-uiToFunctions();
-///////////////////////////////////////////////////////////////////////
 
 
-function urlFromBoardId(boardId){
-  return siteUrl + "/#" + "?d=" + dbx.access + "?b=" + boardId;
+let textSave = false;
+let autosave = setInterval(()=>{
+    if(textSave){
+        textSave = false;
+        saveAll();
+    }
+},project.preferences['textEditorAutoSaveInterval']*1000);
+
+function invokeListeners(listener = ""){
+  
+  for(let i = 0; i < extensionListeners[listener].length; i++){
+    if(extensionListeners[listener]) extensionListeners[listener][i]();
+  }
+  extensionListeners[listener] = [];
 }
 
+function urlFromBoardId(boardId){
+  return siteUrl + "#" + "?d=" + dbx.access + "?b=" + boardId;
+}
 
+function load(content){
+  project = updateProject(JSON.parse(content));
+}
+
+function loadFromContent(content){
+  resetData();
+  load(content);
+  newPageOpened();
+}
 
 function loadURL(newUrl, forceRefresh = false){
   url = newUrl;
@@ -53,42 +71,54 @@ function loadBoardId(boardToLoad, forceRefresh = false){
   loadURL(urlFromBoardId(boardToLoad, forceRefresh));
 }
 
-
-
 function resetData(){
-  allBoards = {};
+  project = new Project("", curVer);
   //main board
-  allBoards[""] = new Board(boardTypes.List,"",[],{references:99999999999,main:true},""); //////////////////////////////////////// change to ListBoard ?
+  project.boards[""] = new Board(boardTypes.List,"",[],{references:99999999999,main:true},""); //////////////////////////////////////// change to ListBoard ?
   board = "";
 }
 
 function saveAll(callback = null, log = null) {
   try{ 
+    invokeListeners('pre_saveAll');
 
     startSavingIndicator();
 
-    let contents = JSON.stringify(allBoards);
+    let contents = buildProject();
 
     dbx.filesUpload({ path: '/' + 'lukaboard.lb', contents: contents , mode:'overwrite'},()=>{
       if(callback!=null) callback();
       stopSavingIndicator();
+    
+      invokeListeners('saveAll');
+    
     },
     (msg)=>{
       if(msg.type == 'error') bootbox.alert(JSON.stringify(msg.msg));
       if(log)log(msg);
     });
 
+    
   }catch(e){bootbox.alert(e.message);}
+}
+
+function buildProject(){
+  return JSON.stringify(project);
 }
 
 function loadAll(callback = null, log = null) {
     try{
 
+      invokeListeners('pre_loadAll');
+    
     dbx.filesDownload({ path: '/' + 'lukaboard.lb' },function loaded(contents){
 
       if (contents != null) {
-        allBoards = JSON.parse(contents);
-
+        
+        load(contents);
+    
+        invokeListeners('loadAll');
+    
         //bootbox.alert(contents);
       }else{
         resetData();
@@ -109,17 +139,17 @@ function newText(){
   
   let parent = event.srcElement.parentNode.parentNode.parentNode; ////////////// replace by find parent thing?
 
-  let el = textBrdTemplate.cloneNode(true);
+  let el = static.textBrdTemplate.cloneNode(true);
 
   let brd = new Board(boardTypes.Text,"Text","",{references:1});
 
-  allBoards[brd.id]=brd;
-  allBoards[getBId(parent)].content.push(brd.id); //Add to parent list
+  project.boards[brd.id]=brd;
+  project.boards[getDataId(parent)].content.push(brd.id); //Add to parent list
 
   parent.appendChild(el);
   loadTextBoard(el,brd.id);
 
-  el.getElementsByClassName('textBtn')[0].click(); //////////////////////////
+  el.getElementsByClassName('textBtn')[0].click(); ////////////////////////// auto open
 
   fixListUI(parent);
   saveAll();
@@ -129,13 +159,13 @@ function newBoard(){
 
   let parent = event.srcElement.parentNode.parentNode.parentNode; ////////////// replace by find parent thing?
 
-  let el = boardBrdTemplate.cloneNode(true);
+  let el = static.boardBrdTemplate.cloneNode(true);
 
   let atr = {description:'Description',references:1};
   let brd = new Board(boardTypes.Board,"Board",[],atr);
 
-  allBoards[brd.id]=brd;
-  allBoards[getBId(parent)].content.push(brd.id); //Add to parent list
+  project.boards[brd.id]=brd;
+  project.boards[getDataId(parent)].content.push(brd.id); //Add to parent list
 
   parent.appendChild(el);
   loadBoardBoard(el,brd.id);
@@ -152,7 +182,7 @@ function newBoard(){
 
 function newList(){
 
-  let el = listTemplate.cloneNode(true);
+  let el = static.listTemplate.cloneNode(true);
 
   let inp = event.srcElement.firstElementChild;
   let name = inp.value;
@@ -165,17 +195,18 @@ function newList(){
   titleText.onblur = ()=>{listTitleBlur();};
 
   let brd = new Board(boardTypes.List,name,[],{references:1});
-  allBoards[brd.id]=brd;
-  allBoards[board].content.push(brd.id);
+  project.boards[brd.id]=brd;
+  project.boards[board].content.push(brd.id);
 
-  contentAlbum.appendChild(el);
-  setBId(el, brd.id);
+  static.contentAlbum.appendChild(el);
+  setDataId(el, brd.id);
 
   
   fixNewListUI();
   fixAlbumUI();
-  saveAll();
 
   makeDraggable();
   $(inp).val(''); //clear new list textbox
+
+  saveAll();
 }

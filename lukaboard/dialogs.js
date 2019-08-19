@@ -2,7 +2,7 @@ function showTextBoardDialog(){
     if(dragItem!=null && ( event.srcElement==dragItem[0] || event.srcElement.parentNode == dragItem[0]))return;
 
     var textBtn = event.srcElement;
-    var brd = allBoards[getBId(textBtn.parentNode)];
+    var brd = project.allBoards[getBId(textBtn.parentNode)];
 
     if(brd==null) alert('Text board modal: brd == null');
 
@@ -45,18 +45,18 @@ function showSeeReferencesDialog(){
     var Btn = optionsElement;
     
     if(getBId(Btn.parentNode) == ""){alert('No references');return;}
-    var brd = allBoards[getBId(Btn.parentNode)];
+    var brd = project.allBoards[getBId(Btn.parentNode)];
 
     if(brd.attributes['references'] == 1){alert('This is the only reference');return;}
 
     let listReferences = [];
     
     //go thru every board get references
-    let ids = Object.keys(allBoards);
+    let ids = Object.keys(project.allBoards);
 
     for(let i = 0; i < ids.length; i++){
-        if(allBoards[ids[i]].type == boardTypes.List){
-            if(allBoards[ids[i]].content.includes(brd.id))
+        if(project.allBoards[ids[i]].type == boardTypes.List){
+            if(project.allBoards[ids[i]].content.includes(brd.id))
                 listReferences.push(ids[i]);
         }
     }
@@ -65,9 +65,9 @@ function showSeeReferencesDialog(){
 
     //go thru each board, see if it includes any of the listReferences
     for(let i = 0; i < ids.length; i++){
-        if(allBoards[ids[i]].type == boardTypes.Board){
+        if(project.allBoards[ids[i]].type == boardTypes.Board){
             for(let j = 0; j < listReferences.length; j++){
-                if(allBoards[ids[i]].content.includes(listReferences[j]))
+                if(project.allBoards[ids[i]].content.includes(listReferences[j]))
                     boardReferences[ids[i]] = null; //just some value
             }
         }
@@ -137,11 +137,11 @@ function newReferenceBtn(){
     let refer = window.prompt("Write/Paste id of board to reference:");
 
     if(refer==null)return;
-    if(allBoards[refer] == null){alert("ID doesn't exist :(");return;}
-    if(allBoards[refer].type == boardTypes.List){alert("Cant embed lists into boards.");return;}
+    if(project.allBoards[refer] == null){alert("ID doesn't exist :(");return;}
+    if(project.allBoards[refer].type == boardTypes.List){alert("Cant embed lists into boards.");return;}
 /*
     if(board == ""){
-        allBoards[refer].attributes['onMain'] = true;
+        project.allBoards[refer].attributes['onMain'] = true;
         
         drawMain();
     }else{
@@ -149,14 +149,14 @@ function newReferenceBtn(){
         let lst = event.srcElement.parentNode.parentNode.parentNode;
         let lstId = getBId(lst);
 
-        allBoards[lstId].content.push(refer);
+        project.allBoards[lstId].content.push(refer);
 
         clearBoards(lst);
         loadList(lst,lstId);
     //}
 
     
-    allBoards[refer].attributes['references']++;
+    project.allBoards[refer].attributes['references']++;
 
     saveAll();
 
@@ -170,30 +170,30 @@ function removeClicked(){
 
     let id = getBId(idEl);
 
-    if(allBoards[id].attributes['references']<=1 && confirm('This is the last reference to this board, really remove it? (Will delete the board)')==false)return;
+    if(project.allBoards[id].attributes['references']<=1 && confirm('This is the last reference to this board, really remove it? (Will delete the board)')==false)return;
 
     if(isBoard){
         let ind = getElementIndex(idEl)-1;
 
         console.log('removed ind '+ ind);
 
-        allBoards[getBId(idEl.parentNode)].content.splice(ind,1);
+        project.allBoards[getBId(idEl.parentNode)].content.splice(ind,1);
     }else{
         //is List
         //if(board == ""){
-        //    delete allBoards[id].attributes['onMain']; 
+        //    delete project.allBoards[id].attributes['onMain']; 
         //}else{
             let ind = getElementIndex(idEl);
 
             console.log('removed ind '+ ind);
 
-            allBoards[board].content.splice(ind,1);
+            project.allBoards[board].content.splice(ind,1);
         //}
     }
     
-    allBoards[id].attributes['references']--;
+    project.allBoards[id].attributes['references']--;
     
-    if(allBoards[id].attributes['references']<=0)
+    if(project.allBoards[id].attributes['references']<=0)
         Board.deleteBoardById(id);
 
     saveAll();
@@ -215,15 +215,15 @@ function deleteClicked(){
     Board.deleteBoardById(id);
 
     //go thru every board and remove the id from contents
-    let ids = Object.keys(allBoards);
+    let ids = Object.keys(project.allBoards);
 
     for(let i = 0; i < ids.length; i++){
-        if(allBoards[ids[i]].type == boardTypes.Text) continue;
+        if(project.allBoards[ids[i]].type == boardTypes.Text) continue;
 
-        let ind = allBoards[ids[i]].content.indexOf(id);
+        let ind = project.allBoards[ids[i]].content.indexOf(id);
         while(ind!=-1){
-            allBoards[ids[i]].content.splice(ind,1);
-            ind = allBoards[ids[i]].content.indexOf(id);
+            project.allBoards[ids[i]].content.splice(ind,1);
+            ind = project.allBoards[ids[i]].content.indexOf(id);
         }
     }
 

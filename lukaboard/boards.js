@@ -45,7 +45,7 @@ class Board {
                 id += possible.charAt(Math.floor(Math.random() * possible.length));
 
                 
-            if(allBoards[id] == null)break;
+            if(project.allBoards[id] == null)break;
 
         }
 
@@ -55,13 +55,13 @@ class Board {
     //delete board by id, and dereference its children. Children get deleted if at 0 references.
     static deleteBoardById(id){
         if(id=="")return;
-        if(allBoards[id].type != boardTypes.Text){
-            for(let i = 0; i < allBoards[id].content.length; i++){
-                allBoards[allBoards[id].content[i]].attributes['references']--;
-                if(allBoards[allBoards[id].content[i]].attributes['references']<=0)
-                    Board.deleteBoardById(allBoards[id].content[i]);
+        if(project.allBoards[id].type != boardTypes.Text){
+            for(let i = 0; i < project.allBoards[id].content.length; i++){
+                project.allBoards[project.allBoards[id].content[i]].attributes['references']--;
+                if(project.allBoards[project.allBoards[id].content[i]].attributes['references']<=0)
+                    Board.deleteBoardById(project.allBoards[id].content[i]);
             }
         }
-        delete allBoards[id];
+        delete project.allBoards[id];
     }
 }
