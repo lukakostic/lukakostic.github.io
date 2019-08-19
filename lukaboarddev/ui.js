@@ -45,11 +45,15 @@ function newPageOpened(forceMain = false){
 }
 
 function loadBoardBackgroundImage(){
+<<<<<<< HEAD
   let brdEl = EbyId('main');
   
   brdEl.style.backgroundImage = "url('"+getBrdAttr(board,'background')+"')";
   brdEl.style.repeatMode = "no-repeat";
   brdEl.style.backgroundSize = "cover";
+=======
+  EbyId('main').style.backgroundImage = "url('"+project.allBoards[board].attributes['background']+"')";
+>>>>>>> fab8f27673e4fe7609f7768b5db5ccc2ef0126da
 }
 
 function uiToFunctions(){
@@ -118,8 +122,13 @@ function makeDraggable(){
         newDragIndex = getElementIndex(dragItem[0]);
 
         
+<<<<<<< HEAD
           project.boards[getDataId(dragOld[0])].content.splice(oldDragIndex-1,1);
           project.boards[getDataId(dragNew[0])].content.splice(newDragIndex-1,0,getDataId(dragItem[0]));
+=======
+          project.allBoards[getBId(dragOld[0])].content.splice(oldDragIndex-1,1);
+          project.allBoards[getBId(dragNew[0])].content.splice(newDragIndex-1,0,getBId(dragItem[0]));
+>>>>>>> fab8f27673e4fe7609f7768b5db5ccc2ef0126da
         
         dragItem = null;
         saveAll();
@@ -152,8 +161,13 @@ function makeDraggable(){
         newDragIndex = getElementIndex(dragItem[0]);
 
         
+<<<<<<< HEAD
           project.boards[board].content.splice(oldDragIndex,1);
           project.boards[board].content.splice(newDragIndex,0,getDataId(dragItem[0]));
+=======
+          project.allBoards[board].content.splice(oldDragIndex,1);
+          project.allBoards[board].content.splice(newDragIndex,0,getBId(dragItem[0]));
+>>>>>>> fab8f27673e4fe7609f7768b5db5ccc2ef0126da
         
         dragItem = null;
         saveAll();
@@ -257,18 +271,31 @@ function fixNewListUI(){
 
     clearBoards();
 
+<<<<<<< HEAD
     EbyId('boardTitle').value = project.boards[board].name;
     EbyId('boardDescription').value = getBrdAttr(board,'description');
 
 
     //fill lists & boards
     for(let l = 0; l < project.boards[board].content.length; l++){
+=======
+    EbyId('boardTitle').value = project.allBoards[board].name;
+    EbyId('boardDescription').value = project.allBoards[board].attributes['description'];
+
+
+    //fill lists & boards
+    for(let l = 0; l < project.allBoards[board].content.length; l++){
+>>>>>>> fab8f27673e4fe7609f7768b5db5ccc2ef0126da
 
       let listEl = static.listTemplate.cloneNode(true);
       static.contentAlbum.appendChild(listEl);
 
       
+<<<<<<< HEAD
       loadList(listEl,project.boards[board].content[l]);
+=======
+      loadList(listEl,project.allBoards[board].content[l]);
+>>>>>>> fab8f27673e4fe7609f7768b5db5ccc2ef0126da
 
       
 
@@ -293,6 +320,7 @@ function fixNewListUI(){
     
 
     /*
+<<<<<<< HEAD
     let ids = Object.keys(project.boards);
     //fill boards
     for(let i = 0; i < ids.length; i++){
@@ -308,6 +336,23 @@ function fixNewListUI(){
           let el = static.boardBrdTemplate.cloneNode(true);
           static.mainList.appendChild(el);
           loadBoardBoard(el,project.boards[ids[i]]);
+=======
+    let ids = Object.keys(project.allBoards);
+    //fill boards
+    for(let i = 0; i < ids.length; i++){
+      if(project.allBoards[ids[i]].attributes['onMain'] == true){
+        if(project.allBoards[ids[i]].type == boardTypes.Text){
+ 
+          let el = textBrdTemplate.cloneNode(true);
+          mainList.appendChild(el);
+          loadTextBoard(el,project.allBoards[ids[i]]);
+        
+        }else if(project.allBoards[ids[i]].type == boardTypes.Board){
+
+          let el = boardBrdTemplate.cloneNode(true);
+          mainList.appendChild(el);
+          loadBoardBoard(el,project.allBoards[ids[i]]);
+>>>>>>> fab8f27673e4fe7609f7768b5db5ccc2ef0126da
 
         }
         
@@ -319,7 +364,11 @@ function fixNewListUI(){
 
 
 function loadTextBoard(textBoardEl, brd){
+<<<<<<< HEAD
   if (typeof brd === 'string' || brd instanceof String) brd = project.boards[brd];
+=======
+  if (typeof brd === 'string' || brd instanceof String) brd = project.allBoards[brd];
+>>>>>>> fab8f27673e4fe7609f7768b5db5ccc2ef0126da
 
   setDataId(textBoardEl, brd.id);
 
@@ -340,7 +389,11 @@ function loadBackground(brdEl, id){
 }
 
 function loadBoardBoard(boardBoardEl, brd){
+<<<<<<< HEAD
   if (typeof brd === 'string' || brd instanceof String) brd = project.boards[brd];
+=======
+  if (typeof brd === 'string' || brd instanceof String) brd = project.allBoards[brd];
+>>>>>>> fab8f27673e4fe7609f7768b5db5ccc2ef0126da
 
   setDataId(boardBoardEl, brd.id);
   $(boardBoardEl.getElementsByClassName('textBtn')[0]).contents()[0].nodeValue = brd.name;
@@ -349,7 +402,11 @@ function loadBoardBoard(boardBoardEl, brd){
 }
 
 function loadList(listEl, brd){
+<<<<<<< HEAD
   if (typeof brd === 'string' || brd instanceof String) brd = project.boards[brd];
+=======
+  if (typeof brd === 'string' || brd instanceof String) brd = project.allBoards[brd];
+>>>>>>> fab8f27673e4fe7609f7768b5db5ccc2ef0126da
 
   titleText = listEl.getElementsByClassName("title-text")[0];
 
@@ -371,7 +428,11 @@ titleText.onblur = ()=>{listTitleBlur();};
   
   
   for(let i = 0; i < brd.content.length; i++){
+<<<<<<< HEAD
     let brd2 = project.boards[brd.content[i]];
+=======
+    let brd2 = project.allBoards[brd.content[i]];
+>>>>>>> fab8f27673e4fe7609f7768b5db5ccc2ef0126da
     if(brd2.type == boardTypes.Text){
 
       let el = static.textBrdTemplate.cloneNode(true);
@@ -394,10 +455,17 @@ function loadAllBoardsByDataId(brdId){
   let boardEls = document.getElementsByClassName('board');
 
   for(let i = 0; i < boardEls.length; i++){
+<<<<<<< HEAD
       if(getDataId(boardEls[i])==brdId){
           if(project.boards[brdId].type == boardTypes.Text)
            loadTextBoard(boardEls[i],brdId);
           else if(project.boards[brdId].type == boardTypes.Board)
+=======
+      if(getBId(boardEls[i])==brdId){
+          if(project.allBoards[brdId].type == boardTypes.Text)
+           loadTextBoard(boardEls[i],brdId);
+          else if(project.allBoards[brdId].type == boardTypes.Board)
+>>>>>>> fab8f27673e4fe7609f7768b5db5ccc2ef0126da
            loadBoardBoard(boardEls[i],brdId);
       }
   }

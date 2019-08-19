@@ -1,4 +1,5 @@
 class Extension {
+<<<<<<< HEAD
     constructor(name = "", description = "", code = "", id = null){
         this.name = name;
         this.description = description;
@@ -39,4 +40,11 @@ class Extension {
         return null;
     }
 
+=======
+    constructor(name = "", description = "", code = ""){
+        this.name = name;
+        this.description = description;
+        this.code = code;
+    }
+>>>>>>> fab8f27673e4fe7609f7768b5db5ccc2ef0126da
 }

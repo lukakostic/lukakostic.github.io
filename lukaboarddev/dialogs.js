@@ -39,11 +39,19 @@ function newReferenceBtn(){
     let refer = window.prompt("Write/Paste id of board to reference:");
 
     if(refer==null)return;
+<<<<<<< HEAD
     if(project.boards[refer] == null){alert("ID doesn't exist :(");return;}
     if(project.boards[refer].type == boardTypes.List){alert("Cant embed lists into boards.");return;}
 /*
     if(board == ""){
         project.boards[refer].attributes['onMain'] = true;
+=======
+    if(project.allBoards[refer] == null){alert("ID doesn't exist :(");return;}
+    if(project.allBoards[refer].type == boardTypes.List){alert("Cant embed lists into boards.");return;}
+/*
+    if(board == ""){
+        project.allBoards[refer].attributes['onMain'] = true;
+>>>>>>> fab8f27673e4fe7609f7768b5db5ccc2ef0126da
         
         drawMain();
     }else{
@@ -51,14 +59,22 @@ function newReferenceBtn(){
         let lst = event.srcElement.parentNode.parentNode.parentNode;
         let lstId = getDataId(lst);
 
+<<<<<<< HEAD
         project.boards[lstId].content.push(refer);
+=======
+        project.allBoards[lstId].content.push(refer);
+>>>>>>> fab8f27673e4fe7609f7768b5db5ccc2ef0126da
 
         clearBoards(lst);
         loadList(lst,lstId);
     //}
 
     
+<<<<<<< HEAD
     project.boards[refer].attributes['references']++;
+=======
+    project.allBoards[refer].attributes['references']++;
+>>>>>>> fab8f27673e4fe7609f7768b5db5ccc2ef0126da
 
 
     hideOptionsDialog();
