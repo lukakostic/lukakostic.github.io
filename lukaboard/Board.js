@@ -1,12 +1,22 @@
+let boardTypes = {
+    Text : 1,
+    Board : 2,
+    List : 3
+};
+
+
 class Board {
     constructor(type, name, content,  attributes = {}, id = null) {
-        this.type = type;
+        this.type = type; //boardType
         this.name = name; //string
         this.content = content; //text or array of ids [string]
         this.attributes = attributes; //object (isBoard,onMain,tags, etc.)
         this.id = id; //string
         if (id === null) this.id = Board.makeId(8);
     }
+
+    
+
 
     static clone(toClone) {
         return new Board(toClone.type, toClone.name, toClone.content, toClone.attributes);
@@ -45,7 +55,7 @@ class Board {
                 id += possible.charAt(Math.floor(Math.random() * possible.length));
 
                 
-            if(project.allBoards[id] == null)break;
+            if(project.boards[id] == null)break;
 
         }
 
@@ -55,13 +65,28 @@ class Board {
     //delete board by id, and dereference its children. Children get deleted if at 0 references.
     static deleteBoardById(id){
         if(id=="")return;
-        if(project.allBoards[id].type != boardTypes.Text){
-            for(let i = 0; i < project.allBoards[id].content.length; i++){
-                project.allBoards[project.allBoards[id].content[i]].attributes['references']--;
-                if(project.allBoards[project.allBoards[id].content[i]].attributes['references']<=0)
-                    Board.deleteBoardById(project.allBoards[id].content[i]);
+        if(project.boards[id].type != boardTypes.Text){
+            for(let i = 0; i < project.boards[id].content.length; i++){
+                project.boards[project.boards[id].content[i]].attributes['references']--;
+                if(project.boards[project.boards[id].content[i]].attributes['references']<=0)
+                    Board.deleteBoardById(project.boards[id].content[i]);
             }
         }
-        delete project.allBoards[id];
+
+        delete project.boards[id];
+        
+        //go thru every board and remove the id from contents
+        let ids = Object.keys(project.boards);
+
+        for(let i = 0; i < ids.length; i++){
+            if(project.boards[ids[i]].type == boardTypes.Text) continue;
+
+            let ind = project.boards[ids[i]].content.indexOf(id);
+            while(ind!=-1){
+                project.boards[ids[i]].content.splice(ind,1);
+                ind = project.boards[ids[i]].content.indexOf(id);
+            }
+        }
+
     }
 }

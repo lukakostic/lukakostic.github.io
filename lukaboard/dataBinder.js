@@ -1,19 +1,27 @@
+let dataSave = false;
+setInterval(()=>{
+    if(dataSave){
+        dataSave = false;
+        saveAll();
+    }
+},5000);
+
 function boardTitleChanged(){
     //alert("Board title changed");
-    project.allBoards[board].name = event.srcElement.value;
+    project.boards[board].name = event.srcElement.value;
 
-    loadproject.allBoardsByDataId(board);
+    loadAllBoardsByDataId(board);
 
-    saveAll();
+    dataSave = true;
 }
 
 function boardDescriptionChanged(){
     //alert("Board title changed");
-    project.allBoards[board].attributes['description'] = event.srcElement.value;
+    setBrdAttr(board,'description',event.srcElement.value);
 
-    loadproject.allBoardsByDataId(board);
+    loadAllBoardsByDataId(board);
 
-    saveAll();
+    dataSave = true;
 }
 
 function listTitleChanged(){
@@ -21,30 +29,11 @@ function listTitleChanged(){
 
     //alert("List title changed");
     let listId = event.srcElement.parentNode.parentNode.getAttribute('data-id');
-    project.allBoards[listId].name = $(event.srcElement).text();
+    project.boards[listId].name = $(event.srcElement).text();
 
-    saveAll();
+    dataSave = true;
 }
 
-function textTitleChanged(){
-    //alert("Text title changed");
-    let brdId = EbyId('textBoardDialog').getAttribute('data-id');
-    project.allBoards[brdId].name = event.srcElement.value;
-
-    loadproject.allBoardsByDataId(brdId);
-
-    saveAll();
-}
-
-function textDescriptionChanged(){
-    //alert("Text description changed");
-    let brdId = EbyId('textBoardDialog').getAttribute('data-id');
-    project.allBoards[brdId].content = event.srcElement.value;
-
-    loadproject.allBoardsByDataId(brdId);
-
-    saveAll();
-}
 
 
 

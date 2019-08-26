@@ -1,1 +1,4 @@
-document.getElementById('form').setAttribute('action',homeFormAction);
+
+function loadFromDropbox(){
+    window.location.href = siteUrl + "#?d=" + document.getElementById('token').value;
+}

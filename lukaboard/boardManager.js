@@ -1,73 +1,136 @@
-let url = window.location.href.replace('#', '');
+let url = window.location.href;
 
 let dbx = DropboxManager.fromUrl(url);
 
-let project.allBoards,board; //project.allBoards = hashmap of all board objects: [id]:board, board = current id
+let historyStack = [];
+let project,board; //project.boards = hashmap of all board objects: [id]:board, board = current id
 
-let boardTypes = {
-  Text : 1,
-  Board : 2,
-  List : 3
+let extensionListeners = {
+  newPage: [],
+  pre_newPage: [],
+  saveAll: [],
+  pre_saveAll: [],
+  loadAll: [],
+  pre_loadAll: [],
+  reloadHTML: [],
+  draw: []
 };
 
-resetBoards();
+let static = {};
 
-/////////////////////////////////////////////////////////////////////// Key page elements
-let textBrdTemplate = getTemplateFChild('textBoardTemplate');
-let boardBrdTemplate = getTemplateFChild('boardBoardTemplate');
-let listTemplate = getTemplateFChild('listTemplate');
+let htmlBackup = document.createElement('template');
+htmlBackup.innerHTML = document.body.outerHTML;
 
-let contentAlbum = EbyId('contentAlbum');
-let mainContentAlbum= EbyId('mainContentAlbum');
-let mainList = EbyId('main-list');
-///////////////////////////////////////////////////////////////////////
 
-/////////////////////////////////////////////////////////////////////// UI helper / tracking variables
-let dragOld, dragNew, dragItem;
-let oldDragIndex, newDragIndex;
+resetData();
 
-let optionsElement = null;
-///////////////////////////////////////////////////////////////////////
-
-/////////////////////////////////////////////////////////////////////// OnLoad functions
 loadAll(()=>{
   newPageOpened();
 });
-uiToFunctions();
-///////////////////////////////////////////////////////////////////////
 
-function resetBoards(){
-  project.allBoards = {};
+
+let textSave = false;
+let autosave = setInterval(()=>{
+    if(textSave){
+        textSave = false;
+        saveAll();
+    }
+},project.preferences['textEditorAutoSaveInterval']*1000);
+
+function invokeListeners(listener = ""){
+  
+  for(let i = 0; i < extensionListeners[listener].length; i++){
+    if(extensionListeners[listener]) extensionListeners[listener][i]();
+  }
+  extensionListeners[listener] = [];
+}
+
+function urlFromBoardId(boardId){
+  return siteUrl + "#" + "?d=" + dbx.access + "?b=" + boardId;
+}
+
+function load(content){
+  project = updateProject(JSON.parse(content));
+}
+
+function loadFromContent(content){
+  resetData();
+  load(content);
+  newPageOpened();
+}
+
+function loadURL(newUrl, forceRefresh = false){
+  url = newUrl;
+  window.location.hash = getHashFromUrl(url);
+  if(forceRefresh) window.location.href = url;
+  else{
+    newPageOpened();
+  }
+}
+
+function loadBoardId(boardToLoad, forceRefresh = false){
+  loadURL(urlFromBoardId(boardToLoad, forceRefresh));
+}
+
+function resetData(){
+  project = new Project("", curVer);
   //main board
-  project.allBoards[""] = new Board(boardTypes.List,"",[],{references:99999999999,main:true},"");
+  project.boards[""] = new Board(boardTypes.List,"",[],{references:99999999999,main:true},""); //////////////////////////////////////// change to ListBoard ?
   board = "";
 }
 
-function saveAll(callback = null) {
-  try{
+function saveAll(callback = null, log = null) {
+  try{ 
+    invokeListeners('pre_saveAll');
 
-    let contents = JSON.stringify(project.allBoards);
+    startSavingIndicator();
 
-    dbx.filesUpload({ path: '/' + 'lukaboard.lb', contents: contents , mode:'overwrite'},callback);
+    let contents = buildProject();
 
+    dbx.filesUpload({ path: '/' + 'lukaboard.lb', contents: contents , mode:'overwrite'},()=>{
+      if(callback!=null) callback();
+      stopSavingIndicator();
+    
+      invokeListeners('saveAll');
+    
+    },
+    (msg)=>{
+      if(msg.type == 'error') bootbox.alert(JSON.stringify(msg.msg));
+      if(log)log(msg);
+    });
+
+    
   }catch(e){bootbox.alert(e.message);}
 }
 
-function loadAll(callback = null) {
+function buildProject(){
+  return JSON.stringify(project);
+}
+
+function loadAll(callback = null, log = null) {
     try{
 
+      invokeListeners('pre_loadAll');
+    
     dbx.filesDownload({ path: '/' + 'lukaboard.lb' },function loaded(contents){
 
       if (contents != null) {
-        project.allBoards = JSON.parse(contents);
-
+        
+        load(contents);
+    
+        invokeListeners('loadAll');
+    
         //bootbox.alert(contents);
       }else{
-        resetBoards();
+        resetData();
       }
         
       if(callback) callback();
 
+    },
+    (msg)=>{
+      if(msg.type == 'error') bootbox.alert(JSON.stringify(msg.msg) + '');
+      if(log)log(msg);
     });
 
   }catch(e){bootbox.alert(e.message);}
@@ -75,19 +138,19 @@ function loadAll(callback = null) {
 
 function newText(){
   
-  let parent = event.srcElement.parentNode.parentNode.parentNode;
+  let parent = event.srcElement.parentNode.parentNode.parentNode; ////////////// replace by find parent thing?
 
-  let el = textBrdTemplate.cloneNode(true);
+  let el = static.textBrdTemplate.cloneNode(true);
 
   let brd = new Board(boardTypes.Text,"Text","",{references:1});
 
-  project.allBoards[brd.id]=brd;
-  project.allBoards[getBId(parent)].content.push(brd.id); //Add to parent list
+  project.boards[brd.id]=brd;
+  project.boards[getDataId(parent)].content.push(brd.id); //Add to parent list
 
   parent.appendChild(el);
   loadTextBoard(el,brd.id);
 
-  el.getElementsByClassName('textBtn')[0].click(); //////////////////////////
+  el.getElementsByClassName('textBtn')[0].click(); ////////////////////////// auto open
 
   fixListUI(parent);
   saveAll();
@@ -95,29 +158,32 @@ function newText(){
 
 function newBoard(){
 
-  let parent = event.srcElement.parentNode.parentNode.parentNode;
+  let parent = event.srcElement.parentNode.parentNode.parentNode; ////////////// replace by find parent thing?
 
-  let el = boardBrdTemplate.cloneNode(true);
+  let el = static.boardBrdTemplate.cloneNode(true);
 
   let atr = {description:'Description',references:1};
   let brd = new Board(boardTypes.Board,"Board",[],atr);
 
-  project.allBoards[brd.id]=brd;
-  project.allBoards[getBId(parent)].content.push(brd.id); //Add to parent list
+  project.boards[brd.id]=brd;
+  project.boards[getDataId(parent)].content.push(brd.id); //Add to parent list
 
   parent.appendChild(el);
   loadBoardBoard(el,brd.id);
 
   
   fixListUI(parent);
-  saveAll((msg)=>{
-    el.getElementsByClassName('textBtn')[0].click(); //////////////////////////
+
+  el.getElementsByClassName('textBtn')[0].click(); // load board on add, might not want to do this.
+
+  saveAll(()=>{
+    //el.getElementsByClassName('textBtn')[0].click(); // load board on add, might not want to do this. and to be moved to before saving?
   });
 }
 
 function newList(){
 
-  let el = listTemplate.cloneNode(true);
+  let el = static.listTemplate.cloneNode(true);
 
   let inp = event.srcElement.firstElementChild;
   let name = inp.value;
@@ -130,17 +196,18 @@ function newList(){
   titleText.onblur = ()=>{listTitleBlur();};
 
   let brd = new Board(boardTypes.List,name,[],{references:1});
-  project.allBoards[brd.id]=brd;
-  project.allBoards[board].content.push(brd.id);
+  project.boards[brd.id]=brd;
+  project.boards[board].content.push(brd.id);
 
-  contentAlbum.appendChild(el);
-  setBId(el, brd.id);
+  static.contentAlbum.appendChild(el);
+  setDataId(el, brd.id);
 
   
   fixNewListUI();
   fixAlbumUI();
-  saveAll();
 
   makeDraggable();
-  $(inp).val(''); //clear listbox
+  $(inp).val(''); //clear new list textbox
+
+  saveAll();
 }

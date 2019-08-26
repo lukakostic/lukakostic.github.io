@@ -202,7 +202,9 @@ function draw(){
   makeDraggable();
 
   setTimeout(()=>{expandInputAll()},200);
-  setTimeout(()=>{expandInputAll()},1000);
+  //setTimeout(()=>{expandInputAll()},1000);
+  
+  invokeListeners('draw');
 }
   
   function clearBoards(lst = null) {
