@@ -12,7 +12,8 @@ let extensionListeners = {
   pre_saveAll: [],
   loadAll: [],
   pre_loadAll: [],
-  reloadHTML: []
+  reloadHTML: [],
+  draw: []
 };
 
 let static = {};
