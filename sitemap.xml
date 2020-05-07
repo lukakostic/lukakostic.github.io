@@ -8,12 +8,17 @@
 
 
 <url>
-  <loc>http://lukakostic.com/</loc>
+  <loc>http://lukakostic.github.io/</loc>
   <lastmod>2019-04-14T23:45:43+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>http://lukakostic.com/penguins/</loc>
+  <loc>http://lukakostic.github.io/penguins/</loc>
+  <lastmod>2019-04-14T23:45:43+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://lukakostic.github.io/pboard/</loc>
   <lastmod>2019-04-14T23:45:43+00:00</lastmod>
   <priority>0.80</priority>
 </url>
